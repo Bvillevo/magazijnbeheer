@@ -24,7 +24,7 @@ class ArtikelType extends AbstractType
             ->add('omschrijving', TextType::class) //naam is b.v. een attribuut of variabele van klant
             ;
         $builder
-                ->add('TechnischeSpecificaties', TextType::class) //naam is b.v. een attribuut of variabele van klant
+                ->add('TechnischeSpecificaties', TextType::class,array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
                 ->add('magazijnlocatie', TextType::class) //naam is b.v. een attribuut of variabele van klant
@@ -37,8 +37,10 @@ class ArtikelType extends AbstractType
   //    'divisor' => 100,))
 ///;
         $builder
-            ->add('CVA', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
+           ->add('CVA',IntegerType::class,array ('required' => false) ) //naam is b.v. een attribuut of variabele van klant
+       ;
+    //    $builder->add('CVA', 'text', array('label' => 'form.name','required' => false));
+    //array ('label' => 'form.name','required' => false)
         $builder
             ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
         ;

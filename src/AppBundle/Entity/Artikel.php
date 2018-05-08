@@ -31,7 +31,7 @@ class Artikel
     /**
      * @var string
      *
-     * @ORM\Column(name="technischeSpecificaties", type="string", length=100)
+     * @ORM\Column(name="technischeSpecificaties", type="string", length=100, nullable=true)
      */
     private $technischeSpecificaties;
 
@@ -52,7 +52,7 @@ class Artikel
     /**
      * @var int
      *
-     * @ORM\Column(name="CVA", type="integer")
+     * @ORM\Column(name="CVA", type="integer", nullable=true)
      */
     private $cVA;
 
