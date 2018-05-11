@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Bestelopdracht
@@ -18,13 +19,6 @@ class Bestelopdracht
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="bestelordernummer", type="integer", unique=true)
      */
     private $bestelordernummer;
 
@@ -49,12 +43,6 @@ class Bestelopdracht
      */
     private $leverancier;
 
-    /**
-     * @var
-     *
-     * @ORM\Column(name="bestelordernummer", type="integer", unique=true)
-     */
-    private $bestelordernummer;
 
     /**
      * @var int
@@ -197,6 +185,6 @@ class Bestelopdracht
 
     public function __construct()
     {
-       $bestelregels = new ArrayCollection()
+       $bestelregels = new ArrayCollection();
     }
 }

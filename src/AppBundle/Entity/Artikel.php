@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Artikel
@@ -338,6 +339,6 @@ class Artikel
 
     public function __construct()
     {
-       $bestelregels = new ArrayCollection()
+       $bestelregels = new ArrayCollection();
     }
 }
