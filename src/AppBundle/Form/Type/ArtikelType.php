@@ -47,9 +47,9 @@ class ArtikelType extends AbstractType
         $builder
             ->add('voorraadInAantal', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
         ;
-        $builder
-            ->add('bestelserie', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
+  //      $builder
+    //        ->add('bestelserie', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
+  //      ;
 		//zie
 		//http://symfony.com/doc/current/forms.html#built-in-field-types
 		//voor meer typen invoer

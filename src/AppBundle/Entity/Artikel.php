@@ -61,21 +61,21 @@ class Artikel
      *
      * @ORM\Column(name="minimumVoorraad", type="integer")
      */
-    private $minimumVoorraad;
+    public $minimumVoorraad;
 
     /**
      * @var int
      *
      * @ORM\Column(name="voorraadInAantal", type="integer")
      */
-    private $voorraadInAantal;
+    public $voorraadInAantal;
 
     /**
      * @var int
      *
      * @ORM\Column(name="bestelserie", type="integer")
      */
-    private $bestelserie;
+    public $bestelserie;
 
 
     /**
