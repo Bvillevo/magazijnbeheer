@@ -57,6 +57,15 @@ class Bestelopdracht
     private $bestelordernummer;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="bestelregels", type="integer")
+     * @ORM\OneToMany(targetEntity="BestelRegel", mappedBy="artikel")
+     */
+    public $bestelregels;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -160,5 +169,34 @@ class Bestelopdracht
     public function getLeverancier()
     {
         return $this->leverancier;
+    }
+
+    /**
+     * Set bestelregels
+     *
+     * @param integer $bestelregels
+     *
+     * @return Artikel
+     */
+    public function setBestelregels($bestelregels)
+    {
+        $this->bestelregels = $bestelregels;
+
+        return $this;
+    }
+
+    /**
+     * Get bestelserie
+     *
+     * @return int
+     */
+    public function getBestelregels()
+    {
+        return $this->bestelregels;
+    }
+
+    public function __construct()
+    {
+       $bestelregels = new ArrayCollection()
     }
 }
