@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 08 mei 2018 om 10:32
+-- Gegenereerd op: 11 mei 2018 om 15:24
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artikel` (
-  `artikelnr` int(9) NOT NULL,
-  `omschrijving` varchar(100) NOT NULL,
-  `technischeSpecificaties` varchar(100) NOT NULL,
+  `artikelnr` int(10) NOT NULL,
+  `omschrijving` varchar(255) NOT NULL,
+  `technischeSpecificaties` varchar(255) DEFAULT NULL,
   `magazijnlocatie` varchar(100) NOT NULL,
   `inkoopprijs` decimal(10,2) NOT NULL,
-  `CVA` int(20) NOT NULL,
+  `CVA` int(20) DEFAULT NULL,
   `minimumVoorraad` int(20) NOT NULL,
   `voorraadInAantal` int(20) NOT NULL,
   `bestelserie` int(20) NOT NULL
@@ -47,7 +47,21 @@ CREATE TABLE `artikel` (
 INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `CVA`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`) VALUES
 (2, 'Gemaakt van staal', 'staal', 'laag', '6648.00', 2, 90, 872, 5),
 (3, 'gemaakt van PC', 'PC', 'laag', '9999.99', 4, 3, 6, 5),
-(22, 'Halit', 'Hjkrn', 'bovenin', '44.89', 2, 125, 330, 3);
+(5, 'test', 'test', 'test', '55.21', 2, 100, 32, 68),
+(66, 'asd', 'asd', 'asd', '44.00', 2, 60, 20, 40),
+(77, 'ihijn', 'hbn', 'hbn', '55.66', 5, 60, 30, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `artikel_bestelopdracht`
+--
+
+CREATE TABLE `artikel_bestelopdracht` (
+  `ID` int(11) NOT NULL,
+  `artikel_ID` int(11) NOT NULL,
+  `bestelopdracht_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -61,13 +75,6 @@ CREATE TABLE `bestelopdracht` (
   `artikelnr` int(20) NOT NULL,
   `hoeveelheid` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `bestelopdracht`
---
-
-INSERT INTO `bestelopdracht` (`leverancier`, `bestelordernummer`, `artikelnr`, `hoeveelheid`) VALUES
-('Halit', 5, 22, 300);
 
 -- --------------------------------------------------------
 
@@ -1417,6 +1424,14 @@ ALTER TABLE `artikel`
   ADD PRIMARY KEY (`artikelnr`);
 
 --
+-- Indexen voor tabel `artikel_bestelopdracht`
+--
+ALTER TABLE `artikel_bestelopdracht`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `artikel_ID` (`artikel_ID`),
+  ADD KEY `bestelopdracht_ID` (`bestelopdracht_ID`);
+
+--
 -- Indexen voor tabel `bestelopdracht`
 --
 ALTER TABLE `bestelopdracht`
@@ -1459,6 +1474,13 @@ ALTER TABLE `productsoort`
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
+
+--
+-- Beperkingen voor tabel `artikel_bestelopdracht`
+--
+ALTER TABLE `artikel_bestelopdracht`
+  ADD CONSTRAINT `artikel_bestelopdracht_ibfk_1` FOREIGN KEY (`artikel_ID`) REFERENCES `artikel` (`artikelnr`),
+  ADD CONSTRAINT `artikel_bestelopdracht_ibfk_2` FOREIGN KEY (`bestelopdracht_ID`) REFERENCES `bestelopdracht` (`bestelordernummer`);
 
 --
 -- Beperkingen voor tabel `bestelopdracht`
