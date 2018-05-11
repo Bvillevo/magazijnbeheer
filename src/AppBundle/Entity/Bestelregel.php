@@ -33,6 +33,7 @@ class Bestelregel
      *
      * @ORM\Column(name="bestellingid")
      * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="bestelregels")
+     * @ORM\ManyToOne(targetEntity="Bestelopdracht", inversedBy="bestelregels")
      * @ORM\JoinColumn(name="artikelid", referencedColumnName="artikelid"
      */
     private $bestelling;
@@ -49,15 +50,14 @@ class Bestelregel
     }
 
     /**
-     * Set artikelid
+     * Set artikel
      *
-     * @param integer $artikelid
      *
      * @return Bestelregel
      */
-    public function setArtikelid($artikelid)
+    public function setArtikel($artikel)
     {
-        $this->artikelid = $artikelid;
+        $this->artikel = $artikel;
 
         return $this;
     }
@@ -65,34 +65,33 @@ class Bestelregel
     /**
      * Get artikelid
      *
-     * @return int
      */
-    public function getArtikelid()
+    public function getArtikel()
     {
-        return $this->artikelid;
+        return $this->artikel;
     }
 
     /**
-     * Set bestellingid
+     * Set bestelling
      *
-     * @param string $bestellingid
+     * @param string $bestelling
      *
      * @return Bestelregel
      */
-    public function setBestellingid($bestellingid)
+    public function setBestelling($bestelling)
     {
-        $this->bestellingid = $bestellingid;
+        $this->bestelling = $bestelling;
 
         return $this;
     }
 
     /**
-     * Get bestellingid
+     * Get bestelling
      *
      * @return string
      */
-    public function getBestellingid()
+    public function getBestelling()
     {
-        return $this->bestellingid;
+        return $this->bestelling;
     }
 }
