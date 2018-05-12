@@ -11,7 +11,7 @@ use AppBundle\Form\Type\BestelopdrachtType;
 class BestelopdrachtController extends Controller
 {
 /**
-	 * @Route("/bestelopdracht/nieuw", name="bestelopdrachtNieuw")
+	 * @Route("/bestelopdracht/nieuw/", name="bestelopdrachtNieuw")
 	 */
 	 public function nieuweBestelopdracht (Request $request){
 		 $nieuweBestelopdracht = new Bestelopdracht ();
@@ -27,6 +27,22 @@ class BestelopdrachtController extends Controller
 
 		}
 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+}
+		/**
+ 	 * @Route("/bestelopdracht/{id}", name="allebestelopdrachten")
+ 	 */
+ 	 public function Bestelopdracht (Request $request, $id){
+ 		 $bestelopdracht = $this->getDoctrine()->GetRepository("AppBundle:Bestelopdracht")->find($id);
+ 		 $form = $this->createForm(BestelopdrachtType::class, $bestelopdracht);
+
+ 		$form->handleRequest($request);
+ 		if ($form->isSubmitted() && $form->isValid()) {
+ 			$em = $this->getDoctrine()->getManager();
+ 			$em->persist($bestelopdracht);
+ 			$em->flush();
+ 			return $this->redirect($this->generateurl("bestelopdrachtNieuw"));
+ 		}
+ return new Response($this->render('form.html.twig', array('form' => $form->createView())));
  }
 }
 ?>

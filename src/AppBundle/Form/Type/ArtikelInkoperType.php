@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType; // deze zorgt ervoor dat je decimalen in kan vullen.
 
 //EntiteitType vervangen door b.v. KlantType
-class ArtikelType extends AbstractType
+class ArtikelInkoperType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -26,13 +26,16 @@ class ArtikelType extends AbstractType
         $builder
                 ->add('TechnischeSpecificaties', TextType::class,array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
-        $builder
-                ->add('magazijnlocatie', TextType::class) //naam is b.v. een attribuut of variabele van klant
+  //      $builder
+    //            ->add('magazijnlocatie', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
            ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant
        ;
 
+    //    $builder->add('Inkoopprijs', MoneyType::class, array(
+  //    'divisor' => 100,))
+///;
         $builder
            ->add('CVA',IntegerType::class,array ('required' => false) ) //naam is b.v. een attribuut of variabele van klant
        ;
