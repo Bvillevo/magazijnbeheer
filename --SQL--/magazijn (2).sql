@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 11 mei 2018 om 15:24
+-- Gegenereerd op: 14 mei 2018 om 10:42
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -37,31 +37,21 @@ CREATE TABLE `artikel` (
   `CVA` int(20) DEFAULT NULL,
   `minimumVoorraad` int(20) NOT NULL,
   `voorraadInAantal` int(20) NOT NULL,
-  `bestelserie` int(20) NOT NULL
+  `bestelserie` int(20) NOT NULL,
+  `bestelregels` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `artikel`
 --
 
-INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `CVA`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`) VALUES
-(2, 'Gemaakt van staal', 'staal', 'laag', '6648.00', 2, 90, 872, 5),
-(3, 'gemaakt van PC', 'PC', 'laag', '9999.99', 4, 3, 6, 5),
-(5, 'test', 'test', 'test', '55.21', 2, 100, 32, 68),
-(66, 'asd', 'asd', 'asd', '44.00', 2, 60, 20, 40),
-(77, 'ihijn', 'hbn', 'hbn', '55.66', 5, 60, 30, 0);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `artikel_bestelopdracht`
---
-
-CREATE TABLE `artikel_bestelopdracht` (
-  `ID` int(11) NOT NULL,
-  `artikel_ID` int(11) NOT NULL,
-  `bestelopdracht_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `CVA`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`, `bestelregels`) VALUES
+(1, 'asdasdasd', 's', 's', '55.62', 1, 60, 1, 59, NULL),
+(2, 'Gemaakt van staal', 'staal', 'hoog', '6648.22', 2, 90, 22, 5, 0),
+(3, 'gemaakt van PC', 'PC', 'laag', '9999.99', 4, 3, 6, 5, 0),
+(5, 'test', 'test', 'test', '55.21', 2, 100, 32, 68, 0),
+(66, 'asd', 'asd', 'asd', '44.00', 2, 60, 20, 40, 0),
+(77, 'ihijn', 'hbn', 'hbn', '55.66', 5, 60, 30, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -73,8 +63,35 @@ CREATE TABLE `bestelopdracht` (
   `leverancier` varchar(20) NOT NULL,
   `bestelordernummer` int(20) NOT NULL,
   `artikelnr` int(20) NOT NULL,
-  `hoeveelheid` int(20) NOT NULL
+  `hoeveelheid` int(20) NOT NULL,
+  `bestelregels` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `bestelopdracht`
+--
+
+INSERT INTO `bestelopdracht` (`leverancier`, `bestelordernummer`, `artikelnr`, `hoeveelheid`, `bestelregels`) VALUES
+('Halit', 21, 2, 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `bestelregel`
+--
+
+CREATE TABLE `bestelregel` (
+  `id` int(11) NOT NULL,
+  `artikelid` int(11) NOT NULL,
+  `bestellingid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `bestelregel`
+--
+
+INSERT INTO `bestelregel` (`id`, `artikelid`, `bestellingid`) VALUES
+(1, 2, 21);
 
 -- --------------------------------------------------------
 
@@ -1100,6 +1117,23 @@ INSERT INTO `klant` (`klantnummer`, `voornaam`, `achternaam`, `woonplaats`, `tel
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `ontvangen_goederen`
+--
+
+CREATE TABLE `ontvangen_goederen` (
+  `id` int(11) NOT NULL,
+  `datum` date DEFAULT NULL,
+  `leverancier` varchar(20) NOT NULL,
+  `ordernummer` int(11) NOT NULL,
+  `artikelnummer` int(11) NOT NULL,
+  `omscrhijving` varchar(20) NOT NULL,
+  `hoeveelheid` int(11) NOT NULL,
+  `kwaliteit` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `product`
 --
 
@@ -1424,14 +1458,6 @@ ALTER TABLE `artikel`
   ADD PRIMARY KEY (`artikelnr`);
 
 --
--- Indexen voor tabel `artikel_bestelopdracht`
---
-ALTER TABLE `artikel_bestelopdracht`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `artikel_ID` (`artikel_ID`),
-  ADD KEY `bestelopdracht_ID` (`bestelopdracht_ID`);
-
---
 -- Indexen voor tabel `bestelopdracht`
 --
 ALTER TABLE `bestelopdracht`
@@ -1439,10 +1465,26 @@ ALTER TABLE `bestelopdracht`
   ADD KEY `artikelnr` (`artikelnr`);
 
 --
+-- Indexen voor tabel `bestelregel`
+--
+ALTER TABLE `bestelregel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `artikelid` (`artikelid`),
+  ADD KEY `bestellingid` (`bestellingid`);
+
+--
 -- Indexen voor tabel `klant`
 --
 ALTER TABLE `klant`
   ADD PRIMARY KEY (`klantnummer`);
+
+--
+-- Indexen voor tabel `ontvangen_goederen`
+--
+ALTER TABLE `ontvangen_goederen`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ordernummer` (`ordernummer`),
+  ADD KEY `artikelnummer` (`artikelnummer`);
 
 --
 -- Indexen voor tabel `product`
@@ -1476,17 +1518,24 @@ ALTER TABLE `productsoort`
 --
 
 --
--- Beperkingen voor tabel `artikel_bestelopdracht`
---
-ALTER TABLE `artikel_bestelopdracht`
-  ADD CONSTRAINT `artikel_bestelopdracht_ibfk_1` FOREIGN KEY (`artikel_ID`) REFERENCES `artikel` (`artikelnr`),
-  ADD CONSTRAINT `artikel_bestelopdracht_ibfk_2` FOREIGN KEY (`bestelopdracht_ID`) REFERENCES `bestelopdracht` (`bestelordernummer`);
-
---
 -- Beperkingen voor tabel `bestelopdracht`
 --
 ALTER TABLE `bestelopdracht`
   ADD CONSTRAINT `bestelopdracht_ibfk_1` FOREIGN KEY (`artikelnr`) REFERENCES `artikel` (`artikelnr`);
+
+--
+-- Beperkingen voor tabel `bestelregel`
+--
+ALTER TABLE `bestelregel`
+  ADD CONSTRAINT `bestelregel_ibfk_1` FOREIGN KEY (`artikelid`) REFERENCES `artikel` (`artikelnr`),
+  ADD CONSTRAINT `bestelregel_ibfk_2` FOREIGN KEY (`bestellingid`) REFERENCES `bestelopdracht` (`bestelordernummer`);
+
+--
+-- Beperkingen voor tabel `ontvangen_goederen`
+--
+ALTER TABLE `ontvangen_goederen`
+  ADD CONSTRAINT `ontvangen_goederen_ibfk_1` FOREIGN KEY (`artikelnummer`) REFERENCES `artikel` (`artikelnr`),
+  ADD CONSTRAINT `ontvangen_goederen_ibfk_2` FOREIGN KEY (`ordernummer`) REFERENCES `bestelopdracht` (`bestelordernummer`);
 
 --
 -- Beperkingen voor tabel `product`
