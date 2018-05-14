@@ -5,15 +5,14 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheets" href="{{ asset('css/bootstrap.min.css')}}" />
-        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"> </script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"> </script>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     </head>
     <body>
-      <div class="container">
-
+    <div class="container">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
-      </div>
+    </div>    
     </body>
 </html>
