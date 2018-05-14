@@ -27,7 +27,10 @@ class GoederenMagazijnmeesterType extends AbstractType
                 ->add('leverancier', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
-                ->add('ordernummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
+                ->add('ordernummer', IntegerType::class, array (
+                  'class'=>'AppBundle:GoederenController',
+                  'choice_label'=>'beschrijving')
+                )
         ;
         $builder
            ->add('artikelnummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
