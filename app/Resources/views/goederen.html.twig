@@ -1,18 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 	<h1>Goederen overzicht</h1>
-	<ol>
-	{% for goed in goederen %}
-			<li>
-				<span style='color:black'> {{goed.id }} </span>
-				<span style='color:black'> {{goed.datum|date('Y-m-d') }} </span>
-				<span style='color:black'>{{goed.leverancier}} </span>
-        <span style='color:black'>{{goed.ordernummer}} </span>
-        <span style='color:black'>{{goed.artikelnummer}} </span>
-        <span style='color:black'>{{goed.omschrijving}} </span>
-        <span style='color:black'>{{goed.hoeveelheid}} </span>
-        <span style='color:black'>{{goed.kwaliteit}} </span>
-			</li>
-	{% endfor %}
-  </ol>
+	
+	<table border="1" style="width: 80%;">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Datum</td>
+                <td>Leverancier</td>
+                <td>Ordernummer</td>
+                <td>Artikelnummer</td>
+                <td>Omschrijving</td>
+                <td>Hoeveelheid</td>
+                <td>Kwaliteit</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for goed in goederen %}
+                <tr>
+                    <td>{{ goed.id }}</td>
+                    <td>{{ goed.datum|date('Y-m-d')  }}</td>
+                    <td>{{ goed.leverancier }}</td>
+                    <td>{{ goed.ordernummer }}</td>
+                    <td>{{ goed.artikelnummer }}</td>
+                    <td>{{ goed.omschrijving }}</td>
+                    <td>{{ goed.hoeveelheid }}</td>
+                    <td>{{ goed.kwaliteit }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table
 {% endblock %}
