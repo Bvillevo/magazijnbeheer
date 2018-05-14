@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1>Goederen overzicht</h1>
+	<ol>
+	{% for goed in goederen %}
+			<li>
+				<span style='color:black'> {{goed.id }} </span>
+				<span style='color:black'> {{goed.datum|date('Y-m-d') }} </span>
+				<span style='color:black'>{{goed.leverancier}} </span>
+        <span style='color:black'>{{goed.ordernummer}} </span>
+        <span style='color:black'>{{goed.artikelnummer}} </span>
+        <span style='color:black'>{{goed.omschrijving}} </span>
+        <span style='color:black'>{{goed.hoeveelheid}} </span>
+        <span style='color:black'>{{goed.kwaliteit}} </span>
+			</li>
+	{% endfor %}
+  </ol>
+{% endblock %}

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Goederen;
 use AppBundle\Form\Type\GoederenMagazijnmeesterType;
+use AppBundle\Form\Type\GoederenInkoperType;
 
 class GoederenController extends Controller
 {
@@ -25,7 +26,15 @@ class GoederenController extends Controller
     	return $this->redirect ($this->generateUrl("goederenNieuw"));
 
 		}
-		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+		return new Response($this->renderView('form.html.twig', array('form' => $form->createView())));
+}
+/**
+	 * @Route("/inkoper/alle/goederen/", name="allegoederen")
+	 */
+public function allegoederen (Request $request){
+	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findAll();
+
+	return new Response($this->renderView ('goederen.html.twig', array ('goederen'=>$goederen)));
 }
 }
 ?>

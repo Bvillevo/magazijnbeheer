@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType; // deze zorgt ervoor dat je decimalen in kan vullen.
 
 //EntiteitType vervangen door b.v. KlantType
-class GoederenMagazijnmeesterType extends AbstractType
+class GoederenInkoperType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

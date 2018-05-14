@@ -19,6 +19,8 @@ class Bestelopdracht
      * @ORM\Column(name="bestelordernummer", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\ManyToOne(targetEntity="Goederen", inversedBy="goederen")
+     * @ORM\JoinColumn(name="ordernummer", referencedColumnName="bestelordernummer")
      */
     private $bestelordernummer;
 

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 //vul aan als je andere invoerveld-typen wilt gebruiken in je formulier
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 //EntiteitType vervangen door b.v. KlantType
 class BestelopdrachtType extends AbstractType
@@ -22,9 +23,15 @@ class BestelopdrachtType extends AbstractType
         $builder
             ->add('bestelordernummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
             ;
-        $builder
-                ->add('artikelnr', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
+      //  $builder
+      //          ->add('artikelnr', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
+      //  ;
+      $builder
+          ->add('artikelnr', EntityType::class, array (
+            'class'=>'AppBundle:Artikel',
+            'choice_label'=>'omschrijving',)
+          );
+
         $builder
                 ->add('hoeveelheid', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
         ;

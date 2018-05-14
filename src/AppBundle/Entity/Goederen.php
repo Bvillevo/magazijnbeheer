@@ -38,13 +38,17 @@ class Goederen
      * @var int
      *
      * @ORM\Column(name="ordernummer", type="integer", unique=true)
+     * @ORM\OneToMany(targetEntity="Bestelopdracht", mappedBy="bestelopdracht")
+     * @ORM\JoinColumn(name="bestelordernummer", referencedColumnName="ordernummer")
      */
     private $ordernummer;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="artikelnummer", type="integer", unique=true)
+     * @ORM\Column(name="artikelnummer", type="integer", unique=true)\
+     * @ORM\OneToMany(targetEntity="Artikel", mappedBy="artikel")
+     * @ORM\JoinColumn(name="artikelnr", referencedColumnName="artikelnummer")
      */
     private $artikelnummer;
 
@@ -72,15 +76,11 @@ class Goederen
     /**
      * Set id
      *
-     * @param \integer $id
-     *
-     * @return Goederen
+     * @param integer $id
      */
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -97,14 +97,10 @@ class Goederen
      * Set datum
      *
      * @param \DateTime $datum
-     *
-     * @return Goederen
      */
     public function setDatum($datum)
     {
         $this->datum = $datum;
-
-        return $this;
     }
 
     /**
@@ -121,14 +117,10 @@ class Goederen
      * Set leverancier
      *
      * @param string $leverancier
-     *
-     * @return Goederen
      */
     public function setLeverancier($leverancier)
     {
         $this->leverancier = $leverancier;
-
-        return $this;
     }
 
     /**
@@ -145,14 +137,10 @@ class Goederen
      * Set ordernummer
      *
      * @param integer $ordernummer
-     *
-     * @return Goederen
      */
     public function setOrdernummer($ordernummer)
     {
         $this->ordernummer = $ordernummer;
-
-        return $this;
     }
 
     /**
@@ -169,14 +157,10 @@ class Goederen
      * Set artikelnummer
      *
      * @param integer $artikelnummer
-     *
-     * @return Goederen
      */
     public function setArtikelnummer($artikelnummer)
     {
         $this->artikelnummer = $artikelnummer;
-
-        return $this;
     }
 
     /**
@@ -193,14 +177,10 @@ class Goederen
      * Set omschrijving
      *
      * @param string $omschrijving
-     *
-     * @return Goederen
      */
     public function setOmschrijving($omschrijving)
     {
         $this->omschrijving = $omschrijving;
-
-        return $this;
     }
 
     /**
@@ -218,13 +198,10 @@ class Goederen
      *
      * @param integer $hoeveelheid
      *
-     * @return Goederen
      */
     public function setHoeveelheid($hoeveelheid)
     {
         $this->hoeveelheid = $hoeveelheid;
-
-        return $this;
     }
 
     /**
@@ -241,14 +218,10 @@ class Goederen
      * Set kwaliteit
      *
      * @param string $kwaliteit
-     *
-     * @return Goederen
      */
     public function setKwaliteit($kwaliteit)
     {
         $this->kwaliteit = $kwaliteit;
-
-        return $this;
     }
 
     /**

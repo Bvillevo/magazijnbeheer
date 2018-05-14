@@ -18,7 +18,7 @@ class ArtikelController extends Controller
 			public function alleartikelen (Request $request){
 				$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findAll();
 
-				return new Response($this->render ('artikelen.html.twig', array ('artikelen'=>$artikelen)));
+				return new Response($this->renderView ('artikelen.html.twig', array ('artikelen'=>$artikelen)));
 			}
 
 
@@ -41,7 +41,7 @@ class ArtikelController extends Controller
 
 
 				}
-				return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+				return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
  		}
 		 /**
 		 	 * @Route("/inkoper/artikel/wijzigen/{artikelnr}", name="inkoperartikelwijzigen")
@@ -58,7 +58,7 @@ class ArtikelController extends Controller
 					 $em->flush();
 					 return $this->redirect($this->generateurl("artikelNieuw"));
 				}
-		 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+		 		return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 		  }
 
 	/**
@@ -76,7 +76,7 @@ class ArtikelController extends Controller
 				$em->flush();
 				return $this->redirect($this->generateurl("artikelNieuw"));
 			 }
-		 return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+		 return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 	 }
 	 /**
 	 	 * @Route("/magazijnmeester/artikel/wijzigen/{artikelnr}", name="magazijnmeesterartikelwijzigen")
@@ -93,7 +93,7 @@ class ArtikelController extends Controller
 				 $em->flush();
 				 return $this->redirect($this->generateurl("artikelNieuw"));
 			}
-	 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+	 		return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 	  }
 		/**
 		* @Route("/artikel/verwijder/{artikelnr}", name="artikelverwijderen")

@@ -22,19 +22,19 @@ class Bestelregel
     private $id;
 
     /**
-     * 
+     *
      *
      * @ORM\Column(name="artikelid")
      */
     private $artikel;
 
     /**
-     * 
+     *
      *
      * @ORM\Column(name="bestellingid")
      * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="bestelregels")
      * @ORM\ManyToOne(targetEntity="Bestelopdracht", inversedBy="bestelregels")
-     * @ORM\JoinColumn(name="artikelid", referencedColumnName="artikelid"
+     * @ORM\JoinColumn(name="artikelid", referencedColumnName="artikelid")
      */
     private $bestelling;
 
