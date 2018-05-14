@@ -12,43 +12,54 @@ use AppBundle\Form\Type\ArtikelType;
 
 class ArtikelController extends Controller
 {
-/**
-	 * @Route("/artikel/nieuw", name="artikelNieuw")
-	 */
-	 public function nieuweArtikel (Request $request){
-		 $nieuweArtikel = new Artikel ();
-		 $form = $this->createForm(ArtikelType::class, $nieuweArtikel);
+			/**
+				 * @Route("alle/artikelen", name="alleartikelen")
+				 */
+			public function alleartikelen (Request $request){
+				$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findAll();
 
-		$form->handleRequest($request);
-		if ($form->isSubmitted() && $form->isValid()) {
-			$em = $this->getDoctrine()->getManager();
-			//Deze code is bedoeld voor het berekenen van de bestel serie. Dit betekent dus de minimumvoorraad min de actuele is wat er nog besteld moet worden.
-			$nieuweArtikel->bestelserie = $nieuweArtikel->minimumVoorraad - $nieuweArtikel->voorraadInAantal;
-			$em->persist($nieuweArtikel);
-			$em->flush();
-    	return $this->redirect ($this->generateUrl("artikelNieuw"));
+				return new Response($this->render ('artikelen.html.twig', array ('artikelen'=>$artikelen)));
+			}
 
 
-		}
-		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
- }
- /**
- 	 * @Route("/inkoper/artikel/wijzigen/{artikelnr}", name="inkoperartikelwijzigen")
- 	 */
- 	 public function wijzigInkoperartikel (Request $request, $artikelnr){
-		 $bestaandeArtikel = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->find($artikelnr);
-		 $form = $this->createForm(ArtikelInkoperType::class, $bestaandeArtikel);
+		/**
+			 * @Route("/artikel/nieuw", name="artikelNieuw")
+			 */
+			 public function nieuweArtikel (Request $request){
+				 $nieuweArtikel = new Artikel ();
+				 $form = $this->createForm(ArtikelType::class, $nieuweArtikel);
 
-		 $form->handleRequest($request);
-		 if ($form->isSubmitted() && $form->isValid()) {
-			 $em = $this->getDoctrine()->getManager();
-			 $bestaandeArtikel->bestelserie = $bestaandeArtikel->minimumVoorraad - $bestaandeArtikel->voorraadInAantal;
-			 $em->persist($bestaandeArtikel);
-			 $em->flush();
-			 return $this->redirect($this->generateurl("artikelNieuw"));
-		}
- 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
-  }
+				$form->handleRequest($request);
+				if ($form->isSubmitted() && $form->isValid()) {
+					$em = $this->getDoctrine()->getManager();
+					//Deze code is bedoeld voor het berekenen van de bestel serie. Dit betekent dus de minimumvoorraad min de actuele is wat er nog besteld moet worden.
+			//		$nieuweArtikel->bestelserie = $nieuweArtikel->minimumVoorraad - $nieuweArtikel->voorraadInAantal;
+					$nieuweArtikel->setBestelserie($nieuweArtikel->getMinimumVoorraad() - $nieuweArtikel->getVoorraadInAantal());
+					$em->persist($nieuweArtikel);
+					$em->flush();
+		    	return $this->redirect ($this->generateUrl("artikelNieuw"));
+
+
+				}
+				return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+ 		}
+		 /**
+		 	 * @Route("/inkoper/artikel/wijzigen/{artikelnr}", name="inkoperartikelwijzigen")
+		 	 */
+		 	 public function wijzigInkoperartikel (Request $request, $artikelnr){
+				 $bestaandeArtikel = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->find($artikelnr);
+				 $form = $this->createForm(ArtikelInkoperType::class, $bestaandeArtikel);
+
+				 $form->handleRequest($request);
+				 if ($form->isSubmitted() && $form->isValid()) {
+					 $em = $this->getDoctrine()->getManager();
+					 $bestaandeArtikel->setBestelserie($bestaandeArtikel->getMinimumVoorraad() - $bestaandeArtikel->getVoorraadInAantal());
+					 $em->persist($bestaandeArtikel);
+					 $em->flush();
+					 return $this->redirect($this->generateurl("artikelNieuw"));
+				}
+		 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+		  }
 
 	/**
 		* @Route("/artikel/wijzigen/{artikelnr}", name="artikelwijzigen")
@@ -60,7 +71,7 @@ class ArtikelController extends Controller
 			$form->handleRequest($request);
 			if ($form->isSubmitted() && $form->isValid()) {
 				$em = $this->getDoctrine()->getManager();
-				$bestaandeArtikel->bestelserie = $bestaandeArtikel->minimumVoorraad - $bestaandeArtikel->voorraadInAantal;
+				$bestaandeArtikel->setBestelserie($bestaandeArtikel->getMinimumVoorraad() - $bestaandeArtikel->getVoorraadInAantal());
 				$em->persist($bestaandeArtikel);
 				$em->flush();
 				return $this->redirect($this->generateurl("artikelNieuw"));
@@ -77,13 +88,23 @@ class ArtikelController extends Controller
 			 $form->handleRequest($request);
 			 if ($form->isSubmitted() && $form->isValid()) {
 				 $em = $this->getDoctrine()->getManager();
-				 $bestaandeArtikel->bestelserie = $bestaandeArtikel->minimumVoorraad - $bestaandeArtikel->voorraadInAantal;
+				 $bestaandeArtikel->setBestelserie($bestaandeArtikel->getMinimumVoorraad() - $bestaandeArtikel->getVoorraadInAantal());
 				 $em->persist($bestaandeArtikel);
 				 $em->flush();
 				 return $this->redirect($this->generateurl("artikelNieuw"));
 			}
 	 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
 	  }
+		/**
+		* @Route("/artikel/verwijder/{artikelnr}", name="artikelverwijderen")
+		*/
+		 	 public function verwijderArtikel (Request $request, $artikelnr){
+				 $em = $this->getDoctrine()->getManager();
+		 		 $bestaandeArtikel = $em->GetRepository("AppBundle:Artikel")->find($artikelnr);
+				 $em->remove($bestaandeArtikel);
+				 $em->flush();
 
+		 	 return $this->redirect($this->generateurl("alleartikelen"));
+		  }
 }
 ?>

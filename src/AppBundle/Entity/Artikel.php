@@ -69,14 +69,14 @@ class Artikel
      *
      * @ORM\Column(name="voorraadInAantal", type="integer")
      */
-    public $voorraadInAantal;
+    private $voorraadInAantal;
 
     /**
      * @var int
      *
      * @ORM\Column(name="bestelserie", type="integer")
      */
-    public $bestelserie;
+    private $bestelserie;
 
     /**
      * @var int
