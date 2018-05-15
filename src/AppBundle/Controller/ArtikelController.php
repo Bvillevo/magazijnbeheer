@@ -96,10 +96,10 @@ class ArtikelController extends Controller
 			 $form->handleRequest($request);
 			 if ($form->isSubmitted() && $form->isValid()) {
 				 $em = $this->getDoctrine()->getManager();
-				 $nieuweArtikel->setBestelserie($nieuweArtikel->getMinimumVoorraad() - $nieuweArtikel->getVoorraadInAantal());
-				 $em->persist($nieuweArtikel);
+				 $nieuweMagazijnmeesterArtikel->setBestelserie($nieuweMagazijnmeesterArtikel->getMinimumVoorraad() - $nieuweMagazijnmeesterArtikel->getVoorraadInAantal());
+				 $em->persist($nieuweMagazijnmeesterArtikel);
 				 $em->flush();
-				 return $this->redirect ($this->generateUrl("artikelNieuw"));
+				 return $this->redirect ($this->generateUrl("artikelMagazijnmeesterNieuw"));
 
 
 			 }

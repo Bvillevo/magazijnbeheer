@@ -19,8 +19,8 @@ class Artikel
      *
      * @ORM\Column(name="artikelnr", type="integer", unique=true)
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Goederen", inversedBy="goederen")
-     * @ORM\JoinColumn(name="artikelnummer", referencedColumnName="artikelnr")
+     * @ORM\OneToOne(targetEntity="Artikel", inversedBy="artikel")
+     * @ORM\JoinColumn(name="artikelnummer", referencedColumnName="cva")
      */
     private $artikelnr;
 
@@ -56,6 +56,7 @@ class Artikel
      * @var int
      *
      * @ORM\Column(name="CVA", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Artikel", mappedBy="cVA")
      */
     private $cVA;
 
