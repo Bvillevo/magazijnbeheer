@@ -29,9 +29,17 @@ class GoederenController extends Controller
 		return new Response($this->renderView('form.html.twig', array('form' => $form->createView())));
 }
 /**
-	 * @Route("/inkoper/alle/goederen/", name="allegoederen")
+	 * @Route("/inkoper/alle/goederen/", name="alleInkopergoederen")
 	 */
-public function allegoederen (Request $request){
+public function allegoederenInkoper (Request $request){
+	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findAll();
+
+	return new Response($this->renderView ('goederen.html.twig', array ('goederen'=>$goederen)));
+}
+/**
+	 * @Route("/magazijnmeester/alle/goederen/", name="allegoederenMagazijnmeester")
+	 */
+public function allegoederenMagazijnmeester (Request $request){
 	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findAll();
 
 	return new Response($this->renderView ('goederen.html.twig', array ('goederen'=>$goederen)));

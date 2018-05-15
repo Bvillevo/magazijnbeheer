@@ -79,7 +79,34 @@ class ArtikelController extends Controller
 		 return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 	 }
 	 /**
-	 	 * @Route("/magazijnmeester/artikel/wijzigen/{artikelnr}", name="magazijnmeesterartikelwijzigen")
+			 * @Route("magazijnmeester/alle/artikelenn", name="alleArtikelenMagazijnmeester")
+			 */
+		public function alleArtikelenMagazijnmeester (Request $request){
+			$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findAll();
+
+			return new Response($this->renderView ('artikelenMagazijnmeester.html.twig', array ('artikelen'=>$artikelen)));
+		}
+	 /**
+			* @Route("magazijnmeester/artikel/nieuww", name="artikelMagazijnmeesterNieuw")
+			*/
+			public function nieuweMagazijnmeesterArtikel (Request $request){
+				$nieuweMagazijnmeesterArtikel = new Artikel ();
+				$form = $this->createForm(ArtikelMagazijnmeesterType::class, $nieuweMagazijnmeesterArtikel);
+
+			 $form->handleRequest($request);
+			 if ($form->isSubmitted() && $form->isValid()) {
+				 $em = $this->getDoctrine()->getManager();
+				 $nieuweArtikel->setBestelserie($nieuweArtikel->getMinimumVoorraad() - $nieuweArtikel->getVoorraadInAantal());
+				 $em->persist($nieuweArtikel);
+				 $em->flush();
+				 return $this->redirect ($this->generateUrl("artikelNieuw"));
+
+
+			 }
+			 return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
+	 }
+	 /**
+	 	 * @Route("/magazijnmeester/artikel/wijzigenn/{artikelnr}", name="magazijnmeesterArtikelWijzigen")
 	 	 */
 	 	 public function wijzigMagazijnmeesterartikel (Request $request, $artikelnr){
 			 $bestaandeArtikel = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->find($artikelnr);

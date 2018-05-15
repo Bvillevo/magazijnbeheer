@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1>Artikelen overzicht</h1>
+	<ol>
+	{% for artikel in artikelen %}
+			<li>
+
+				<span style='color:black'> {{ artikel.artikelnr }} </span>
+				<span style='color:black'> {{artikel.omschrijving}} </span>
+				<span style='color:black'>{{artikel.technischeSpecificaties}} </span>
+        <span style='color:black'>{{artikel.magazijnlocatie}} </span>
+        <span style='color:black'>{{artikel.inkoopprijs}} </span>
+        <span style='color:black'>{{artikel.CVA}} </span>
+        <span style='color:black'>{{artikel.minimumVoorraad}} </span>
+        <span style='color:black'>{{artikel.voorraadInAantal}} </span>
+      	<a href="{{ path('magazijnmeesterArtikelWijzigen',{'artikelnr':artikel.artikelnr}) }}">wijzig</a>
+				<a href="{{ path('artikelverwijderen',{'artikelnr':artikel.artikelnr}) }}">verwijder</a>
+
+
+			</li>
+	{% endfor %}
+  </ol>
+{% endblock %}

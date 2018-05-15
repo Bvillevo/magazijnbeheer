@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1>Bestelopdrachten overzicht</h1>
+	<ol>
+	{% for bestelopdracht in bestelopdracht %}
+			<li>
+				<span style='color:black'> {{bestelopdracht.bestelordernummer }} </span>
+				<span style='color:black'> {{bestelopdracht.artikelnr}}</span>
+				<span style='color:black'>{{bestelopdracht.leverancier}} </span>
+        <span style='color:black'>{{bestelopdracht.hoeveelheid}} </span>
+        <span style='color:black'>{{bestelopdracht.bestelregels}} </span>
+			</li>
+	{% endfor %}
+  </ol>
+{% endblock %}
