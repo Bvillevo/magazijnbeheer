@@ -23,14 +23,12 @@ class BestelopdrachtType extends AbstractType
         $builder
             ->add('bestelordernummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
             ;
-      //  $builder
-      //          ->add('artikelnr', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-      //  ;
-      $builder
-          ->add('artikelnr', EntityType::class, array (
-            'class'=>'AppBundle:Artikel',
-            'choice_label'=>'omschrijving',)
-          );
+      
+      // $builder
+      //     ->add('artikelnr', EntityType::class, array (
+      //       'class'=>'AppBundle:Artikel',
+      //       'choice_label'=>'omschrijving',)
+      //     );
 
         $builder
                 ->add('hoeveelheid', IntegerType::class) //naam is b.v. een attribuut of variabele van klant

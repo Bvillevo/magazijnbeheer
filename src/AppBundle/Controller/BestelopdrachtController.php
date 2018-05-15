@@ -20,7 +20,7 @@ class BestelopdrachtController extends Controller
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
-				$em->persist($nieuweBestelopdracht);
+			$em->persist($nieuweBestelopdracht);
 			$em->flush();
 
     	return $this->redirect ($this->generateUrl("bestelopdrachtNieuw"));

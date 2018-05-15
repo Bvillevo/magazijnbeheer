@@ -18,20 +18,13 @@ class Bestelopdracht
      *
      * @ORM\Column(name="bestelordernummer", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\ManyToOne(targetEntity="Goederen", inversedBy="goederen")
      * @ORM\JoinColumn(name="ordernummer", referencedColumnName="bestelordernummer")
      */
     private $bestelordernummer;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="artikelnr", type="integer")
-     */
-    private $artikelnr;
-
-    /**
+   
+     /**
      * @var int
      *
      * @ORM\Column(name="hoeveelheid", type="integer")
@@ -89,29 +82,7 @@ class Bestelopdracht
         return $this->bestelordernummer;
     }
 
-    /**
-     * Set artikelnr
-     *
-     * @param integer $artikelnr
-     *
-     * @return Bestelopdracht
-     */
-    public function setArtikelnr($artikelnr)
-    {
-        $this->artikelnr = $artikelnr;
-
-        return $this;
-    }
-
-    /**
-     * Get artikelnr
-     *
-     * @return int
-     */
-    public function getArtikelnr()
-    {
-        return $this->artikelnr;
-    }
+    
 
     /**
      * Set hoeveelheid
