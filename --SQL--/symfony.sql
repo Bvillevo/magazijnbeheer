@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 16 mei 2018 om 17:39
+-- Gegenereerd op: 16 mei 2018 om 21:05
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `magazijn`
+-- Database: `symfony`
 --
 
 -- --------------------------------------------------------
@@ -46,12 +46,32 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`, `bestelregels`, `CVA`) VALUES
-(1223456178, '1', '1', NULL, '111.00', 1, 1, 0, NULL, 1234567891),
-(1234567891, 'test', 'test', 'test', '100.00', 12, 1, 11, NULL, NULL),
-(1236565674, 'goed', 'Netjes', NULL, '100.00', 4, 4, 0, NULL, 1892232141),
-(1627351789, 'TEST', 'TESTESNEE', 'LAAG', '29990.00', 100000000, 1000, 99999000, NULL, 1223456178),
-(1827391278, 'te', 't', 't', '1.00', 10, 1, 9, NULL, 1234567891),
-(1892232141, 'jkhk', 'k', '34243', '1.00', 1, 1, 0, NULL, 1234567891);
+(1000000017, 'telefoon', '128gb', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
+(1000000018, 'telefoon', '32gb', 'TilBurg', '49.00', 5, 2, 975983, 89273, NULL),
+(1000000546, 'telefoon', '16gb', 'TilBurg', '49.00', 5, 2, 975983, 89273, NULL),
+(1000000875, 'wasmachine', 'samsung 700watt', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
+(1000020017, 'verwarming', '1080 watt', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
+(1000300018, 'schoollaptop', '1080p', 'TilBurg', '600.00', 5, 2, 975983, 89273, NULL),
+(1000350018, 'hp-hd1092d', '1080p', 'TilBurg', '790.00', 5, 2, 975983, 89273, NULL),
+(1010293847, 'hy782 samsung', '1080p', 'Tilburg', '726.00', 13, 7, 16276276, 76432, NULL),
+(1020020017, 'Apple iMac 2015', '1080p', 'Breda', '1300.00', 15, 5, 5789584, 895686, NULL),
+(1029384765, 'AA battereijen', '1080p', 'Tilburg', '5.00', 13, 7, 16276276, 76432, NULL),
+(1050020017, 'goed voor in de woonkamer', '1080p', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
+(1181028374, 'AAA batterijen', '-', 'Breda', '5.00', 15, 5, 5789584, 895686, NULL),
+(1239478263, 'mp4 speler hp 4gb', '1080p', 'Tilburg', '34.00', 13, 7, 16276276, 76432, NULL),
+(1246426482, 'speaker jbl', 'waterdicht', 'Breda', '98.00', 4, 1, 68765866, 65765, NULL),
+(1247492649, '1968D sony', 'extra bass', 'Tilburg', '560.00', 2, 1, 2, 1253263, NULL),
+(1273917394, 'hp pabilon 4500', 'usb 3.0', 'Breda', '670.00', 20, 13, 1, 87653645, NULL),
+(1287492864, 'mp4 speler', '1080p', 'Tilburg', '34.00', 13, 7, 16276276, 76432, NULL),
+(1298765432, 'HG678 Sony', '7.1 surround sound', 'TilBurg', '230.00', 5, 2, 975983, 89273, NULL),
+(1309876543, 'logitech c520', 'full hd', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
+(1412345678, 'logitech g789', '16000dpi', 'TilBurg', '80.00', 5, 2, 975983, 89273, NULL),
+(1512345678, 'logitech k95', 'RGB', 'TilBurg', '120.00', 5, 2, 975983, 89273, NULL),
+(1676128364, 'JBL', 'shock resistant', 'TilBurg', '250.00', 5, 2, 975983, 89273, NULL),
+(1738945629, 'macbook 2018', '2300p', 'Tilburg', '3400.00', 13, 7, 16276276, 76432, NULL),
+(1782736183, 'lampen', 'RGB', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
+(1782937462, 'mp4 spler hp 32 gb', '1080p', 'Tilburg', '34.00', 13, 7, 16276276, 76432, NULL),
+(1923654728, 'mp4 spler samsung 8mb', '1080p', 'Tilburg', '50.00', 13, 7, 16276276, 76432, NULL);
 
 -- --------------------------------------------------------
 
@@ -72,7 +92,26 @@ CREATE TABLE `bestelopdracht` (
 --
 
 INSERT INTO `bestelopdracht` (`leverancier`, `bestelordernummer`, `artikelnr`, `hoeveelheid`, `bestelregels`) VALUES
-('12', 24, 1236565674, 32, 0);
+('Gertdonk', 2839462, 1181028374, 2, 2321),
+('Samsung', 11768614, 1000350018, 10, 76898984),
+('Samsung', 11988614, 1298765432, 10, 7649884),
+('Philips', 19871292, 1000300018, 4, 7622913),
+('Philips', 19872223, 1181028374, 45, 7623913),
+('Philips', 19872292, 1000300018, 4, 7623913),
+('Philips', 19873691, 1000020017, 4, 7623983),
+('Philips', 19873692, 1000300018, 4, 7623983),
+('Gertdonk', 28397293, 1020020017, 2, 2323),
+('Philips', 87612398, 1298765432, 3, 7622913),
+('Samsung', 126487614, 1239478263, 10, 768423),
+('Ziggo', 183549871, 1000350018, 3, 987989),
+('Ziggo', 183749871, 1247492649, 3, 987987),
+('Bol', 817938123, 1512345678, 12, 42837),
+('Bol', 817938293, 1676128364, 20, 72837),
+('HP', 928309238, 1273917394, 4, 23213231),
+('HP', 928379238, 1010293847, 4, 232121),
+('Samsung', 1176487614, 1000350018, 10, 7684),
+('Samsung', 1176678614, 1000350018, 10, 76898984),
+('Samsung', 1198778614, 1000350018, 10, 76498984);
 
 -- --------------------------------------------------------
 
@@ -85,6 +124,36 @@ CREATE TABLE `bestelregel` (
   `artikelid` int(11) NOT NULL,
   `bestellingid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `bestelregel`
+--
+
+INSERT INTO `bestelregel` (`id`, `artikelid`, `bestellingid`) VALUES
+(1136085065, 1676128364, 19873692),
+(1136085965, 1923654728, 87612398),
+(1136485960, 1000300018, 1176487614),
+(1136485965, 1020020017, 817938293),
+(1163840974, 1000000018, 183749871),
+(1163840984, 1000020017, 87612398),
+(1163849274, 1287492864, 817938123),
+(1163849675, 1247492649, 1176487614),
+(1173849101, 1000000875, 1198778614),
+(1173849191, 1239478263, 928379238),
+(1173849675, 1287492864, 1198778614),
+(1173849786, 1782736183, 183749871),
+(1263840821, 1512345678, 183749871),
+(1263840974, 1000000017, 1176678614),
+(1263849274, 1247492649, 1176678614),
+(1263849720, 1298765432, 1198778614),
+(1273849101, 1000000018, 183549871),
+(1273849171, 1287492864, 1176678614),
+(1273849191, 1020020017, 817938293),
+(1273849672, 1000300018, 928309238),
+(1736085712, 1181028374, 183549871),
+(1736085965, 1247492649, 19873691),
+(1736485761, 1738945629, 28397293),
+(1736485965, 1782937462, 126487614);
 
 -- --------------------------------------------------------
 
@@ -1129,10 +1198,10 @@ CREATE TABLE `ontvangengoederen` (
 --
 
 INSERT INTO `ontvangengoederen` (`id`, `datum`, `leverancier`, `ordernummer`, `artikelnummer`, `omschrijving`, `hoeveelheid`, `kwaliteit`) VALUES
-(12, '2013-01-01', '1', 24, 1234567891, '1', 1, '11'),
-(133, '2017-01-01', 'ad', 24, 1234567891, '12', 21, '212'),
-(1999, '2016-01-01', '112', 24, 1234567891, 'asd', 21, '1233'),
-(2131, '2018-01-01', 'aasd', 24, 1234567891, '231', 12, '12');
+(12398493, '2018-05-15', 'Philips', 19872223, 1000350018, '1080p', 45, 'goed'),
+(123897243, '2018-04-15', 'Samsung', 11768614, 1010293847, '1080p', 5, '1 beschadeging'),
+(1228238723, '2018-03-16', 'Philips', 19873692, 1246426482, 'water resistant', 5, 'goed'),
+(1228394619, '2018-05-16', 'Philips', 19873692, 1676128364, 'shock resistant', 4, 'goed');
 
 -- --------------------------------------------------------
 
@@ -1431,26 +1500,6 @@ CREATE TABLE `productsoort` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `productsoort`
---
-
-INSERT INTO `productsoort` (`tid`, `beschrijving`) VALUES
-(1, 'Drogers'),
-(2, 'Keukenapparatuur'),
-(3, 'Koelkasten'),
-(4, 'Koffie apparaten'),
-(5, 'Kookplaten'),
-(6, 'Monitors'),
-(7, 'OLED TV'),
-(8, 'Ovens'),
-(9, 'QLED TV'),
-(10, 'Reinigers'),
-(11, 'Stofzuigers'),
-(12, 'Wasmachines'),
-(13, 'Witgoed'),
-(14, 'HET WERKT');
-
---
 -- Indexen voor geëxporteerde tabellen
 --
 
@@ -1516,7 +1565,7 @@ ALTER TABLE `klant`
 -- AUTO_INCREMENT voor een tabel `productsoort`
 --
 ALTER TABLE `productsoort`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
