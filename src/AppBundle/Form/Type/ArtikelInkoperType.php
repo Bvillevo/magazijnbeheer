@@ -26,8 +26,8 @@ class ArtikelInkoperType extends AbstractType
         $builder
                 ->add('TechnischeSpecificaties', TextType::class,array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
-  //      $builder
-    //            ->add('magazijnlocatie', TextType::class) //naam is b.v. een attribuut of variabele van klant
+       $builder
+                ->add('magazijnlocatie', TextType::class,array ('disabled' => true)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
            ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant

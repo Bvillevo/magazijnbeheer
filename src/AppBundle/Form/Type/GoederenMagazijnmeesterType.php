@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType; // deze zorgt ervoor dat je decimalen in kan vullen.
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 //EntiteitType vervangen door b.v. KlantType
 class GoederenMagazijnmeesterType extends AbstractType
 {
@@ -27,11 +27,15 @@ class GoederenMagazijnmeesterType extends AbstractType
                 ->add('leverancier', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
-                ->add('ordernummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
+                  ->add('Ordernummer', EntityType::class, array (
+                     'class'=>'AppBundle:Bestelopdracht',
+                      'choice_label'=>'bestelordernummer'))
+                 ;
         $builder
-           ->add('artikelnummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-       ;
+                   ->add('Artikelnummer', EntityType::class, array (
+                        'class'=>'AppBundle:Artikel',
+                        'choice_label'=>'omschrijving'))
+                          ;
 
         $builder
            ->add('omschrijving',TextType::class) //naam is b.v. een attribuut of variabele van klant

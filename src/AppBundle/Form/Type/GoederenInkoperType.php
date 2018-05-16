@@ -26,9 +26,7 @@ class GoederenInkoperType extends AbstractType
         $builder
                 ->add('leverancier', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
-        $builder
-                ->add('ordernummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
+
         $builder
            ->add('artikelnummer', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
        ;

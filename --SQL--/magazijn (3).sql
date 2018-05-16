@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 mei 2018 om 16:29
+-- Gegenereerd op: 16 mei 2018 om 12:30
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -47,9 +47,9 @@ CREATE TABLE `artikel` (
 
 INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`, `bestelregels`, `CVA`) VALUES
 (123, 'weq', 'sddasd', 'adsas', '123.00', 122, 12, 110, NULL, 989),
-(323, 'dasd', 'sad', 'sd', '122.00', 112, 2, 110, NULL, 989),
 (899, 'jhkj', 'hkkl', 'jk', '788.00', 899, 10, 889, NULL, 123),
 (989, 'jk', 'kljl', 'kljl', '199.00', 122, 212, 0, NULL, 1233),
+(1212, '12', '12', '12', '12.00', 12, 12, 0, NULL, NULL),
 (1233, 'sdf', 'fsdf', 'sdf', '122.00', 112, 32, 0, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -65,6 +65,14 @@ CREATE TABLE `bestelopdracht` (
   `hoeveelheid` int(20) NOT NULL,
   `bestelregels` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `bestelopdracht`
+--
+
+INSERT INTO `bestelopdracht` (`leverancier`, `bestelordernummer`, `artikelnr`, `hoeveelheid`, `bestelregels`) VALUES
+('1', 1, 1212, 1, 1),
+('12', 24, 1212, 12, 344);
 
 -- --------------------------------------------------------
 
@@ -1115,6 +1123,16 @@ CREATE TABLE `ontvangengoederen` (
   `hoeveelheid` int(11) NOT NULL,
   `kwaliteit` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `ontvangengoederen`
+--
+
+INSERT INTO `ontvangengoederen` (`id`, `datum`, `leverancier`, `ordernummer`, `artikelnummer`, `omschrijving`, `hoeveelheid`, `kwaliteit`) VALUES
+(2, '2018-05-16', 'assie', 24, 1212, 'adfad', 3333, 'afdafd'),
+(12, '2016-01-01', '1', 1, 123, '1', 1, '1'),
+(77, '2017-05-24', '122', 1, 1212, '21', 12, '1'),
+(21323, '2013-01-01', 'Kol', 1, 1212, 'sad', 23, 'saca');
 
 -- --------------------------------------------------------
 

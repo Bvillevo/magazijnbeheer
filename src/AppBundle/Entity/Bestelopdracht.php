@@ -23,7 +23,7 @@ class Bestelopdracht
      */
     private $bestelordernummer;
 
-   
+
      /**
      * @var int
      *
@@ -82,7 +82,7 @@ class Bestelopdracht
         return $this->bestelordernummer;
     }
 
-    
+
 
     /**
      * Set hoeveelheid

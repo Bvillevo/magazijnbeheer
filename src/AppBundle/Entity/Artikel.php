@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Artikel
@@ -21,8 +22,19 @@ class Artikel
      * @ORM\Id
      * @ORM\OneToOne(targetEntity="Artikel", inversedBy="artikel")
      * @ORM\JoinColumn(name="artikelnummer", referencedColumnName="cva")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 10,
+     *      minMessage = "artikelnummer moet 10 karakters hebben",
+     *      maxMessage = "artikelnummer moet 10 karakters hebben"
+     *)
      */
     private $artikelnr;
+
+    public function __toString()
+   {
+       return strval($this->artikelnr);
+   }
 
     /**
      * @var string
@@ -81,13 +93,7 @@ class Artikel
      */
     private $bestelserie;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="bestelregels", type="integer")
-     * @ORM\OneToMany(targetEntity="BestelRegel", mappedBy="artikel")
-     */
-    private $bestelregels;
+
 
 
     /**
@@ -344,4 +350,4 @@ class Artikel
     {
        $bestelregels = new ArrayCollection();
     }
-}
+  }
