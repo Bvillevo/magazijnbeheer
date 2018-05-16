@@ -23,6 +23,10 @@ class Bestelopdracht
      */
     private $bestelordernummer;
 
+    public function __toString()
+   {
+       return strval($this->bestelordernummer);
+   }
 
      /**
      * @var int

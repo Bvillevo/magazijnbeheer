@@ -34,7 +34,7 @@ class GoederenMagazijnmeesterType extends AbstractType
         $builder
                    ->add('Artikelnummer', EntityType::class, array (
                         'class'=>'AppBundle:Artikel',
-                        'choice_label'=>'omschrijving'))
+                        'choice_label'=>'artikelnr'))
                           ;
 
         $builder

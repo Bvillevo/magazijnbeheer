@@ -36,7 +36,7 @@ class ArtikelMagazijnmeesterType extends AbstractType
        $builder
                  ->add('cVA', EntityType::class, array (
                     'class'=>'AppBundle:Artikel',
-                     'choice_label'=>'cVA'))
+                     'choice_label'=>'artikelnr'))
                 ;
         $builder
             ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant

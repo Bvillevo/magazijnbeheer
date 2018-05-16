@@ -118,7 +118,7 @@ class ArtikelController extends Controller
 				 $bestaandeArtikel->setBestelserie($bestaandeArtikel->getMinimumVoorraad() - $bestaandeArtikel->getVoorraadInAantal());
 				 $em->persist($bestaandeArtikel);
 				 $em->flush();
-				 return $this->redirect($this->generateurl("artikelNieuw"));
+				 return $this->redirect($this->generateurl("artikelMagazijnmeesterNieuw"));
 			}
 	 		return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 	  }

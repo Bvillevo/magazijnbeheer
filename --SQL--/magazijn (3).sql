@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 16 mei 2018 om 12:30
+-- Gegenereerd op: 16 mei 2018 om 17:39
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -46,11 +46,12 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`, `bestelregels`, `CVA`) VALUES
-(123, 'weq', 'sddasd', 'adsas', '123.00', 122, 12, 110, NULL, 989),
-(899, 'jhkj', 'hkkl', 'jk', '788.00', 899, 10, 889, NULL, 123),
-(989, 'jk', 'kljl', 'kljl', '199.00', 122, 212, 0, NULL, 1233),
-(1212, '12', '12', '12', '12.00', 12, 12, 0, NULL, NULL),
-(1233, 'sdf', 'fsdf', 'sdf', '122.00', 112, 32, 0, NULL, NULL);
+(1223456178, '1', '1', NULL, '111.00', 1, 1, 0, NULL, 1234567891),
+(1234567891, 'test', 'test', 'test', '100.00', 12, 1, 11, NULL, NULL),
+(1236565674, 'goed', 'Netjes', NULL, '100.00', 4, 4, 0, NULL, 1892232141),
+(1627351789, 'TEST', 'TESTESNEE', 'LAAG', '29990.00', 100000000, 1000, 99999000, NULL, 1223456178),
+(1827391278, 'te', 't', 't', '1.00', 10, 1, 9, NULL, 1234567891),
+(1892232141, 'jkhk', 'k', '34243', '1.00', 1, 1, 0, NULL, 1234567891);
 
 -- --------------------------------------------------------
 
@@ -71,8 +72,7 @@ CREATE TABLE `bestelopdracht` (
 --
 
 INSERT INTO `bestelopdracht` (`leverancier`, `bestelordernummer`, `artikelnr`, `hoeveelheid`, `bestelregels`) VALUES
-('1', 1, 1212, 1, 1),
-('12', 24, 1212, 12, 344);
+('12', 24, 1236565674, 32, 0);
 
 -- --------------------------------------------------------
 
@@ -1129,10 +1129,10 @@ CREATE TABLE `ontvangengoederen` (
 --
 
 INSERT INTO `ontvangengoederen` (`id`, `datum`, `leverancier`, `ordernummer`, `artikelnummer`, `omschrijving`, `hoeveelheid`, `kwaliteit`) VALUES
-(2, '2018-05-16', 'assie', 24, 1212, 'adfad', 3333, 'afdafd'),
-(12, '2016-01-01', '1', 1, 123, '1', 1, '1'),
-(77, '2017-05-24', '122', 1, 1212, '21', 12, '1'),
-(21323, '2013-01-01', 'Kol', 1, 1212, 'sad', 23, 'saca');
+(12, '2013-01-01', '1', 24, 1234567891, '1', 1, '11'),
+(133, '2017-01-01', 'ad', 24, 1234567891, '12', 21, '212'),
+(1999, '2016-01-01', '112', 24, 1234567891, 'asd', 21, '1233'),
+(2131, '2018-01-01', 'aasd', 24, 1234567891, '231', 12, '12');
 
 -- --------------------------------------------------------
 
