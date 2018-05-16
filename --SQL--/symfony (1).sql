@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 16 mei 2018 om 21:05
+-- Gegenereerd op: 16 mei 2018 om 21:58
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -46,31 +46,31 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`, `bestelregels`, `CVA`) VALUES
-(1000000017, 'telefoon', '128gb', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
-(1000000018, 'telefoon', '32gb', 'TilBurg', '49.00', 5, 2, 975983, 89273, NULL),
-(1000000546, 'telefoon', '16gb', 'TilBurg', '49.00', 5, 2, 975983, 89273, NULL),
-(1000000875, 'wasmachine', 'samsung 700watt', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
-(1000020017, 'verwarming', '1080 watt', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
-(1000300018, 'schoollaptop', '1080p', 'TilBurg', '600.00', 5, 2, 975983, 89273, NULL),
-(1000350018, 'hp-hd1092d', '1080p', 'TilBurg', '790.00', 5, 2, 975983, 89273, NULL),
-(1010293847, 'hy782 samsung', '1080p', 'Tilburg', '726.00', 13, 7, 16276276, 76432, NULL),
-(1020020017, 'Apple iMac 2015', '1080p', 'Breda', '1300.00', 15, 5, 5789584, 895686, NULL),
-(1029384765, 'AA battereijen', '1080p', 'Tilburg', '5.00', 13, 7, 16276276, 76432, NULL),
-(1050020017, 'goed voor in de woonkamer', '1080p', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
-(1181028374, 'AAA batterijen', '-', 'Breda', '5.00', 15, 5, 5789584, 895686, NULL),
-(1239478263, 'mp4 speler hp 4gb', '1080p', 'Tilburg', '34.00', 13, 7, 16276276, 76432, NULL),
-(1246426482, 'speaker jbl', 'waterdicht', 'Breda', '98.00', 4, 1, 68765866, 65765, NULL),
-(1247492649, '1968D sony', 'extra bass', 'Tilburg', '560.00', 2, 1, 2, 1253263, NULL),
-(1273917394, 'hp pabilon 4500', 'usb 3.0', 'Breda', '670.00', 20, 13, 1, 87653645, NULL),
-(1287492864, 'mp4 speler', '1080p', 'Tilburg', '34.00', 13, 7, 16276276, 76432, NULL),
-(1298765432, 'HG678 Sony', '7.1 surround sound', 'TilBurg', '230.00', 5, 2, 975983, 89273, NULL),
-(1309876543, 'logitech c520', 'full hd', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
-(1412345678, 'logitech g789', '16000dpi', 'TilBurg', '80.00', 5, 2, 975983, 89273, NULL),
-(1512345678, 'logitech k95', 'RGB', 'TilBurg', '120.00', 5, 2, 975983, 89273, NULL),
-(1676128364, 'JBL', 'shock resistant', 'TilBurg', '250.00', 5, 2, 975983, 89273, NULL),
-(1738945629, 'macbook 2018', '2300p', 'Tilburg', '3400.00', 13, 7, 16276276, 76432, NULL),
-(1782736183, 'lampen', 'RGB', 'Breda', '67.00', 15, 5, 5789584, 895686, NULL),
-(1782937462, 'mp4 spler hp 32 gb', '1080p', 'Tilburg', '34.00', 13, 7, 16276276, 76432, NULL),
+(1000000017, 'Samsung galaxy s7', '128gb', '01/A01', '450.00', 15, 5, 10, 895686, NULL),
+(1000000018, 'Samsung Galaxy S8', '32gb', '02/A01', '800.00', 5, 2, 3, 89273, NULL),
+(1000000546, 'Iphone X', '32gb', '02/A01', '1150.00', 5, 2, 3, 89273, NULL),
+(1000000875, 'Bosch WAB7I089', 'A+++ Energie', '01/A01', '333.00', 15, 5, 10, 895686, NULL),
+(1000020017, 'Usb Handverwarmer', 'USB 3.0', '01/A01', '20.00', 15, 5, 10, 895686, NULL),
+(1000300018, 'Dell D40', '1080p, 4gb Ram', '02/A01', '600.00', 5, 2, 3, 89273, NULL),
+(1000350018, 'hp-hd1092d', '1080p', '02/A01', '790.00', 5, 2, 3, 89273, NULL),
+(1010293847, 'hy782 samsung', '1080p', '02/A01', '726.00', 13, 7, 5, 76432, NULL),
+(1020020017, 'Apple iMac 2015', '1080p', '01/A01', '1300.00', 15, 5, 10, 895686, NULL),
+(1029384765, 'AA battereijen', '-', '02/A01', '5.00', 13, 7, 5, 76432, NULL),
+(1050020017, 'goed voor in de woonkamer', '1080p', '01/A01', '67.00', 15, 5, 10, 895686, NULL),
+(1181028374, 'AAA batterijen', '-', '01/A01', '5.00', 15, 5, 10, 895686, NULL),
+(1239478263, 'mp4 speler hp 4gb', '1080p', '02/A01', '34.00', 13, 7, 5, 76432, NULL),
+(1246426482, 'JBL GO 2', 'waterdicht', '01/A01', '98.00', 4, 1, 3, 65765, NULL),
+(1247492649, '1968D sony', 'extra bass', '02/A01', '560.00', 2, 1, 1, 1253263, NULL),
+(1273917394, 'hp pabilon 4500', 'usb 3.0', '01/A01', '670.00', 20, 13, 7, 87653645, NULL),
+(1287492864, 'mp4 speler', '1080p', '02/A01', '34.00', 13, 7, 5, 76432, NULL),
+(1298765432, 'HG678 Sony', '7.1 surround sound', '02/A01', '230.00', 5, 2, 3, 89273, NULL),
+(1309876543, 'logitech c520', 'full hd', '01/A01', '67.00', 15, 5, 10, 895686, NULL),
+(1412345678, 'logitech g789', '16000dpi', '02/A01', '80.00', 5, 2, 3, 89273, NULL),
+(1512345678, 'logitech k95', 'RGB', '02/A01', '120.00', 5, 2, 3, 89273, NULL),
+(1676128364, 'JBL FLIP 4', 'shock resistant', '02/A01', '250.00', 5, 2, 3, 89273, NULL),
+(1738945629, 'macbook 2018', '2300p', '02/A01', '3400.00', 13, 7, 5, 76432, NULL),
+(1782736183, 'philpis Blacklight ', 'Blacklight 30x5', '01/A01', '67.00', 15, 5, 10, 895686, NULL),
+(1782937462, 'mp4 spler hp 32 gb', '1080p', '02/A01', '34.00', 13, 7, 5, 76432, NULL),
 (1923654728, 'mp4 spler samsung 8mb', '1080p', 'Tilburg', '50.00', 13, 7, 16276276, 76432, NULL);
 
 -- --------------------------------------------------------
