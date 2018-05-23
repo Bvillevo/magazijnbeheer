@@ -27,7 +27,7 @@ class ArtikelType extends AbstractType
                 ->add('TechnischeSpecificaties', TextType::class,array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
-                ->add('magazijnlocatie', TextType::class,['disabled' => true]) //naam is b.v. een attribuut of variabele van klant
+                ->add('magazijnlocatie', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
            ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant
@@ -35,7 +35,7 @@ class ArtikelType extends AbstractType
 $builder
           ->add('CVA', EntityType::class, array (
              'class'=>'AppBundle:Artikel',
-              'choice_label'=>'artikelnr'))
+              'choice_label'=>'omschrijving'))
          ;
         $builder
             ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant

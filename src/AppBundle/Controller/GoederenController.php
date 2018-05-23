@@ -32,7 +32,7 @@ class GoederenController extends Controller
 	 * @Route("/inkoper/alle/goederen/", name="alleInkopergoederen")
 	 */
 public function allegoederenInkoper (Request $request){
-	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findAll();
+	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findBy([], ['datum' => 'DESC']);
 
 	return new Response($this->renderView ('goederen.html.twig', array ('goederen'=>$goederen)));
 }

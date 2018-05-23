@@ -28,7 +28,7 @@
                     <td>{{ artikel.minimumVoorraad }}</td>
                     <td>{{ artikel.voorraadInAantal }}</td>
 										<td>{{ artikel.bestelserie }}</td>
-                    <td><a href="{{ path('inkoperartikelwijzigen',{'artikelnr':artikel.artikelnr}) }}">wijzig</a></td>
+                    <td><a href="{{ path('magazijnmeesterArtikelWijzigen',{'artikelnr':artikel.artikelnr}) }}">wijzig</a></td>
                 </tr>
             {% endfor %}
         </tbody>
