@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType; // deze zorgt ervoor dat je decimalen in kan vullen.
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 //EntiteitType vervangen door b.v. KlantType
 class ArtikelInkoperType extends AbstractType
 {
@@ -18,7 +18,7 @@ class ArtikelInkoperType extends AbstractType
     {
 		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
         $builder
-            ->add('artikelnr', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
+            ->add('artikelnr', IntegerType::class,array ('disabled' => true)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
             ->add('omschrijving', TextType::class) //naam is b.v. een attribuut of variabele van klant
@@ -37,10 +37,10 @@ class ArtikelInkoperType extends AbstractType
   //    'divisor' => 100,))
 ///;
         $builder
-           ->add('CVA',IntegerType::class,array ('required' => false) ) //naam is b.v. een attribuut of variabele van klant
-       ;
-    //    $builder->add('CVA', 'text', array('label' => 'form.name','required' => false));
-    //array ('label' => 'form.name','required' => false)
+                  ->add('cVA', EntityType::class, array (
+                     'class'=>'AppBundle:Artikel',
+                      'choice_label'=>'omschrijving'))
+                 ;
         $builder
             ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
         ;
