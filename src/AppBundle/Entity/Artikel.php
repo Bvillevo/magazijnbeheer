@@ -53,8 +53,36 @@ class Artikel
     /**
      * @var string
      *
-     * @ORM\Column(name="magazijnlocatie", type="string", length=100)
-     */
+     * @ORM\Column(name="Magazijnlocatie", type="string", length=6)
+         * @Assert\Regex(
+         *    pattern = "/^20|[0-1]{1}[0-9]{1}\/[A-Z][0]{1}[0-9]{1}|10$/i",
+         *    match=true,
+         *    message="Ongeldige locatie [ERROR1]")
+         * @Assert\Regex(
+         *    pattern = "/^[2]{1}[1-9]{1}\/[A-Z]{1}[0-9]{1}$/i",
+         *    match=false,
+         *    message="Ongeldige locatie [ERROR2]")
+         * @Assert\Regex(
+         *    pattern = "/^[3-9]{1}[0-9]{1}\/[A-Z][0-9]{1}$/i",
+         *    match=false,
+         *    message="Ongeldige locatie [ERROR3]")
+         * @Assert\Regex(
+         *    pattern = "/^[0-1]{1}[0-9]{1}\/[A-Z][1]{1}[1-9]{1}$/i",
+         *    match=false,
+         *    message="Ongeldige locatie [ERROR4]")
+         * @Assert\Regex(
+         *    pattern = "/^[0-1]{1}[0-9]{1}\/[A-Z][2-9]{1}[0-9]{1}$/i",
+         *    match=false,
+         *    message="Ongeldige locatie [ERROR5]")
+         * @Assert\Regex(
+         *    pattern = "/^[0-9A-Za-z]+$/i",
+         *    match=false,
+         *    message="Ongeldige locatie [ERROR6]")
+         * @Assert\Length(
+         *      max = 6,
+         *      maxMessage = "Mag niet meer zijn dan {{ limit }} karakters"
+         * )
+         */
     private $magazijnlocatie;
 
     /**
