@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h1>Artikelen overzicht</h1>
-    <table border="1" style="width: 100%;">
+    <table border="1" style="width: 110%;">
         <thead>
             <tr>
                 <td>Artikel nummer</td>
@@ -28,7 +28,7 @@
                     <td>{{ artikel.minimumVoorraad }}</td>
                     <td>{{ artikel.voorraadInAantal }}</td>
 										<td>{{ artikel.bestelserie }}</td>
-                    <td><a href="{{ path('magazijnmeesterArtikelWijzigen',{'artikelnr':artikel.artikelnr}) }}">wijzig</a></td>
+                    <td><a href="{{ path('magazijnmeesterLocatieWijzigen',{'artikelnr':artikel.artikelnr}) }}">Locatie code wijzigen</a></td>
                 </tr>
             {% endfor %}
         </tbody>

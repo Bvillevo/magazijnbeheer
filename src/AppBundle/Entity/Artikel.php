@@ -121,6 +121,12 @@ class Artikel
      */
     private $bestelserie;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    public $status;
 
 
 
@@ -373,6 +379,32 @@ class Artikel
     {
         return $this->bestelregels;
     }
+
+
+    /**
+     * Get status
+     *
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Artikel
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
 
     public function __construct()
     {

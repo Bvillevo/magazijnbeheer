@@ -30,6 +30,4 @@ class homepageController extends Controller
                 return $this->render('homepageMagazijnmeester.html.twig');
             }
 }
-
-
 ?>

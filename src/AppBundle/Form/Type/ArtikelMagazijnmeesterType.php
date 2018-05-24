@@ -18,38 +18,8 @@ class ArtikelMagazijnmeesterType extends AbstractType
     {
 		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
         $builder
-            ->add('artikelnr', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('omschrijving', TextType::class) //naam is b.v. een attribuut of variabele van klant
-            ;
-        $builder
-                ->add('TechnischeSpecificaties', TextType::class,array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
                 ->add('magazijnlocatie', TextType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-           ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant
-       ;
-
-       $builder
-                 ->add('cVA', EntityType::class, array (
-                    'class'=>'AppBundle:Artikel',
-                     'choice_label'=>'omschrijving'))
                 ;
-        $builder
-            ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('voorraadInAantal', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-  //      $builder
-    //        ->add('bestelserie', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-  //      ;
-		//zie
-		//http://symfony.com/doc/current/forms.html#built-in-field-types
-		//voor meer typen invoer
     }
 
 	public function configureOptions(OptionsResolver $resolver)

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Artikelen overzicht</h1>
+    <table border="1" style="width: 100 %;">
+        <thead>
+            <tr>
+                <th scope="col">Artikel nummer</th>
+                <th scope="col">Omschrijving</th>
+                <th scope="col">technische Specificaties</th>
+                <th scope="col">Magazijnlocatie</th>
+                <th scope="col">Inkoopprijs</th>
+                <th scope="col">CVA</th>
+                <th scope="col">Minimum voorraad</th>
+                <th scope="col">Voorraad in aantal</th>
+								<th scope="col">>Bestelserie</th>
+                <th scope="col">Wijzigen</th>
+                <th scope="col">Deactiveren</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for artikel in artikelen %}
+                <tr>
+                    <th scope="row">{{ artikel.artikelnr }}</th>
+                    <td>{{ artikel.omschrijving }}</td>
+                    <td>{{ artikel.technischeSpecificaties }}</td>
+                    <td>{{ artikel.magazijnlocatie }}</td>
+                    <td>{{ artikel.inkoopprijs }}</td>
+                    <td>{{ artikel.CVA }}</td>
+                    <td>{{ artikel.minimumVoorraad }}</td>
+                    <td>{{ artikel.voorraadInAantal }}</td>
+										<td>{{ artikel.bestelserie }}</td>
+                    <td><a href="{{ path('inkoperartikelwijzigen',{'artikelnr':artikel.artikelnr}) }}" class="btn btn-primary btn-sm square" role="button">Wijzig</a></td>
+                    <td><a href="{{ path('artikeldeactiveren',{'artikelnr':artikel.artikelnr}) }}" class="btn btn-primary btn-sm square" role="button">Deactiveer</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -14,7 +14,6 @@ security:
                         password: magazijnmeester
                         roles: 'ROLE_MAGAZIJNMEESTER'
 
-                  
 
     access_control:
         - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }

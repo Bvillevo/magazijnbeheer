@@ -1,12 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h1>Artikelen overzicht</h1>
-    <form method="post" action="{{ path('omschrijvingArtikelenVerkoper') }}">
-      <input type="text" placeholder="artikelnr of omschrijving" name="zoekwaarde" />
-      <input type="submit" name="verzendknop" />
-    </form>
-    <br />
-    <table border="1" style="width: 100%;">
+    <table border="1" style="width: 100 %;">
         <thead>
             <tr>
                 <td>Artikel nummer</td>
@@ -18,7 +13,7 @@
                 <td>Minimum voorraad</td>
                 <td>Voorraad in aantal</td>
 								<td>Bestelserie</td>
-                <td>Wijzigen</td>
+                <td>Activeren</td>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +28,7 @@
                     <td>{{ artikel.minimumVoorraad }}</td>
                     <td>{{ artikel.voorraadInAantal }}</td>
 										<td>{{ artikel.bestelserie }}</td>
-                    <td><a href="{{ path('artikelMagazijnmeesterLocatie',{'artikelnr':artikel.artikelnr}) }}">wijzig</a></td>
+                    <td><a href="{{ path('artikelactiveren',{'artikelnr':artikel.artikelnr}) }}">Activeren</a></td>
                 </tr>
             {% endfor %}
         </tbody>
