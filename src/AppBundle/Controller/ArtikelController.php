@@ -18,7 +18,7 @@ class ArtikelController extends Controller
 
 				//functie show alle actieve artikelen
 			public function alleActieveArtikelen (Request $request){
-				$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findBy(["status" => 1]);
+				$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findBy(["status" => 1], ["artikelnr" => 'ASC']);
 
 							return new Response($this->renderView ('Artikelen/artikelenActieven.html.twig', array ('artikelen'=>$artikelen)));
 				}
@@ -31,7 +31,7 @@ class ArtikelController extends Controller
 				public function alleDeactieveArtikelen (Request $request){
 					$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findBy(["status" => 0]);
 
-								return new Response($this->renderView ('artikelenDeactieven.html.twig', array ('artikelen'=>$artikelen)));
+								return new Response($this->renderView ('Artikelen/artikelenDeactieven.html.twig', array ('artikelen'=>$artikelen)));
 					}
 
 
@@ -113,7 +113,7 @@ class ArtikelController extends Controller
 		public function alleArtikelenMagazijnmeester (Request $request){
 			$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findAll();
 
-			return new Response($this->renderView ('artikelenMagazijnmeester.html.twig', array ('artikelen'=>$artikelen)));
+			return new Response($this->renderView ('Artikelen/artikelenMagazijnmeester.html.twig', array ('artikelen'=>$artikelen)));
 		}
 	 /**
 			* @Route("magazijnmeester/artikel/locatiewijzigen", name="artikelMagazijnmeesterLocatie")
@@ -161,7 +161,7 @@ class ArtikelController extends Controller
 				 $em->persist($bestaandeArtikel);
 				 $em->flush();
 //Na het verzenden van de opdracht zal de gebruiker door gestuurd worden naar alleartikelen.
-		 	 return $this->redirect($this->generateurl("alledeactieveartikelen"));
+		 	 return $this->redirect($this->generateurl("Artikelen/alledeactieveartikelen"));
 		  }
 
 			/**
@@ -173,7 +173,7 @@ class ArtikelController extends Controller
 					 $bestaandeArtikel->status = 0;
 					 $em->persist($bestaandeArtikel);
 					 $em->flush();
-	//Na het verzenden van de opdracht zal de gebruiker door gestuurd worden naar alleartikelen.
+//Na het verzenden van de opdracht zal de gebruiker door gestuurd worden naar alleartikelen.
 			 	 return $this->redirect($this->generateurl("alleactieveartikelen"));
 			  }
 
@@ -182,28 +182,28 @@ class ArtikelController extends Controller
 				/**
 	 			* @Route("verkoper/artikelomschrijving", name="omschrijvingArtikelenVerkoper")
 	 			*/
-public function alleArtikelenVerkoper (Request $request){
-	$em = $this->getDoctrine()->getManager();
-$zoekwaarde = $request->request->get('zoekwaarde');
+				public function alleArtikelenVerkoper (Request $request){
+				$em = $this->getDoctrine()->getManager();
+				$zoekwaarde = $request->request->get('zoekwaarde');
 
-	$query1 = $em->createQuery(         // <== deze function is voor het zoeken van de omschrijving van het artikel.
-	"SELECT o
-	FROM AppBundle:Artikel o
-	WHERE o.omschrijving LIKE :omschrijving
-	ORDER BY o.artikelnr ASC")->setParameter('omschrijving', '%' . $zoekwaarde . '%');
+				$query1 = $em->createQuery(         // <== deze function is voor het zoeken van de omschrijving van het artikel.
+				"SELECT o
+				FROM AppBundle:Artikel o
+				WHERE o.omschrijving LIKE :omschrijving
+				ORDER BY o.artikelnr ASC")->setParameter('omschrijving', '%' . $zoekwaarde . '%');
 
-	$query2 = $em->createQuery(         // <== deze query is voor het zoeken naar het artikelnummer van het artikeln.
-	"SELECT p
-	FROM AppBundle:Artikel p
-	WHERE p.artikelnr = :artikelnr
-	ORDER BY p.artikelnr ASC")->setParameter('artikelnr', $zoekwaarde);
+				$query2 = $em->createQuery(         // <== deze query is voor het zoeken naar het artikelnummer van het artikeln.
+				"SELECT p
+				FROM AppBundle:Artikel p
+				WHERE p.artikelnr = :artikelnr
+				ORDER BY p.artikelnr ASC")->setParameter('artikelnr', $zoekwaarde);
 
-	$code1 = $query1->getResult(); // Code1 en code 2 is voor het ophalen van de resultaten
-	$code2 = $query2->getResult();
+				$code1 = $query1->getResult(); // Code1 en code 2 is voor het ophalen van de resultaten
+				$code2 = $query2->getResult();
 
-	$artikelen = $code1 + $code2; // hier voegen wij de code's samen.
+				$artikelen = $code1 + $code2; // hier voegen wij de code's samen.
 
-	return new Response($this->renderView ('artikelenVerkoper.html.twig', array ('artikelen'=>$artikelen)));
+				return new Response($this->renderView ('Artikelen/artikelenVerkoper.html.twig', array ('artikelen'=>$artikelen)));
 }
 }
 ?>
