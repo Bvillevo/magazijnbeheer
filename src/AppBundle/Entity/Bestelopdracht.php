@@ -18,22 +18,17 @@ class Bestelopdracht
      *
      * @ORM\Column(name="bestelordernummer", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\ManyToOne(targetEntity="Goederen", inversedBy="goederen")
      * @ORM\JoinColumn(name="ordernummer", referencedColumnName="bestelordernummer")
      */
     private $bestelordernummer;
 
-    public function __toString()
-   {
-       return strval($this->bestelordernummer);
-   }
+   //  public function __toString()
+   // {
+   //     return strval($this->bestelordernummer);
+   // }
 
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="hoeveelheid", type="integer")
-     */
-    private $hoeveelheid;
 
     /**
      * @var string
@@ -46,10 +41,10 @@ class Bestelopdracht
     /**
      * @var int
      *
-     * @ORM\Column(name="bestelregels", type="integer")
-     * @ORM\OneToMany(targetEntity="BestelRegel", mappedBy="artikel")
+     *
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="bestellingid")
      */
-    public $bestelregels;
+    private $bestellingen;
 
 
     /**
@@ -88,29 +83,6 @@ class Bestelopdracht
 
 
 
-    /**
-     * Set hoeveelheid
-     *
-     * @param integer $hoeveelheid
-     *
-     * @return Bestelopdracht
-     */
-    public function setHoeveelheid($hoeveelheid)
-    {
-        $this->hoeveelheid = $hoeveelheid;
-
-        return $this;
-    }
-
-    /**
-     * Get hoeveelheid
-     *
-     * @return int
-     */
-    public function getHoeveelheid()
-    {
-        return $this->hoeveelheid;
-    }
 
     /**
      * Set leverancier
@@ -137,31 +109,38 @@ class Bestelopdracht
     }
 
     /**
-     * Set bestelregels
+     * Set bestellingen
      *
-     * @param integer $bestelregels
+     * @param string $bestellingen
      *
-     * @return Artikel
+     * @return Bestelopdracht
      */
-    public function setBestelregels($bestelregels)
+    public function setBestellingen($bestellingen)
     {
-        $this->bestelregels = $bestelregels;
+        $this->bestellingen = $bestellingen;
 
         return $this;
     }
 
     /**
-     * Get bestelserie
+     * Get bestellingen
      *
-     * @return int
+     * @return string
      */
-    public function getBestelregels()
+    public function getBestellingen()
     {
-        return $this->bestelregels;
+        return $this->bestellingen;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->bestelordernummer;
     }
 
     public function __construct()
-    {
-       $bestelregels = new ArrayCollection();
-    }
+   {
+       $this->bestellingen = new ArrayCollection();
+   }
+
+
 }

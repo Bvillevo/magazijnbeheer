@@ -2,13 +2,12 @@
 {% block body %}
 	<h1>Bestelopdrachten overzicht</h1>
 	<ol>
-	{% for bestelopdracht in bestelopdracht %}
+	{% for artikel in artikelen %}
 			<li>
-				<span style='color:black'> {{bestelopdracht.bestelordernummer }} </span>
-				<span style='color:black'> {{bestelopdracht.artikelnr}}</span>
-				<span style='color:black'>{{bestelopdracht.leverancier}} </span>
-        <span style='color:black'>{{bestelopdracht.hoeveelheid}} </span>
-        <span style='color:black'>{{bestelopdracht.bestelregels}} </span>
+				<span style='color:black'> {{artikel.artikelnr}}</span>
+				<span style='color:black'>{{artikel.omschrijving}} </span>
+        <span style='color:black'>{{artikel.hoeveelheid}} </span>
+
 			</li>
 	{% endfor %}
   </ol>

@@ -10,28 +10,33 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 //EntiteitType vervangen door b.v. KlantType
-class BestelopdrachtType extends AbstractType
+class BestelArtikelType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
         $builder
-            ->add('leverancier', TextType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
+          ->add('artikelnr', EntityType::class, array (
+             'class'=>'AppBundle:Artikel',
+              'choice_label'=>'omschrijving'))
+         ;
+         $builder
+           ->add('bestellingid', EntityType::class, array (
+              'class'=>'AppBundle:Bestelopdracht',
+               'choice_label'=>'leverancier'))
+          ;
+         $builder
+             ->add('hoeveelheid', IntegerType::class)
+             ;
 
-        $builder
-            ->add('bestelordernummer', HiddenType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
 
     }
 
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'AppBundle\Entity\Bestelopdracht', //Entiteit vervangen door b.v. Klant
+			'data_class' => 'AppBundle\Entity\Bestelregel', //Entiteit vervangen door b.v. Klant
 		));
 	}
 }

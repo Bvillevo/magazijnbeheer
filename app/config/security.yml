@@ -14,10 +14,14 @@ security:
                         password: magazijnmeester
                         roles: 'ROLE_MAGAZIJNMEESTER'
 
+                    admin:
+                      password: admin
+                      roles: 'ROLE_ADMIN'
 
     access_control:
         - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }
         - { path: '^/magazijnmeester/*', roles: [ROLE_MAGAZIJNMEESTER] }
+        - { path: '^/admin/*', roles: [ROLE_ADMIN] }
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
@@ -37,3 +41,4 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+            switch_user: true

@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Artikel;
+use AppBundle\Entity\Bestelregel;
 use AppBundle\Form\Type\ArtikelInkoperType;
 use AppBundle\Form\Type\ArtikelMagazijnmeesterType;
 use AppBundle\Form\Type\ArtikelType;
+use AppBundle\Form\Type\BestelArtikelType;
 
 class ArtikelController extends Controller
 {
@@ -35,7 +37,7 @@ class ArtikelController extends Controller
 					}
 
 
-		/**
+			/**
 			 * @Route("/artikel/nieuw", name="artikelNieuw")
 			 */
 			 public function nieuweArtikel (Request $request){
@@ -45,6 +47,7 @@ class ArtikelController extends Controller
 				$form->handleRequest($request);
 				if ($form->isSubmitted() && $form->isValid()) {
 					$em = $this->getDoctrine()->getManager();
+					$nieuweArtikel->status = 1;
 				//Functie om bestelserie te berekenen voor het toevoegen van een nieuw artikel als een inkoper.
 					 if ($nieuweArtikel->getMinimumvoorraad() > $nieuweArtikel->getVoorraadInAantal()){
 							 $nieuweArtikel->setBestelserie($nieuweArtikel->getMinimumvoorraad() - $nieuweArtikel->getVoorraadInAantal());
@@ -161,7 +164,7 @@ class ArtikelController extends Controller
 				 $em->persist($bestaandeArtikel);
 				 $em->flush();
 //Na het verzenden van de opdracht zal de gebruiker door gestuurd worden naar alleartikelen.
-		 	 return $this->redirect($this->generateurl("Artikelen/alledeactieveartikelen"));
+		 	 return $this->redirect($this->generateurl("alledeactieveartikelen"));
 		  }
 
 			/**
@@ -180,30 +183,57 @@ class ArtikelController extends Controller
 
 
 				/**
-	 			* @Route("verkoper/artikelomschrijving", name="omschrijvingArtikelenVerkoper")
-	 			*/
-				public function alleArtikelenVerkoper (Request $request){
-				$em = $this->getDoctrine()->getManager();
-				$zoekwaarde = $request->request->get('zoekwaarde');
+		 			* @Route("verkoper/artikelomschrijving", name="omschrijvingArtikelenVerkoper")
+		 			*/
+					public function alleArtikelenVerkoper (Request $request){
+					$em = $this->getDoctrine()->getManager();
+					$zoekwaarde = $request->request->get('zoekwaarde');
+					$repository = $this->getDoctrine()->getRepository(Artikel::class);
 
-				$query1 = $em->createQuery(         // <== deze function is voor het zoeken van de omschrijving van het artikel.
-				"SELECT o
-				FROM AppBundle:Artikel o
-				WHERE o.omschrijving LIKE :omschrijving
-				ORDER BY o.artikelnr ASC")->setParameter('omschrijving', '%' . $zoekwaarde . '%');
+					$query1 = $em->createQuery(         // <== deze function is voor het zoeken van de omschrijving van het artikel.
+					"SELECT o
+					FROM AppBundle:Artikel o
+					WHERE o.omschrijving LIKE :omschrijving AND o.voorraadInAantal >= 1 AND o.status = 1
+					ORDER BY o.artikelnr ASC")->setParameter('omschrijving', '%' . $zoekwaarde . '%');
 
-				$query2 = $em->createQuery(         // <== deze query is voor het zoeken naar het artikelnummer van het artikeln.
-				"SELECT p
-				FROM AppBundle:Artikel p
-				WHERE p.artikelnr = :artikelnr
-				ORDER BY p.artikelnr ASC")->setParameter('artikelnr', $zoekwaarde);
+					$query2 = $em->createQuery(         // <== deze query is voor het zoeken naar het artikelnummer van het artikeln.
+					"SELECT p
+					FROM AppBundle:Artikel p
+					WHERE p.artikelnr = :artikelnr AND p.voorraadInAantal >= 1 AND p.status = 1
+					ORDER BY p.artikelnr ASC")->setParameter('artikelnr', $zoekwaarde);
 
-				$code1 = $query1->getResult(); // Code1 en code 2 is voor het ophalen van de resultaten
-				$code2 = $query2->getResult();
+					$code1 = $query1->getResult(); // Code1 en code 2 is voor het ophalen van de resultaten
+					$code2 = $query2->getResult();
 
-				$artikelen = $code1 + $code2; // hier voegen wij de code's samen.
+					$products = $repository->findBy( // zorgen dat alles goed georderd is.
+						['voorraadInAantal' => '1'],
+						['artikelnr' => 'ASC']
+					);
 
-				return new Response($this->renderView ('Artikelen/artikelenVerkoper.html.twig', array ('artikelen'=>$artikelen)));
-}
+					$artikelen = $code1 + $code2 + $products; // hier voegen wij de code's samen.
+
+					return new Response($this->renderView ('Artikelen/artikelenVerkoper.html.twig', array ('artikelen'=>$artikelen)));
+					}
+				/**
+				 * @Route("/bestelartikel/nieuw/{var}", name="bestelartikel")
+				 */
+				 public function bestelArtikel (Request $request, $var){
+
+					 $nieuweBestelRegel = new Bestelregel ();
+
+					 $form = $this->createForm(BestelArtikelType::class, $nieuweBestelRegel);
+
+					$form->handleRequest($request);
+					if ($form->isSubmitted() && $form->isValid()) {
+						$em = $this->getDoctrine()->getManager();
+						$em->persist($nieuweBestelRegel);
+						$em->flush();
+						 return $this->redirect("bestelartikel");
+						}
+
+						return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
+				}
+
+
 }
 ?>

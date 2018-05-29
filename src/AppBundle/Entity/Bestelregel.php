@@ -22,21 +22,46 @@ class Bestelregel
     private $id;
 
     /**
+     * @var int
      *
+     * @ORM\Column(name="bestellingid", type="integer")
+     * @ORM\ManyToOne(targetEntity="Bestelopdracht", inversedBy="bestellingen")
+     * @ORM\JoinColumn="bestelordernummer", referencedColumnName="bestellingid")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @ORM\Column(name="artikelid")
      */
-    private $artikel;
+    public $bestellingid;
 
     /**
+     * @var int
      *
+     * @ORM\Column(name="artikelnr", type="integer")
+     * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="")
+     * @ORM\JoinColumn="artikel", referencedColumnName="artikelnr")
      *
-     * @ORM\Column(name="bestellingid")
-     * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="bestelregels")
-     * @ORM\ManyToOne(targetEntity="Bestelopdracht", inversedBy="bestelregels")
-     * @ORM\JoinColumn(name="artikelid", referencedColumnName="artikelid")
      */
-    private $bestelling;
+    public $artikelnr;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="hoeveelheid", type="integer")
+     */
+    public $hoeveelheid;
+
+    /**
+     * Set id
+     *
+     * @param int $id
+     *
+     * @return Bestelregel
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
 
     /**
@@ -50,48 +75,74 @@ class Bestelregel
     }
 
     /**
-     * Set artikel
+     * Set bestellingid
      *
+     * @param integer $bestellingid
      *
      * @return Bestelregel
      */
-    public function setArtikel($artikel)
+    public function setBestellingid($bestellingid)
     {
-        $this->artikel = $artikel;
+        $this->bestellingid = $bestellingid;
 
         return $this;
     }
 
     /**
-     * Get artikelid
+     * Get bestellingid
      *
+     * @return int
      */
-    public function getArtikel()
+    public function getBestellingid()
     {
-        return $this->artikel;
+        return $this->bestellingid;
     }
 
     /**
-     * Set bestelling
+     * Set artikelnr
      *
-     * @param string $bestelling
+     * @param integer $artikelnr
      *
      * @return Bestelregel
      */
-    public function setBestelling($bestelling)
+    public function setArtikelnr($artikelnr)
     {
-        $this->bestelling = $bestelling;
+        $this->artikelnr = $artikelnr;
 
         return $this;
     }
 
     /**
-     * Get bestelling
+     * Get artikelnr
      *
-     * @return string
+     * @return int
      */
-    public function getBestelling()
+    public function getArtikelnr()
     {
-        return $this->bestelling;
+        return $this->artikelnr;
+    }
+
+    /**
+     * Set hoeveelheid
+     *
+     * @param integer $hoeveelheid
+     *
+     * @return Bestelregel
+     */
+    public function setHoeveelheid($hoeveelheid)
+    {
+        $this->hoeveelheid = $hoeveelheid;
+
+        return $this;
+    }
+
+    /**
+     * Get hoeveelheid
+     *
+     * @return int
+     */
+    public function getHoeveelheid()
+    {
+        return $this->hoeveelheid;
     }
 }

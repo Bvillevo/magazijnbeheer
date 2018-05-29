@@ -128,6 +128,18 @@ class Artikel
      */
     public $status;
 
+    /**
+     * @var int
+     *
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="Artikel")
+     */
+    private $artikelen;
+
+    public function __construct()
+   {
+       $this->artikelen = new ArrayCollection();
+   }
+
 
 
     /**
@@ -403,11 +415,5 @@ class Artikel
         $this->status = $status;
 
         return $this;
-    }
-
-
-    public function __construct()
-    {
-       $bestelregels = new ArrayCollection();
     }
   }

@@ -1,36 +1,47 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>Artikelen overzicht</h1>
-    <table border="1" style="width: 110%;">
-        <thead>
-            <tr>
-                <td>Artikel nummer</td>
-                <td>Omschrijving</td>
-                <td>technische Specificaties</td>
-                <td>Magazijnlocatie</td>
-                <td>Inkoopprijs</td>
-                <td>CVA</td>
-                <td>Minimum voorraad</td>
-                <td>Voorraad in aantal</td>
-								<td>Bestelserie</td>
-                <td>Wijzigen</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for artikel in artikelen %}
-                <tr>
-                    <td>{{ artikel.artikelnr }}</td>
-                    <td>{{ artikel.omschrijving }}</td>
-                    <td>{{ artikel.technischeSpecificaties }}</td>
-                    <td>{{ artikel.magazijnlocatie }}</td>
-                    <td>{{ artikel.inkoopprijs }}</td>
-                    <td>{{ artikel.CVA }}</td>
-                    <td>{{ artikel.minimumVoorraad }}</td>
-                    <td>{{ artikel.voorraadInAantal }}</td>
-										<td>{{ artikel.bestelserie }}</td>
-                    <td><a href="{{ path('magazijnmeesterLocatieWijzigen',{'artikelnr':artikel.artikelnr}) }}">Locatie code wijzigen</a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Artikelen overzicht</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Artikel nummer</th>
+        <th>Omschrijving</th>
+        <th>Technische specificaties</th>
+        <th>Magazijnlocatie</th>
+        <th>Inkoopprijs</th>
+        <th>CVA</th>
+        <th>Minimum voorraad</th>
+        <th>Voorraad in aantal</th>
+        <th>Bestelserie</th>
+        <th>Wijzigen</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for artikel in artikelen %}
+      <tr>
+        <td>{{ artikel.artikelnr }}</td>
+        <td>{{ artikel.omschrijving }}</td>
+        <td>{{ artikel.technischeSpecificaties }}</td>
+        <td>{{ artikel.magazijnlocatie }}</td>
+        <td>{{ artikel.inkoopprijs }}</td>
+        <td>{{ artikel.CVA }}</td>
+        <td>{{ artikel.minimumVoorraad }}</td>
+        <td>{{ artikel.voorraadInAantal }}</td>
+        <td>{{ artikel.bestelserie }}</td>
+        <td><a href="{{ path('magazijnmeesterLocatieWijzigen',{'artikelnr':artikel.artikelnr}) }}" class="btn btn-primary btn-sm square" role="button">Locatie code wijzigen</a></td>
+      </tr>
+{% endfor %}
+  </tbody>
+</table>
 {% endblock %}

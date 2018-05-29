@@ -12,6 +12,7 @@ class BestelopdrachtController extends Controller
 {
 /**
 	 * @Route("/bestelopdracht/nieuw/", name="bestelopdrachtNieuw")
+	 *
 	 */
 	 public function nieuweBestelopdracht (Request $request){
 		 $nieuweBestelopdracht = new Bestelopdracht ();
@@ -22,12 +23,45 @@ class BestelopdrachtController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($nieuweBestelopdracht);
 			$em->flush();
+			$bestellingid = $form->get("bestelordernummer")->getData();
 
-    	return $this->redirect ($this->generateUrl("bestelopdrachtNieuw"));
+			return new Response($bestellingid);
+
+    	return $this->redirect ($this->generateUrl("bestelartikel"));
 
 		}
-		return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
+		return new Response($this->renderView ('Bestelopdracht/index.html.twig', array('form' => $form->createView())));
 }
+
+/**
+         * @Route("/bestelorder/nieuw", name="nieuwebestelorder")
+         */
+        public function nieuweBestelorder(Request $request)
+      {
+        $nieuweBestelorder = new Bestelopdracht();
+        $form = $this->createForm(BestelopdrachtType::class, $nieuweBestelorder);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($nieuweBestelorder);
+          $em->flush();
+          {
+            $laatstenr = $this->getDoctrine()->getRepository("AppBundle:Bestelopdracht")->findBy([], ['bestelordernummer' => 'ASC']);
+            $tekst = "";
+            foreach($laatstenr as $laat) {
+            $tekst = $laat->getBestelordernummer();
+          }
+          }
+         return $this->redirect("http://localhost/magazijnbeheer1/web/app_dev.php/bestelartikel/nieuw/$tekst");
+        }
+				// Rendert de functie in een .twig.
+	return new Response($this->render('Bestelopdracht/index.html.twig', array('form' => $form->createView())));
+	}
+
+
+
 		/**
  	 * @Route("/bestelopdracht/{id}", name="allebestelopdrachten")
  	 */
@@ -40,9 +74,11 @@ class BestelopdrachtController extends Controller
  			$em = $this->getDoctrine()->getManager();
  			$em->persist($bestelopdracht);
  			$em->flush();
+
  			return $this->redirect($this->generateurl("bestelopdrachtNieuw"));
+
  		}
- return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
+ 		return new Response($this->renderView ('Bestelopdracht/index.html.twig', array('form' => $form->createView())));
  }
 }
 ?>

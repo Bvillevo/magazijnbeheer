@@ -9,21 +9,26 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 //vul aan als je andere invoerveld-typen wilt gebruiken in je formulier
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType; // deze zorgt ervoor dat je decimalen in kan vullen.
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-
 //EntiteitType vervangen door b.v. KlantType
-class BestelopdrachtType extends AbstractType
+class RegistratieType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
         $builder
-            ->add('leverancier', TextType::class) //naam is b.v. een attribuut of variabele van klant
+            ->add('gebruikersnaam', TextType::class) //naam is b.v. een attribuut of variabele van klant
+        ;
+        $builder
+            ->add('email', TextType::class) //naam is b.v. een attribuut of variabele van klant
+        ;
+        $builder
+            ->add('wachtwoord', PasswordType::class) //naam is b.v. een attribuut of variabele van klant
         ;
 
         $builder
-            ->add('bestelordernummer', HiddenType::class) //naam is b.v. een attribuut of variabele van klant
+            ->add('rol', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
 
     }
@@ -31,7 +36,7 @@ class BestelopdrachtType extends AbstractType
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'AppBundle\Entity\Bestelopdracht', //Entiteit vervangen door b.v. Klant
+			'data_class' => 'AppBundle\Entity\Gebruiker', //Entiteit vervangen door b.v. Klant
 		));
 	}
 }

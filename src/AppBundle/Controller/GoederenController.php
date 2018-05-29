@@ -34,7 +34,7 @@ class GoederenController extends Controller
 public function allegoederenInkoper (Request $request){
 	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findBy([], ['datum' => 'DESC']);
 
-	return new Response($this->renderView ('goederen.html.twig', array ('goederen'=>$goederen)));
+	return new Response($this->renderView ('Goederen/goederen.html.twig', array ('goederen'=>$goederen)));
 }
 /**
 	 * @Route("/magazijnmeester/alle/goederen/", name="allegoederenMagazijnmeester")
@@ -42,7 +42,7 @@ public function allegoederenInkoper (Request $request){
 public function allegoederenMagazijnmeester (Request $request){
 	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findBy([], ['datum' => 'DESC']);
 
-	return new Response($this->renderView ('goederen.html.twig', array ('goederen'=>$goederen)));
+	return new Response($this->renderView ('Goederen/goederen.html.twig', array ('goederen'=>$goederen)));
 }
 }
 ?>
