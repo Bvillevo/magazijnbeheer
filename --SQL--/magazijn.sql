@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 mei 2018 om 11:09
+-- Gegenereerd op: 30 mei 2018 om 15:50
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -49,7 +49,6 @@ CREATE TABLE `artikel` (
 INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`, `bestelregels`, `CVA`, `status`) VALUES
 (1000000017, 'Samsung galaxy s7', 'TEST', '01/A10', '450.00', 15, 20, 0, 895686, 1000000017, 1),
 (1000000018, 'Samsung Galaxy S8', '32gb', '02/A03', '800.00', 5, 18, 0, 89273, 1000000017, 1),
-(1000000089, 'jhjhlk', 'heyo', '01/A01', '122.00', 10, 9000, 0, NULL, 1000000017, 1),
 (1000000546, 'Iphone X', '32gb', '02/A01', '1150.00', 5, 7, 0, 89273, 1000000017, 1),
 (1000000875, 'Bosch WAB7I089', 'A+++ Energie', '01/A01', '333.00', 15, 20, 0, 895686, NULL, 0),
 (1000020017, 'Usb Handverwarmer', 'USB 3.0', '01/A02', '20.00', 15, 23, 0, 895686, 1000000017, 1),
@@ -61,7 +60,7 @@ INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `
 (1050020017, 'goed voor in de woonkamer', '1080p', '01/A01', '67.00', 15, 17, 0, 895686, NULL, 1),
 (1181028374, 'AAA batterijen', '', '01/A01', '5.00', 15, 19, 0, 895686, 1029384765, 1),
 (1239478263, 'mp4 speler hp 4gb', '1080p', '02/A01', '34.00', 13, 16, 0, 76432, NULL, 1),
-(1246426482, 'JBL GO 2', 'waterdicht', '01/A01', '98.00', 4, 8, -4, 65765, 1676128364, 1),
+(1246426482, 'JBL GO 2', 'waterdicht', '01/A01', '98.00', 4, 3, 1, 65765, 1000000017, 1),
 (1247492649, '1968D sony', 'extra bass', '02/A01', '560.00', 2, 3, 0, 1253263, NULL, 1),
 (1273917394, 'hp pabilon 4500', 'usb 3.0', '01/A01', '670.00', 20, 13, 7, 87653645, NULL, 1),
 (1287492864, 'mp4 speler', '1080p', '02/A01', '34.00', 13, 7, 6, 76432, 1923654728, 1),
@@ -69,16 +68,20 @@ INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `
 (1309876543, 'logitech c520', 'full hd', '01/A01', '67.00', 15, 5, 10, 895686, 1412345678, 1),
 (1412345678, 'logitech g789', '16000dpi', '02/A01', '80.00', 5, 2, 3, 89273, 1512345678, 1),
 (1472583691, 'Iphone 8', 'Hd scherm', '01/A01', '699.99', 10, 5, 5, NULL, 1000000017, 1),
-(1475269823, 'Goed', 'Goed', '01/A05', '700.00', 10, 5, 5, NULL, 1000000017, 1),
 (1512345678, 'logitech k95', 'RGB', '02/A01', '120.00', 5, 2, 3, 89273, NULL, 1),
-(1672836478, 'LIJPE', 'LIJPE', '01/A04', '4555.00', 800, 829281, 0, NULL, 1000000017, 1),
 (1676128364, 'JBL FLIP 4', 'shock resistant', '02/A01', '250.00', 5, 2, 3, 89273, 1246426482, 1),
 (1738945629, 'macbook 2018', '2300p', '02/A01', '3400.00', 13, 7, 6, 76432, 1020020017, 1),
 (1782736183, 'philpis Blacklight ', 'Blacklight 30x5', '01/A01', '67.00', 15, 5, 10, 895686, NULL, 1),
 (1782937462, 'mp4 spler hp 32 gb', '1080p', '02/A01', '34.00', 13, 7, 6, 76432, 1782937462, 1),
-(1923654728, 'mp4 spler samsung 8mb', '1080p', 'Tilburg', '50.00', 13, 7, 16276276, 76432, NULL, 1),
-(1999999999, 'jklj', 'TEST', '01/A04', '12.00', 12, 2, 10, NULL, 1000000017, 1),
-(2000000019, 'TESTTIING', 'Lijpe', '01/A04', '565.00', 90, 9000, 0, NULL, 1000000017, 1);
+(1010110110, 'Laptop oplader', '1000 Watt', '03/G05', '10.10', 50, 20, 30, NULL, 1010293847, 1),
+(1234567890, 'MSI GL62 6QF', 'GTX 960M', '02/D01', '700.00', 20, 10, 10, NULL, 1738945629, 1),
+(1792015792, 'HP 1100', 'GTX 750M', '06/B03', '300.00', 200, 9, 191, NULL, 1000020017, 1),
+(1792015793, 'Sony 1200', '4K', '02/B03', '1000.00', 30, 15, 15, NULL, 1247492649, 1),
+(1792015803, 'Intel i5', '2.7GHZ', '07/F03', '200.00', 30, 15, 15, NULL, 1000350018, 1),
+(1792015774, 'I7', '3.4GHZ', '01/S07', '300.00', 200, 20, 180, NULL, 1792015803, 1),
+(1792675792, 'Intel I3', '2.1GHZ', '03/C02', '100.00', 200, 15, 185, NULL, 1792015803, 1),
+(1792675763, 'Intel I3 - 4e generatie', '2.1GHZ', '03/C03', '100.00', 200, 10, 190, NULL, 1792015803, 1),
+(1792628543, 'Intel I5 - 8e generatie', '2.8GHZ', '03/B01', '200.00', 200, 50, 150, NULL, 1792015803, 1);
 
 -- --------------------------------------------------------
 
@@ -184,6 +187,7 @@ CREATE TABLE `klant` (
 INSERT INTO `klant` (`klantnummer`, `voornaam`, `achternaam`, `woonplaats`, `telefoonnummer`, `email`) VALUES
 (100010010, 'Diana', 'Willemsen', 'Rotterdam', '+316421-92-7409', 'd.willemsen@rotterdam.nl'),
 (100010011, 'Joseph', 'Bastiaansen', 'Breda', '+316621-90-9802', 'j.bastiaansen@breda.nl'),
+(100010012, 'Joan', 'Burton', 'Terneuzen', '+316749-75-4976', 'j.burton@terneuzen.nl'),
 (100010013, 'Denise', 'Nelson', 'Raamsdonkveer', '+316678-02-6577', 'd.nelson@raamsdonkveer.nl'),
 (100010014, 'Linda', 'Bos', 'Vlissingen', '+316178-20-8465', 'l.bos@vlissingen.nl'),
 (100010015, 'Amy', 'Howell', 'Den Haag', '+316110-81-8660', 'a.howell@denhaag.nl'),
@@ -740,9 +744,9 @@ INSERT INTO `klant` (`klantnummer`, `voornaam`, `achternaam`, `woonplaats`, `tel
 (100010566, 'Debra', 'de Regt', 'Rotterdam', '+316411-65-5480', 'd.de regt@rotterdam.nl'),
 (100010567, 'Phyllis', 'Smit', 'Terneuzen', '+316588-79-0463', 'p.smit@terneuzen.nl'),
 (100010568, 'Kevin', 'van Dam', 'Bergen op Zoom', '+316379-55-0908', 'k.van dam@bergen op zoom.nl'),
-(100010569, 'Samuel', 'Johnszoon', 'Teteringen', '+316109-20-0683', 's.johnszoon@teteringen.nl'),
-(100010570, 'Kathy', 'Karelsen', 'Bergen op Zoom', '+316317-09-6368', 'k.karelsen@bergen op zoom.nl');
+(100010569, 'Samuel', 'Johnszoon', 'Teteringen', '+316109-20-0683', 's.johnszoon@teteringen.nl');
 INSERT INTO `klant` (`klantnummer`, `voornaam`, `achternaam`, `woonplaats`, `telefoonnummer`, `email`) VALUES
+(100010570, 'Kathy', 'Karelsen', 'Bergen op Zoom', '+316317-09-6368', 'k.karelsen@bergen op zoom.nl'),
 (100010571, 'Douglas', 'Jacobs', 'Bergen op Zoom', '+316114-63-6811', 'd.jacobs@bergen op zoom.nl'),
 (100010572, 'Tamara', 'Collins', 'Vlissingen', '+316868-26-4719', 't.collins@vlissingen.nl'),
 (100010573, 'Diana', 'van Dam', 'Utrecht', '+316540-40-6872', 'd.van dam@utrecht.nl'),
@@ -1186,53 +1190,6 @@ INSERT INTO `klant` (`klantnummer`, `voornaam`, `achternaam`, `woonplaats`, `tel
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `ontvangengoederen`
---
-
-CREATE TABLE `ontvangengoederen` (
-  `id` int(11) NOT NULL,
-  `datum` date DEFAULT NULL,
-  `leverancier` varchar(20) NOT NULL,
-  `ordernummer` int(11) NOT NULL,
-  `artikelnummer` int(11) NOT NULL,
-  `omschrijving` varchar(20) NOT NULL,
-  `hoeveelheid` int(11) NOT NULL,
-  `kwaliteit` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `ontvangengoederen`
---
-
-INSERT INTO `ontvangengoederen` (`id`, `datum`, `leverancier`, `ordernummer`, `artikelnummer`, `omschrijving`, `hoeveelheid`, `kwaliteit`) VALUES
-(12239893, '2018-05-15', 'Philips', 19872223, 1020020017, '128gb ssd ', 2, '1 beschadigd '),
-(12347893, '2018-05-15', 'Samsung', 126487614, 1000000018, '1080p, 4 gb ram', 1, 'goed'),
-(12378493, '2018-05-15', 'Philips', 19872223, 1287492864, '128gb', 15, 'goed'),
-(12386293, '2018-05-15', 'Bol', 817938293, 1010293847, '1080p full HD', 4, 'goed'),
-(12398493, '2018-05-15', 'Philips', 19872223, 1000350018, '1080p', 45, 'goed'),
-(12872493, '2018-05-15', 'Philips', 928309238, 1000350018, '1080p, 6gb ram ', 2, 'goed'),
-(13278411, '2018-05-15', 'Samsung ', 11768614, 1923654728, '3.5mm audio jack ', 12, 'goed'),
-(13278493, '2018-05-15', 'Philips', 19871292, 1000020017, 'USB 3.0 ', 4, '2 missend'),
-(14725863, '2017-03-03', 'Praxis', 19872292, 1247492649, 'Nieuw', 10, 'goed'),
-(123891143, '2018-04-15', 'Ziggo', 183549871, 1000000875, 'eco bubbel', 1, 'goed'),
-(123897243, '2018-04-15', 'Samsung', 11768614, 1010293847, '1080p', 5, '1 beschadeging'),
-(123897423, '2018-04-15', 'Samsung', 11768614, 1010293847, '1080p', 5, '1 beschadeging'),
-(123897993, '2018-04-15', 'Samsung', 11768614, 1309876543, '1080p recording 210g', 3, 'goed'),
-(123899243, '2018-04-15', 'Ziggo', 183549871, 1246426482, 'water resistant', 3, 'goed'),
-(123899342, '2018-04-15', 'Ziggo', 928379238, 1273917394, '2gb ram, 1080p', 2, 'goed'),
-(127897243, '2018-04-15', 'Samsung', 11768614, 1738945629, '13\", 4gb ram', 3, 'goed'),
-(1226538327, '2018-03-16', 'Philips', 19873692, 1000300018, '1080p, 4gb ram ', 2, 'goed'),
-(1226538723, '2018-03-16', 'Philips', 19873692, 1246426482, 'water resistant', 5, 'goed'),
-(1228238723, '2018-03-16', 'Philips', 19873692, 1246426482, 'water resistant', 5, 'goed'),
-(1228283723, '2018-03-16', 'Philips', 19873692, 1000000546, '128gb, full screen ', 3, '1 beschadigd '),
-(1228344819, '2018-05-16', 'Bol', 817938123, 1000000875, 'Eco Bubbel', 2, 'goed'),
-(1228394619, '2018-05-16', 'Philips', 19873692, 1676128364, 'shock resistant', 4, 'goed'),
-(1228394819, '2018-05-16', 'Gertdonk', 2839462, 1247492649, '4gb Ram', 2, 'goed'),
-(1282394619, '2018-05-16', 'Philips', 19873692, 1181028374, '- ', 23, 'goed');
-
--- --------------------------------------------------------
-
---
 -- Tabelstructuur voor tabel `product`
 --
 
@@ -1299,7 +1256,6 @@ INSERT INTO `product` (`barcode`, `naam`, `merk`, `productsoort`, `inkoopprijs`,
 ('289874151', 'Whirlpool 424580894', 'Whirlpool', 2, '314.00', ''),
 ('293569344', 'Whirlpool 890918290', 'Whirlpool', 2, '530.00', ''),
 ('295918790', 'Bosch 665948410', 'Bosch', 5, '457.00', ''),
-('3', 'Test', 'test', 1, '55.46', 'Test'),
 ('300085694', 'Black en Decker 543670627', 'Black en Decker', 11, '87.00', ''),
 ('300297705', 'Zanussi 536056358', 'Zanussi', 3, '981.00', ''),
 ('301563368', 'Philips 388730618', 'Philips', 4, '564.00', ''),
@@ -1308,7 +1264,6 @@ INSERT INTO `product` (`barcode`, `naam`, `merk`, `productsoort`, `inkoopprijs`,
 ('309936949', 'AEG 754151691', 'AEG', 5, '745.00', ''),
 ('31631084', 'Sony 232773939', 'Sony', 7, '913.00', ''),
 ('319772527', 'Black en Decker 686303897', 'Black en Decker', 10, '230.00', ''),
-('32', 'Nickoclas', 'holo', 1, '45.67', 'ieqp'),
 ('32853023', 'Whirlpool 202595370', 'Whirlpool', 2, '344.00', ''),
 ('330477201', 'Bosch 364384220', 'Bosch', 10, '284.00', ''),
 ('335734000', 'Philips 641814431', 'Philips', 2, '374.00', ''),
@@ -1382,7 +1337,6 @@ INSERT INTO `product` (`barcode`, `naam`, `merk`, `productsoort`, `inkoopprijs`,
 ('551805931', 'AEG 315131029', 'AEG', 4, '306.00', ''),
 ('551946339', 'Philips 139481275', 'Philips', 7, '673.00', ''),
 ('552841032', 'Philips 827190315', 'Philips', 9, '1095.00', ''),
-('55292925', 'Youssef Zekhinini', 'Honda', 3, '800.56', 'Niet te koop'),
 ('558055015', 'Bosch 607041156', 'Bosch', 10, '187.00', ''),
 ('558123832', 'Philips 122443884', 'Philips', 9, '787.00', ''),
 ('564873572', 'Bosch 591773389', 'Bosch', 2, '501.00', ''),
@@ -1425,7 +1379,6 @@ INSERT INTO `product` (`barcode`, `naam`, `merk`, `productsoort`, `inkoopprijs`,
 ('667067675', 'Philips 787637495', 'Philips', 2, '444.00', ''),
 ('669578669', 'Samsung 894671051', 'Samsung', 6, '499.00', ''),
 ('675711598', 'Whirlpool 478900451', 'Whirlpool', 8, '924.00', ''),
-('6786', 'ahb', 'bn', 8, '0.00', 'hb'),
 ('679621026', 'Whirlpool 592278439', 'Whirlpool', 13, '134.00', ''),
 ('679927798', 'Sony 608068613', 'Sony', 9, '371.00', ''),
 ('690742367', 'AEG 530481022', 'AEG', 13, '705.00', ''),
@@ -1527,30 +1480,27 @@ CREATE TABLE `productsoort` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Gegevens worden geëxporteerd voor tabel `productsoort`
+--
+
+INSERT INTO `productsoort` (`tid`, `beschrijving`) VALUES
+(1, 'Drogers'),
+(2, 'Keukenapparatuur'),
+(3, 'Koelkasten'),
+(4, 'Koffie apparaten'),
+(5, 'Kookplaten'),
+(6, 'Monitors'),
+(7, 'OLED TV'),
+(8, 'Ovens'),
+(9, 'QLED TV'),
+(10, 'Reinigers'),
+(11, 'Stofzuigers'),
+(12, 'Wasmachines'),
+(13, 'Witgoed');
+
+--
 -- Indexen voor geëxporteerde tabellen
 --
-
---
--- Indexen voor tabel `artikel`
---
-ALTER TABLE `artikel`
-  ADD PRIMARY KEY (`artikelnr`),
-  ADD KEY `CVA` (`CVA`);
-
---
--- Indexen voor tabel `bestelopdracht`
---
-ALTER TABLE `bestelopdracht`
-  ADD PRIMARY KEY (`bestelordernummer`),
-  ADD KEY `artikelnr` (`artikelnr`);
-
---
--- Indexen voor tabel `bestelregel`
---
-ALTER TABLE `bestelregel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `artikelid` (`artikelid`),
-  ADD KEY `bestellingid` (`bestellingid`);
 
 --
 -- Indexen voor tabel `klant`
@@ -1559,19 +1509,11 @@ ALTER TABLE `klant`
   ADD PRIMARY KEY (`klantnummer`);
 
 --
--- Indexen voor tabel `ontvangengoederen`
---
-ALTER TABLE `ontvangengoederen`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `ordernummer` (`ordernummer`),
-  ADD KEY `artikelnummer` (`artikelnummer`);
-
---
 -- Indexen voor tabel `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`barcode`),
-  ADD KEY `producttype` (`productsoort`);
+  ADD KEY `productsoort` (`productsoort`);
 
 --
 -- Indexen voor tabel `productsoort`
@@ -1592,36 +1534,16 @@ ALTER TABLE `klant`
 -- AUTO_INCREMENT voor een tabel `productsoort`
 --
 ALTER TABLE `productsoort`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
 
 --
--- Beperkingen voor tabel `artikel`
+-- Beperkingen voor tabel `product`
 --
-ALTER TABLE `artikel`
-  ADD CONSTRAINT `artikel_ibfk_1` FOREIGN KEY (`CVA`) REFERENCES `artikel` (`artikelnr`);
-
---
--- Beperkingen voor tabel `bestelopdracht`
---
-ALTER TABLE `bestelopdracht`
-  ADD CONSTRAINT `bestelopdracht_ibfk_1` FOREIGN KEY (`artikelnr`) REFERENCES `artikel` (`artikelnr`);
-
---
--- Beperkingen voor tabel `bestelregel`
---
-ALTER TABLE `bestelregel`
-  ADD CONSTRAINT `bestelregel_ibfk_1` FOREIGN KEY (`artikelid`) REFERENCES `artikel` (`artikelnr`),
-  ADD CONSTRAINT `bestelregel_ibfk_2` FOREIGN KEY (`bestellingid`) REFERENCES `bestelopdracht` (`bestelordernummer`);
-
---
--- Beperkingen voor tabel `ontvangengoederen`
---
-ALTER TABLE `ontvangengoederen`
-  ADD CONSTRAINT `ontvangengoederen_ibfk_1` FOREIGN KEY (`artikelnummer`) REFERENCES `artikel` (`artikelnr`),
-  ADD CONSTRAINT `ontvangengoederen_ibfk_2` FOREIGN KEY (`ordernummer`) REFERENCES `bestelopdracht` (`bestelordernummer`);
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`productsoort`) REFERENCES `productsoort` (`tid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
