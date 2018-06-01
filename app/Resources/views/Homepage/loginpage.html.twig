@@ -15,19 +15,30 @@
 
 <div class="container">
   <div class="row">
+    {%  if is_granted('ROLE_INKOPER')%}
     <div class="col-sm-4">
       <h3>Inkoper</h3>
         <a href ="{{ path ('homepageInkoper')}}">Inloggen als inkoper</a> <br>
     </div>
+    {% endif %}
+    {%  if is_granted('ROLE_MAGAZIJNMEESTER')%}
     <div class="col-sm-4">
       <h3>Magazijnmeester</h3>
         <a href="{{ path ('homepageMagazijnmeester')}}">Inloggen als magazijnmeester</a> <br>
   </div>
-
+  {% endif %}
+  {%  if is_granted('ROLE_ADMIN')%}
     <div class="col-sm-4">
-    <h3>Admin</h3>
+    <h3>Beheerder</h3>
       <a href="{{ path ('homepageAdmin')}}">Inloggen als beheerder</a> <br>
     </div>
+  {% endif %}
+  {%  if is_granted('ROLE_VERKOPER')%}
+    <div class="col-sm-4">
+    <h3>Verkoper</h3>
+      <a href="{{ path ('homepageVerkoper')}}">Inloggen als verkoper</a> <br>
+    </div>
+  {% endif %}  
 </div>
 
 </body>

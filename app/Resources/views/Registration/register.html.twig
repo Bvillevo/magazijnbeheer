@@ -1,0 +1,15 @@
+{# app/Resources/views/registration/register.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+{{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.voornaam) }}
+    {{ form_row(form.achternaam) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    {{ form_row(form.roles) }}
+
+<button type="submit">Register!</button>
+{{ form_end(form) }}
+{% endblock %}

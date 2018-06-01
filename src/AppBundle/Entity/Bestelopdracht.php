@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bestelopdracht
@@ -34,6 +35,12 @@ class Bestelopdracht
      * @var string
      *
      * @ORM\Column(name="leverancier", type="string", length=20)
+     * @Assert\Length(
+     *      min = 0,
+     *      max = 6,
+     *      minMessage = "leverancier moet minimaal 1  karakter hebben",
+     *      maxMessage = "leverancier mag maximaal 6 karakters hebben"
+     *)
      */
     private $leverancier;
 

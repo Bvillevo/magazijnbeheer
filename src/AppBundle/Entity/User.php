@@ -1,144 +1,174 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Marice
+ * Date: 26-05-18
+ * Time: 13:31
+ */
 
+// src/AppBundle/Entity/User.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
- *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ *
+ * @ORM\Entity
+ * @UniqueEntity(fields="username", message="Username already taken")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=100)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $voornaam;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $achternaam;
+    /**
+     * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\NotBlank()
      */
     private $username;
 
     /**
-     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
+     * The below length depends on the "algorithm" you use for encoding
+     * the password, but this works well with bcrypt.
      *
-     * @ORM\Column(name="password", type="string", length=100)
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=100)
+     * @ORM\Column(type="array")
      */
-    private $role;
+    private $roles;
 
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
+    public function __construct() {
+        $this->roles = array('ROLE_USER');
     }
 
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
+    // other properties and methods
 
-        return $this;
+    public function getVoornaam()
+    {
+        return $this->voornaam;
     }
 
-    /**
-     * Get username
-     *
-     * @return string
-     */
+    public function setVoornaam($voornaam)
+    {
+        $this->voornaam = $voornaam;
+    }
+
+    public function getAchternaam()
+    {
+        return $this->achternaam;
+    }
+
+    public function setAchternaam($achternaam)
+    {
+        $this->achternaam = $achternaam;
+    }
+
     public function getUsername()
     {
         return $this->username;
     }
 
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
+    public function setUsername($username)
     {
-        $this->password = $password;
-
-        return $this;
+        $this->username = $username;
     }
 
-    /**
-     * Get password
-     *
-     * @return string
-     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * Set role
-     *
-     * @param string $role
-     *
-     * @return User
-     */
-    public function setRole($role)
+    public function setPassword($password)
     {
-        $this->role = $role;
-
-        return $this;
+        $this->password = $password;
     }
 
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
+    public function getSalt()
     {
-        return $this->role;
-    }
-
-    public function getRoles() 
-    {
-        return [$this->getRole()];
-    }
-
-    public function getSalt() 
-    {
+        // The bcrypt and argon2i algorithms don't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
         return null;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
     }
 
     public function eraseCredentials()
     {
-        return null;
     }
-}
 
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @param mixed $roles
+     * @return User
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+
+}

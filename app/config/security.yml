@@ -1,31 +1,38 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
+      in_memory:
             memory:
                 users:
-                    inkoper:
-                        password: inkoper
-                        roles: 'ROLE_INKOPER'
-
-
-                    magazijnmeester:
-                        password: magazijnmeester
-                        roles: 'ROLE_MAGAZIJNMEESTER'
-
-                    admin:
-                      password: admin
-                      roles: 'ROLE_ADMIN'
-
-    access_control:
-        - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }
-        - { path: '^/magazijnmeester/*', roles: [ROLE_MAGAZIJNMEESTER] }
-        - { path: '^/admin/*', roles: [ROLE_ADMIN] }
+      #                marice:
+      #                    password: user
+      #                    roles: 'ROLE_USER'
+                      admin:
+                          password: admin
+                          roles: 'ROLE_ADMIN'
+                      inkoper:
+                          password: inkoper
+                          roles: 'ROLE_INKOPER'
+                      verkoper:
+                          password: verkoper
+                          roles: 'ROLE_VERKOPER'
+                      magazijnmeester:
+                          password: magazijnmeester
+                          roles: 'ROLE_MAGAZIJNMEESTER'
+                      youssef:
+                              password: Welkom01!
+                              roles: 'ROLE_ADMIN'
+      our_db_provider:
+          entity:
+                class: AppBundle:User
+                property: username
 
     encoders:
+        AppBundle\Entity\User: bcrypt
         Symfony\Component\Security\Core\User\User: plaintext
-
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -41,4 +48,16 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
-            switch_user: true
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: /loginpage
+
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }
+        - { path: '^/magazijnmeester/*', roles: [ROLE_MAGAZIJNMEESTER] }
+        - { path: '^/verkoper/*', roles: [ROLE_VERKOPER] }
+        #- { path: ^/, roles: ROLE_ADMIN }

@@ -1,51 +1,36 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Marice
+ * Date: 26-05-18
+ * Time: 13:09
+ */
 // src/AppBundle/Controller/SecurityController.php
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends Controller
 {
     /**
-     * @Route("/login", name="login_route")
+     * @Route("/login", name="login")
      */
-    public function loginAction(Request $request)
+     //deze functie is voor login.
+    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
-          	$session = $request->getSession();
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
 
-		    // get the login error if there is one
-		    if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
-		        $error = $request->attributes->get(
-		            SecurityContextInterface::AUTHENTICATION_ERROR
-		        );
-		    } elseif (null !== $session && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
-		        $error = $session->get(SecurityContextInterface::AUTHENTICATION_ERROR);
-		        $session->remove(SecurityContextInterface::AUTHENTICATION_ERROR);
-		    } else {
-		        $error = null;
-		    }
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-		    // last username entered by the user
-		    $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
-
-		    return $this->render(
-		        'security/login.html.twig',
-		        array(
-		            // last username entered by the user
-		            'last_username' => $lastUsername,
-		            'error'         => $error,
-		        )
-		    );
-    }
-
-    /**
-     * @Route("/login_check", name="login_check")
-     */
-    public function loginCheckAction()
-    {
+        return $this->render('security/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
     }
 }
-?>
