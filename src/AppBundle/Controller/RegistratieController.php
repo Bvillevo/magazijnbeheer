@@ -10,9 +10,10 @@ use AppBundle\Form\Type\RegistratieType;
 
 class RegistratieController extends Controller
 {
-     /**
-		 * @Route("/admin/registratie", name="registratie")
-		 */
+     	/**
+		* @Route("/admin/registratie", name="registratie")
+		*/
+		// functie om een nieuwe gebruiker te registreren
 	   public function registratie (Request $request){
 		 $nieuweGebruiker = new Gebruiker ();
 		 $form = $this->createForm(RegistratieType::class, $nieuweGebruiker);
@@ -24,19 +25,18 @@ class RegistratieController extends Controller
 			$em->flush();
     	return $this->redirect ($this->generateUrl("registratie"));
 
-		}
-		return new Response($this->renderView('form.html.twig', array('form' => $form->createView())));
-    }
- 			/**
- 				 * @Route("admin/alle/gebruikers", name="allegebruikers")
- 				 */
+			}
+			return new Response($this->renderView('form.html.twig', array('form' => $form->createView())));
+    	}
+ 		/**
+ 		* @Route("admin/alle/gebruikers", name="allegebruikers")
+ 		*/
 
- 				//functie show alle gebruikers
- 			public function alleGebruikers (Request $request){
- 				$gebruikers = $this->getDoctrine()->GetRepository("AppBundle:Gebruiker")->findAll();
+ 		//functie show alle gebruikers
+ 		public function alleGebruikers (Request $request){
+ 			$gebruikers = $this->getDoctrine()->GetRepository("AppBundle:Gebruiker")->findAll();
 
-
-        return new Response($this->renderView ('Registratie/registratie.html.twig', array ('gebruikers'=>$gebruikers)));
-      }
+		return new Response($this->renderView ('Registratie/registratie.html.twig', array ('gebruikers'=>$gebruikers)));
+      	}
 }
 ?>

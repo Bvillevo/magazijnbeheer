@@ -10,10 +10,11 @@ use AppBundle\Form\Type\BestelopdrachtType;
 
 class BestelopdrachtController extends Controller
 {
-/**
+  /**
 	 * @Route("/bestelopdracht/nieuw/", name="bestelopdrachtNieuw")
 	 *
 	 */
+  // functie om een nieuwe bestelopdracht te maken 
 	 public function nieuweBestelopdracht (Request $request){
 		 $nieuweBestelopdracht = new Bestelopdracht ();
 		 $form = $this->createForm(BestelopdrachtType::class, $nieuweBestelopdracht);

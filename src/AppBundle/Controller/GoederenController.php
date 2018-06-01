@@ -11,9 +11,10 @@ use AppBundle\Form\Type\GoederenInkoperType;
 
 class GoederenController extends Controller
 {
-/**
-		 * @Route("/goederen/nieuw", name="goederenNieuw")
-		 */
+	/**
+	* @Route("/goederen/nieuw", name="goederenNieuw")
+	*/
+	// functie om nieuwe goederen te maken
 	 public function nieuweGoederen (Request $request){
 		 $nieuweGoederen = new Goederen ();
 		 $form = $this->createForm(GoederenMagazijnmeesterType::class, $nieuweGoederen);
@@ -27,19 +28,21 @@ class GoederenController extends Controller
 
 		}
 		return new Response($this->renderView('form.html.twig', array('form' => $form->createView())));
-}
-/**
+	}
+	/**
 	 * @Route("/inkoper/alle/goederen/", name="alleInkopergoederen")
 	 */
-public function allegoederenInkoper (Request $request){
+	// functie om alle goederen op te halen voor de rol inkoper
+	public function allegoederenInkoper (Request $request){
 	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findBy([], ['datum' => 'DESC']);
 
 	return new Response($this->renderView ('Goederen/goederen.html.twig', array ('goederen'=>$goederen)));
-}
-/**
+	}
+	/**
 	 * @Route("/magazijnmeester/alle/goederen/", name="allegoederenMagazijnmeester")
 	 */
-public function allegoederenMagazijnmeester (Request $request){
+	// functie alle goederen ophalen voor magazijnmeester
+	public function allegoederenMagazijnmeester (Request $request){
 	$goederen = $this->getDoctrine()->GetRepository("AppBundle:Goederen")->findBy([], ['datum' => 'DESC']);
 
 	return new Response($this->renderView ('Goederen/goederen.html.twig', array ('goederen'=>$goederen)));
