@@ -5,25 +5,51 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel ="stylesheet" href="web/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    nav.navbar.navbar-expand-lg.navbar-light {
+      background-color: #CC0529 !important;
+  }
+    ul.nav.navbar-nav li a {
+      color: #fff !important;
+  }
+    a.navbar-brand {
+      color: #fff !important;
+  }
+  </style>
+</head>
+<body>
 
-
-<nav class="navbar navbar-default">
-  <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #">
 
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Lunenburg</a>
+      <a href="#" class="navbar-brand"><img src="https://image.ibb.co/dVx8t8/logo_lunenburg2.png" alt="Lunenburg" width="100" height="25" /></a></a>
+
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/magazijnbeheer/web/app_dev.php/loginpage">Home</a></li>
-      <li><a href="/magazijnbeheer/web/app_dev.php/login">Login</a></li>
+      {%  if is_granted('ROLE_INKOPER')%}
+            <li><a href ="{{ path ('homepageInkoper')}}">Home</a></li>
+      {% endif %}
+
+      {%  if is_granted('ROLE_MAGAZIJNMEESTER')%}
+            <li><a href ="{{ path ('homepageMagazijnmeester')}}">Home</a></li>
+      {% endif %}
+
+      {%  if is_granted('ROLE_ADMIN')%}
+            <li><a href ="{{ path ('homepageAdmin')}}">Home</a></li>
+      {% endif %}
+
+      {%  if is_granted('ROLE_VERKOPER')%}
+            <li><a href ="{{ path ('homepageVerkoper')}}">Home</a></li>
+      {% endif %}
+
+      <li><a href="/magazijnbeheer1/web/app_dev.php/login">Logout</a></li>
     </ul>
   </div>
 </nav>
-
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
-</head>
 </body>
 </html>

@@ -8,21 +8,41 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <style>
+  .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+  }
 
+  .button1 {
+      background-color: #CC0529;
+      color: white;
+      border: 5px solid #CC0529;
+  }
+
+  </style>
 <div class="jumbotron text-center">
-  <h1>Lunenburg</h1>
+  <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg">
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
       <h3>Artikelen</h3>
-        <a href="{{ path ('alleArtikelenMagazijnmeester')}}">Voorraadpositie bekijken</a> <br>
+        <td><a href="{{ path('alleArtikelenMagazijnmeester')}}" class="button button1" role="button">Voorraadpositie bekijken</a></td>
     </div>
     <div class="col-sm-4">
       <h3>Goederen</h3>
-        <a href="{{ path ('allegoederenMagazijnmeester')}}">Alle goederen tonen</a> <br>
-        <a href="{{ path ('goederenNieuw')}}">Nieuw goederen toevoegen</a> <br>
+        <td><a href="{{ path('allegoederenMagazijnmeester')}}" class="button button1" role="button">Alle goederen tonen</a></td>
+        <td><a href="{{ path('goederenNieuw')}}" class="button button1" role="button">Nieuw goederen toevoegen</a></td>
   </div>
 </div>
 

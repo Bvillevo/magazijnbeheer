@@ -8,31 +8,49 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<style>
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 
+}
+
+.button1 {
+    background-color: #CC0529;
+    color: white;
+    border: 5px solid #CC0529;
+        min-width: 300px !important;
+}
+</style>
 <div class="jumbotron text-center">
-  <h1>Lunenburg</h1>
+    <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg">
 </div>
-{{ app.user.roles[0] }}
 
 <div class="container">
-  <div class="row">
+
     <div class="col-sm-4">
       <h3>Artikelen</h3>
-        <a href="{{ path ('alleactieveartikelen')}}">Alle artikelen tonen</a> <br>
-        <a href="{{ path ('alledeactieveartikelen')}}">Alle gedactiveerde artikelen tonen</a> <br>
-        <a href="{{ path ('artikelNieuw')}}">Nieuw artikel toevoegen</a>
-
+        <td><a href="{{ path('alleactieveartikelen')}}" class="button button1" role="button">Alle artikelen tonen</a></td>
+        <td><a href="{{ path('alledeactieveartikelen')}}" class="button button1" role="button">Alle gedactiveerde artikelen tonen</a></td>
+        <td><a href="{{ path('artikelNieuw')}}" class="button button1" role="button">Nieuw artikel toevoegen</a></td>
       </div>
       <div class="col-sm-4">
         <h3>Bestellen</h3>
-        <a href="{{ path ('nieuwebestelorder')}}">Nieuw leverancier toevoegen</a> <br>
-        <a href="/magazijnbeheer1/web/app_dev.php/inkoper/bestelartikel/nieuw/1">Nieuwe bestelregel toevoegen</a> <br>
-        <a href="{{ path ('allebestelopdrachten')}}">Overzicht bestelregels</a> <br>
-
+        <td><a href="{{ path('nieuwebestelorder')}}" class="button button1" role="button">Nieuw leverancier toevoegen</a></td>
+        <td><a href="/magazijnbeheer1/web/app_dev.php/inkoper/bestelartikel/nieuw/1" class="button button1" role="button">Inkopen</a></td>
+        <td><a href="{{ path('allebestelopdrachten')}}" class="button button1" role="button">Overzicht inkopenn</a></td>
     </div>
     <div class="col-sm-4">
       <h3>Goederen</h3>
-        <a href="{{ path ('alleInkopergoederen')}}">Alle goederen tonen</a> <br>
+        <td><a href="{{ path('alleInkopergoederen')}}" class="button button1" role="button">Alle goederen tonen</a></td>
+
   </div>
 </div>
 

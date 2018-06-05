@@ -8,21 +8,41 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <style>
+  .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+  }
 
+  .button1 {
+      background-color: #CC0529;
+      color: white;
+      border: 5px solid #CC0529;
+  }
+
+  </style>
 <div class="jumbotron text-center">
-  <h1>Lunenburg</h1>
+    <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg">
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
       <h3>Registreren</h3>
-        <a href="{{ path ('user_registration')}}">Nieuwe gebruiker registreren</a> <br>
+        <td><a href="{{ path('user_registration')}}" class="button button1" role="button">Nieuwe gebruiker registreren</a></td>
     </div>
 
     <div class="col-sm-4">
       <h3>Gebruikers</h3>
-        <a href="{{ path ('allegebruikers')}}">Alle gebruikers</a> <br>
+        <td><a href="{{ path('allegebruikers')}}" class="button button1" role="button">Nieuwe gebruiker registreren</a></td>
     </div>
 </div>
 

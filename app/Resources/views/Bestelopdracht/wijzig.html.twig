@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+<div class="title">
+<h1>Bestelling wijzigen</h1>
+</div>
+<div class="container">
+<form method="post" action="">
+    {{ form_widget(form) }}
+
+    <div class="button">
+    <input class="btn btn-default" onclick="WijzigPopup()" type="submit">
+    </div>
+    <a class="annuleerbutton" href="javascript:history.back()">Annuleren</a>
+
+</form>
+</div>
+
+
+<style>
+  
+    </style>
+{% endblock %}

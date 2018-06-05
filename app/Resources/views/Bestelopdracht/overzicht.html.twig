@@ -21,6 +21,7 @@
     </thead>
     <tbody>
       {% for qs in query %}
+      
       <tr>
 				<td>{{ qs.bestelordernummer }}</td>
 				<td><a href="{{ path('inkoperbestelorderwijzigen',{'bestellingid':qs.bestellingid}) }}" class="btn btn-primary btn-sm square" role="button">Beijk</a></td>
