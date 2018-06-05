@@ -15,26 +15,24 @@ use AppBundle\Form\Type\BestelArtikelType;
 class ArtikelController extends Controller
 {
 			/**
-				 * @Route("alle/actieve/artikelen", name="alleactieveartikelen")
-				 */
-
-				//functie show alle actieve artikelen
+			* @Route("alle/actieve/artikelen", name="alleactieveartikelen")
+			*/
+			//functie show alle actieve artikelen
 			public function alleActieveArtikelen (Request $request){
 				$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findBy(["status" => 1], ["artikelnr" => 'ASC']);
 
-							return new Response($this->renderView ('Artikelen/artikelenActieven.html.twig', array ('artikelen'=>$artikelen)));
-				}
+				return new Response($this->renderView ('Artikelen/artikelenActieven.html.twig', array ('artikelen'=>$artikelen)));
+			}
 
-				/**
-					 * @Route("alle/deactieve/artikelen", name="alledeactieveartikelen")
-					 */
+			/**
+			* @Route("alle/deactieve/artikelen", name="alledeactieveartikelen")
+			*/
+			//functie show alle deaactieve artikelen
+			public function alleDeactieveArtikelen (Request $request){
+				$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findBy(["status" => 0]);
 
-					//functie show alle deaactieve artikelen
-				public function alleDeactieveArtikelen (Request $request){
-					$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findBy(["status" => 0]);
-
-								return new Response($this->renderView ('Artikelen/artikelenDeactieven.html.twig', array ('artikelen'=>$artikelen)));
-					}
+				return new Response($this->renderView ('Artikelen/artikelenDeactieven.html.twig', array ('artikelen'=>$artikelen)));
+			}
 
 
 			/**
@@ -113,16 +111,29 @@ class ArtikelController extends Controller
 			 }
 		 return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 	 }
-	 		 /**
-			 * @Route("magazijnmeester/alle/artikelenn", name="alleArtikelenMagazijnmeester")
-			 */
-			 // functie om overzicht van alle artikelen te laten zien aan de magazijnmeester
+	 	/**
+		* @Route("magazijnmeester/alle/artikelenn", name="alleArtikelenMagazijnmeester")
+		*/
+		// functie om overzicht van alle artikelen te laten zien aan de magazijnmeester
 		public function alleArtikelenMagazijnmeester (Request $request){
-			$artikelen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->findAll();
+		
+		$artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+
+
+        foreach($artikelen as $artikel){
+            if ($artikel->getVerkopen() == null){
+                $artikel->setGereserveerdevoorraad(0);
+                $artikel->setVrijevoorraad($artikel->getVoorraadInAantal());
+            } else{
+                $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
+                $artikel->setVrijevoorraad($artikel->getVoorraadInAantal() - $artikel->getGereserveerdevoorraad());
+            }
+        }
 
 			return new Response($this->renderView ('Artikelen/artikelenMagazijnmeester.html.twig', array ('artikelen'=>$artikelen)));
 		}
-	 /**
+		 	
+		 	/**
 			* @Route("magazijnmeester/artikel/locatiewijzigen", name="artikelMagazijnmeesterLocatie")
 			*/
 			// functie om locatie te wijzigen van een artikel
@@ -220,6 +231,16 @@ class ArtikelController extends Controller
 
 					$artikelen = $code1 + $code2 + $products; // hier voegen wij de code's samen.
 
+					foreach($artikelen as $artikel){
+            if ($artikel->getVerkopen() == null){
+                $artikel->setGereserveerdevoorraad(0);
+                $artikel->setVrijevoorraad($artikel->getVoorraadInaantal());
+            } else{
+                $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
+                $artikel->setVrijevoorraad($artikel->getVoorraadInaantal() - $artikel->getGereserveerdevoorraad());
+            }
+        }
+
 					return new Response($this->renderView ('Artikelen/artikelenVerkoper.html.twig', array ('artikelen'=>$artikelen)));
 					}
 				/**
@@ -242,6 +263,27 @@ class ArtikelController extends Controller
 
 						return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 				}
+
+		/**
+		* @Route("verkoper/verkopen", name="voorraadVerkoper")
+		*/
+		// functie om overzicht van alle artikelen te laten zien aan de magazijnmeester
+		public function voorraadVerkoper (Request $request){
+		
+		$artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+
+
+        foreach($artikelen as $artikel){
+            if ($artikel->getVerkopen() == null){
+                $artikel->setGereserveerdevoorraad(0);
+                $artikel->setVrijevoorraad($artikel->getVoorraadInAantal());
+            } else{
+                $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
+                $artikel->setVrijevoorraad($artikel->getVoorraadInAantal() - $artikel->getGereserveerdevoorraad());
+            }
+        }
+
+	}
 
 
 }

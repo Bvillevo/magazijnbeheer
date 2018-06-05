@@ -131,6 +131,27 @@ class Artikel
     /**
      * @var int
      *
+     * @ORM\Column(name="verkopen", type="integer")
+     */
+    public $verkopen;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="gereserveerdeVoorraad", type="integer")
+     */
+    public $gereserveerdeVoorraad;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="vrijeVoorraad", type="integer")
+     */
+    public $vrijeVoorraad;
+
+    /**
+     * @var int
+     *
      * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="Artikel")
      */
     private $artikelen;
@@ -416,4 +437,78 @@ class Artikel
 
         return $this;
     }
+
+     /**
+     * Get verkopen
+     *
+     * @return int
+     */
+    public function getVerkopen()
+    {
+        return $this->verkopen;
+    }
+
+    /**
+     * Set verkopen
+     *
+     * @param integer $verkopen
+     *
+     * @return Artikel
+     */
+    public function setVerkopen($verkopen)
+    {
+        $this->verkopen = $verkopen;
+
+        return $this;
+    }
+
+     /**
+     * Get gereserveerdeVoorraad
+     *
+     * @return int
+     */
+    public function getGereserveerdeVoorraad()
+    {
+        return $this->gereserveerdeVoorraad;
+    }
+
+    /**
+     * Set gereserveerdeVoorraad
+     *
+     * @param integer $gereserveerdeVoorraad
+     *
+     * @return Artikel
+     */
+    public function setGereserveerdeVoorraad($gereserveerdeVoorraad)
+    {
+        $this->gereserveerdeVoorraad = $gereserveerdeVoorraad;
+
+        return $this;
+    }
+
+     /**
+     * Get vrijeVoorraad
+     *
+     * @return int
+     */
+    public function getvrijeVoorraad()
+    {
+        return $this->vrijeVoorraad;
+    }
+
+    /**
+     * Set vrijeVoorraad
+     *
+     * @param integer $vrijeVoorraad
+     *
+     * @return Artikel
+     */
+    public function setVrijeVoorraad($vrijeVoorraad)
+    {
+        $this->vrijeVoorraad = $vrijeVoorraad;
+
+        return $this;
+    }
+
+
   }
