@@ -93,7 +93,7 @@ class Bestelregel
      *
      * @return int
      */
-    public function getBestellingid()
+    public function getOmschrijving()
     {
         return $this->bestellingid;
     }
@@ -105,7 +105,7 @@ class Bestelregel
      *
      * @return Bestelregel
      */
-    public function setArtikelnr($artikelnr)
+    public function setOmschrijving($artikelnr)
     {
         $this->artikelnr = $artikelnr;
 

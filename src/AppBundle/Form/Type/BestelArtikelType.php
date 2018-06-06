@@ -17,7 +17,7 @@ class BestelArtikelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('artikelnr', EntityType::class, array (
+          ->add('omschrijving', EntityType::class, array (
              'class'=>'AppBundle:Artikel',
               'choice_label'=>'omschrijving'))
          ;
@@ -27,7 +27,7 @@ class BestelArtikelType extends AbstractType
                'choice_label'=>'leverancier'))
           ;
          $builder
-             ->add('hoeveelhseid', IntegerType::class)
+             ->add('hoeveelheid', IntegerType::class)
              ;
 
 
