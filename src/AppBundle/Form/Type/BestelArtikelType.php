@@ -27,7 +27,7 @@ class BestelArtikelType extends AbstractType
                'choice_label'=>'leverancier'))
           ;
          $builder
-             ->add('hoeveelheid', IntegerType::class)
+             ->add('hoeveelhseid', IntegerType::class)
              ;
 
 

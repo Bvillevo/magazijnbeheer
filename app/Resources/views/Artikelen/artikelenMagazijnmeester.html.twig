@@ -17,13 +17,11 @@
       <tr>
         <th>Artikel nummer</th>
         <th>Omschrijving</th>
-        <th>Technische specificaties</th>
         <th>Magazijnlocatie</th>
-        <th>Inkoopprijs</th>
-        <th>CVA</th>
         <th>Minimum voorraad</th>
-        <th>Voorraad in aantal</th>
-        <th>Bestelserie</th>
+        <th>Technische voorraad</th>
+        <th>Gereserveerde voorraad</th>
+        <th>Vrije voorraad</th>
         <th>Wijzigen</th>
       </tr>
     </thead>
@@ -32,13 +30,11 @@
       <tr>
         <td>{{ artikel.artikelnr }}</td>
         <td>{{ artikel.omschrijving }}</td>
-        <td>{{ artikel.technischeSpecificaties }}</td>
         <td>{{ artikel.magazijnlocatie }}</td>
-        <td>{{ artikel.inkoopprijs }}</td>
-        <td>{{ artikel.CVA }}</td>
         <td>{{ artikel.minimumVoorraad }}</td>
         <td>{{ artikel.voorraadInAantal }}</td>
-        <td>{{ artikel.bestelserie }}</td>
+        <td>{{ artikel.gereserveerdeVoorraad }}</td>
+        <td>{{ artikel.vrijeVoorraad }}</td>
         <td><a href="{{ path('magazijnmeesterLocatieWijzigen',{'artikelnr':artikel.artikelnr}) }}" class="btn btn-primary btn-sm square" role="button">Locatie code wijzigen</a></td>
       </tr>
 {% endfor %}

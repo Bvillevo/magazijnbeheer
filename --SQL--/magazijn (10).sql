@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 01 jun 2018 om 11:36
+-- Gegenereerd op: 06 jun 2018 om 11:20
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -62,6 +62,9 @@ CREATE TABLE `artikel` (
   `inkoopprijs` decimal(10,2) NOT NULL,
   `minimumVoorraad` int(20) NOT NULL,
   `voorraadInAantal` int(20) NOT NULL,
+  `verkopen` int(10) DEFAULT NULL,
+  `gereserveerdeVoorraad` int(10) DEFAULT NULL,
+  `vrijeVoorraad` int(10) DEFAULT NULL,
   `bestelserie` int(20) NOT NULL,
   `bestelregels` int(11) DEFAULT NULL,
   `CVA` int(10) DEFAULT NULL,
@@ -72,45 +75,46 @@ CREATE TABLE `artikel` (
 -- Gegevens worden geëxporteerd voor tabel `artikel`
 --
 
-INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `bestelserie`, `bestelregels`, `CVA`, `status`) VALUES
-(1000000017, 'Samsung galaxy s7', '128gb', '04/A03', '450.00', 15, 20, 0, 895686, NULL, 0),
-(1000000018, 'Samsung Galaxy S8', '32gb', '02/A01', '800.00', 150, 100, 50, 89273, 1000000017, 0),
-(1000000546, 'Iphone X', '32gb', '02/C03', '1150.00', 10, 0, 10, 89273, 1000000017, 1),
-(1000000875, 'Bosch WAB7I089', 'A+++ Energie', '04/D06', '333.00', 25, 20, 5, 895686, 1000000017, 1),
-(1000020017, 'Usb Handverwarmer', 'USB 3.0', '03/G02', '20.00', 15, 23, 0, 895686, NULL, 1),
-(1000300018, 'Dell D40', '1080p, 4gb Ram', '02/B01', '600.00', 5, 8, 0, 89273, NULL, 1),
-(1000350018, 'hp-hd1092d', '1080p', '06/H05', '790.00', 5, 6, 0, 89273, NULL, 1),
-(1010110110, 'Laptop oplader', '1000 Watt', '03/G06', '10.10', 50, 20, 30, NULL, 1181028374, 1),
-(1010293847, 'hy782 samsung', '1080p', '07/F09', '726.00', 13, 18, 0, 76432, NULL, 1),
-(1020020017, 'Apple iMac 2015', '1080p', '03/J03', '1300.00', 15, 25, 0, 895686, NULL, 1),
-(1029384765, 'AA battereijen', '', '09/N02', '5.00', 13, 17, 0, 76432, NULL, 1),
-(1050020017, 'goed voor in de woonkamer', '1080p', '02/R04', '67.00', 15, 17, 0, 895686, NULL, 1),
-(1181028374, 'AAA batterijen', '', '05/H01', '5.00', 15, 19, 0, 895686, 1029384765, 1),
-(1234567890, 'MSI GL62 6QF', 'GTX 960M', '02/D01', '700.00', 20, 10, 10, NULL, 1020020017, 1),
-(1239478263, 'mp4 speler hp 4gb', '1080p', '08/S02', '34.00', 13, 16, 0, 76432, NULL, 1),
-(1246426482, 'JBL GO 2', 'waterdicht', '04/B03', '98.00', 4, 8, 0, 65765, NULL, 1),
-(1247492649, '1968D sony', 'extra bass', '03/N04', '560.00', 2, 3, 0, 1253263, NULL, 1),
-(1273917394, 'hp pabilon 4500', 'usb 3.0', '04/A09', '670.00', 20, 13, 7, 87653645, NULL, 1),
-(1287492864, 'mp4 speler', '1080p', '08/K06', '34.00', 13, 7, 5, 76432, NULL, 1),
-(1298765432, 'HG678 Sony', '7.1 surround sound', '02/A01', '230.00', 5, 2, 3, 89273, NULL, 1),
-(1309876543, 'logitech c520', 'full hd', '01/A09', '67.00', 15, 5, 10, 895686, NULL, 1),
-(1412345678, 'logitech g789', '16000dpi', '02/A03', '80.00', 5, 2, 3, 89273, NULL, 1),
-(1512345678, 'logitech k95', 'RGB', '06/H01', '120.00', 5, 2, 3, 89273, NULL, 1),
-(1676128364, 'JBL FLIP 4', 'shock resistant', '01/L02', '250.00', 5, 2, 3, 89273, NULL, 1),
-(1738945629, 'macbook 2018', '2300p', '04/C01', '3400.00', 13, 7, 5, 76432, NULL, 1),
-(1782736183, 'philpis Blacklight ', 'Blacklight 30x5', '01/A01', '67.00', 15, 5, 10, 895686, NULL, 1),
-(1782937462, 'mp4 spler hp 32 gb', '1080p', '02/A01', '34.00', 13, 7, 5, 76432, NULL, 1),
-(1792015792, 'HP 1100', 'GTX 750M', '06/B03', '300.00', 20, 19, 1, NULL, 1000300018, 1),
-(1792015793, 'Sony 1200', '4K Ultra HD', '07/R04', '1000.00', 30, 15, 15, NULL, 1247492649, 1),
-(1792015794, 'Intel i5 - 4e generatie', '2.4GHZ', '07/R02', '200.00', 30, 15, 15, NULL, 1000300018, 1),
-(1792015795, 'Intel i5 - 8e generatie', '3.2GHZ', '07/R03', '250.00', 30, 15, 15, NULL, 1000300018, 1),
-(1792015796, 'Intel i7 - 5e generatie', '3.2GHZ', '06/R01', '250.00', 30, 15, 15, NULL, 1000300018, 1),
-(1792015797, 'Intel i7 - 8e generatie', '3.8GHZ', '06/R02', '350.00', 30, 15, 15, NULL, 1000300018, 1),
-(1792015798, 'Intel i3 - 6e generatie', '2.1GHZ', '06/B04', '100.00', 30, 15, 15, NULL, 1000300018, 1),
-(1792015799, 'Philips 49PUS6561/12', '4K Ultra HD', '03/G02', '600.00', 20, 15, 5, NULL, 1247492649, 1),
-(1792015800, 'LG OLED55E7N', '4K Ultra HD', '03/G03', '2000.00', 20, 15, 5, NULL, 1247492649, 1),
-(1792015801, 'Samsung QE49Q7FAMLXXM', '4K Ultra HD', '01/G04', '1200.00', 20, 15, 5, NULL, 1247492649, 1),
-(1923654728, 'mp4 spler samsung 8mb', '1080p', '03/G03', '50.00', 13, 7, 6, 76432, 1000000017, 1);
+INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `verkopen`, `gereserveerdeVoorraad`, `vrijeVoorraad`, `bestelserie`, `bestelregels`, `CVA`, `status`) VALUES
+(1000000017, 'Samsung galaxy s7', '128gb', '04/A06', '450.00', 15, 20, NULL, NULL, NULL, 0, 895686, NULL, 0),
+(1000000018, 'Samsung Galaxy S8', '32gb', '02/A01', '800.00', 150, 100, NULL, NULL, NULL, 50, 89273, 1000000017, 0),
+(1000000546, 'Iphone X', '32gb', '02/C03', '1150.00', 10, 0, NULL, NULL, NULL, 10, 89273, 1000000017, 1),
+(1000000875, 'Bosch WAB7I089', 'A+++ Energie', '04/D06', '333.00', 25, 20, NULL, NULL, NULL, 5, 895686, 1000000017, 1),
+(1000020017, 'Usb Handverwarmer', 'USB 3.0', '03/G02', '20.00', 15, 23, NULL, NULL, NULL, 0, 895686, NULL, 1),
+(1000300018, 'Dell D40', '1080p, 4gb Ram', '02/B01', '600.00', 5, 8, NULL, NULL, NULL, 0, 89273, NULL, 1),
+(1000350018, 'hp-hd1092d', '1080p', '06/H05', '790.00', 5, 6, NULL, NULL, NULL, 0, 89273, NULL, 1),
+(1010110110, 'Laptop oplader', '1000 Watt', '03/G06', '10.10', 50, 20, NULL, NULL, NULL, 30, NULL, 1181028374, 1),
+(1010293847, 'hy782 samsung', '1080p', '07/F09', '726.00', 13, 18, NULL, NULL, NULL, 0, 76432, NULL, 1),
+(1020020017, 'Apple iMac 2015', '1080p', '03/J03', '1300.00', 15, 25, NULL, NULL, NULL, 0, 895686, NULL, 1),
+(1029384765, 'AA battereijen', '', '09/N02', '5.00', 13, 17, NULL, NULL, NULL, 0, 76432, NULL, 1),
+(1050020017, 'goed voor in de woonkamer', '1080p', '02/R04', '67.00', 15, 17, NULL, NULL, NULL, 0, 895686, NULL, 1),
+(1181028374, 'AAA batterijen', '', '05/H01', '5.00', 15, 19, NULL, NULL, NULL, 0, 895686, 1029384765, 1),
+(1231231231, 'Iphone 8', 'asdsd', '01/A01', '1.00', 1, 1, NULL, NULL, NULL, 0, NULL, 1000000017, 0),
+(1234567890, 'MSI GL62 6QF', 'GTX 960M', '02/D01', '700.00', 20, 10, NULL, NULL, NULL, 10, NULL, 1020020017, 1),
+(1239478263, 'mp4 speler hp 4gb', '1080p', '08/S02', '34.00', 13, 16, NULL, NULL, NULL, 0, 76432, NULL, 1),
+(1246426482, 'JBL GO 2', 'waterdicht', '04/B03', '98.00', 4, 8, NULL, NULL, NULL, 0, 65765, NULL, 1),
+(1247492649, '1968D sony', 'extra bass', '03/N04', '560.00', 2, 3, NULL, NULL, NULL, 0, 1253263, NULL, 1),
+(1273917394, 'hp pabilon 4500', 'usb 3.0', '04/A09', '670.00', 20, 13, NULL, NULL, NULL, 7, 87653645, NULL, 1),
+(1287492864, 'mp4 speler', '1080p', '08/K06', '34.00', 13, 7, NULL, NULL, NULL, 5, 76432, NULL, 1),
+(1298765432, 'HG678 Sony', '7.1 surround sound', '02/A01', '230.00', 5, 2, NULL, NULL, NULL, 3, 89273, NULL, 1),
+(1309876543, 'logitech c520', 'full hd', '01/A09', '67.00', 15, 5, NULL, NULL, NULL, 10, 895686, NULL, 1),
+(1412345678, 'logitech g789', '16000dpi', '02/A03', '80.00', 5, 2, NULL, NULL, NULL, 3, 89273, NULL, 1),
+(1512345678, 'logitech k95', 'RGB', '06/H01', '120.00', 5, 2, NULL, NULL, NULL, 3, 89273, NULL, 1),
+(1676128364, 'JBL FLIP 4', 'shock resistant', '01/L02', '250.00', 5, 2, NULL, NULL, NULL, 3, 89273, NULL, 1),
+(1738945629, 'macbook 2018', '2300p', '04/C01', '3400.00', 13, 7, NULL, NULL, NULL, 5, 76432, NULL, 1),
+(1782736183, 'philpis Blacklight ', 'Blacklight 30x5', '01/A01', '67.00', 15, 5, NULL, NULL, NULL, 10, 895686, NULL, 1),
+(1782937462, 'mp4 spler hp 32 gb', '1080p', '02/A01', '34.00', 13, 7, NULL, NULL, NULL, 5, 76432, NULL, 1),
+(1792015792, 'HP 1100', 'GTX 750M', '06/B03', '300.00', 200, 19, NULL, NULL, NULL, 181, NULL, 1000000017, 1),
+(1792015793, 'Sony 1200', '4K Ultra HD', '07/R04', '1000.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1247492649, 1),
+(1792015794, 'Intel i5 - 4e generatie', '2.4GHZ', '07/R02', '200.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1000300018, 1),
+(1792015795, 'Intel i5 - 8e generatie', '3.2GHZ', '07/R03', '250.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1000300018, 1),
+(1792015796, 'Intel i7 - 5e generatie', '3.2GHZ', '06/R01', '250.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1000300018, 1),
+(1792015797, 'Intel i7 - 8e generatie', '3.8GHZ', '06/R02', '350.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1000300018, 1),
+(1792015798, 'Intel i3 - 6e generatie', '2.1GHZ', '06/B04', '100.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1000300018, 1),
+(1792015799, 'Philips 49PUS6561/12', '4K Ultra HD', '03/G02', '600.00', 20, 15, NULL, NULL, NULL, 5, NULL, 1247492649, 1),
+(1792015800, 'LG OLED55E7N', '4K Ultra HD', '03/G03', '2000.00', 20, 15, NULL, NULL, NULL, 5, NULL, 1247492649, 1),
+(1792015801, 'Samsung QE49Q7FAMLXXM', '4K Ultra HD', '01/G04', '1200.00', 20, 15, NULL, NULL, NULL, 5, NULL, 1247492649, 1),
+(1923654728, 'mp4 spler samsung 8mb', '1080p', '03/G03', '50.00', 13, 7, NULL, NULL, NULL, 6, 76432, 1000000017, 1);
 
 -- --------------------------------------------------------
 
@@ -135,9 +139,7 @@ INSERT INTO `bestelopdracht` (`leverancier`, `bestelordernummer`) VALUES
 ('HP', 122),
 ('Philips', 130),
 ('JBL', 140),
-('Intel', 160),
-('Sony', 161),
-('Sony', 162);
+('Intel', 160);
 
 -- --------------------------------------------------------
 
@@ -160,7 +162,12 @@ INSERT INTO `bestelregel` (`id`, `bestellingid`, `artikelnr`, `hoeveelheid`) VAL
 (42, 110, 1309876543, 10),
 (43, 120, 1000000017, 33),
 (44, 121, 1000000546, 3),
-(45, 121, 1000000546, 10);
+(45, 121, 1000000546, 10),
+(46, 110, 1000300018, 5),
+(47, 110, 1000300018, 5),
+(48, 121, 1000000875, 8),
+(49, 121, 1000000017, 12),
+(50, 110, 1000000017, 788287);
 
 -- --------------------------------------------------------
 
@@ -1566,12 +1573,12 @@ ALTER TABLE `app_users`
 -- AUTO_INCREMENT voor een tabel `bestelopdracht`
 --
 ALTER TABLE `bestelopdracht`
-  MODIFY `bestelordernummer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `bestelordernummer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 --
 -- AUTO_INCREMENT voor een tabel `bestelregel`
 --
 ALTER TABLE `bestelregel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT voor een tabel `klant`
 --
