@@ -50,13 +50,14 @@
                 <a class="navbar-brand" >Inkoper</a>
                 
         {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
-                <a class="navbar-brand" style="color:gray">Magazijnmeester</a>
+                <a class="navbar-brand" >Magazijnmeester</a>
 
+        {% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
+                <a class="navbar-brand" >Admin</a>
 
-                
 
         {% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
-                <a class="navbar-brand" style="color:gray">Verkoper</a>
+                <a class="navbar-brand" >Verkoper</a>
 
 
         {% endif %}
