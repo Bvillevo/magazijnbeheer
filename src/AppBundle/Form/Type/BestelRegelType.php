@@ -36,11 +36,11 @@ class BestelRegelType extends AbstractType
         $builder
                 ->add('hoeveelheid', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
-       
+
         //zie
         //http://symfony.com/doc/current/forms.html#built-in-field-types
         //voor meer typen invoer
-    
+
     }
 
 	public function configureOptions(OptionsResolver $resolver)

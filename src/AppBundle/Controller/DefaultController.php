@@ -25,7 +25,7 @@ class DefaultController extends Controller
         }
         else if ($authorizationChecker->isGranted(new Expression('"ROLE_VERKOPER" in roles')))
         {
-            return $this->redirectToRoute('homgepageVerkoper');
+            return $this->redirectToRoute('homepageVerkoper');
         }
         else if ($authorizationChecker->isGranted(new Expression('"ROLE_ADMIN" in roles')))
         {

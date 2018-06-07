@@ -50,6 +50,14 @@ class Bestelregel
     public $hoeveelheid;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ontvangstdatum", type="date", nullable=true)
+     */
+    private $ontvangstdatum;
+
+
+    /**
      * Set id
      *
      * @param int $id
@@ -145,4 +153,25 @@ class Bestelregel
     {
         return $this->hoeveelheid;
     }
+
+    /**
+     * Set ontvangstdatum
+     *
+     * @param \DateTime $ontvangsdatum
+     */
+    public function setOntvangstdatum($ontvangstdatum)
+    {
+        $this->ontvangstdatum = $ontvangstdatum;
+    }
+
+    /**
+     * Get ontvangstdatum
+     *
+     * @return \DateTime
+     */
+    public function getOntvangstdatum()
+    {
+        return $this->ontvangstdatum;
+    }
+
 }

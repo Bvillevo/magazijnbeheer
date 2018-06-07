@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 //EntiteitType vervangen door b.v. KlantType
 class BestelArtikelType extends AbstractType
@@ -25,6 +26,9 @@ class BestelArtikelType extends AbstractType
            ->add('bestellingid', EntityType::class, array (
               'class'=>'AppBundle:Bestelopdracht',
                'choice_label'=>'leverancier'))
+          ;
+          $builder
+                      ->add('ontvangstdatum', DateType::class) //naam is b.v. een attribuut of variabele van klant
           ;
          $builder
              ->add('hoeveelheid', IntegerType::class)

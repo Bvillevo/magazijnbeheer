@@ -9,6 +9,10 @@
 </head>
 <body>
 <style>
+.melding{
+  color: black;
+  text-align: center;
+}
 .button {
     background-color: #4CAF50;
     color: white;
@@ -31,6 +35,10 @@
 </style>
 <div class="jumbotron text-center">
     <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg">
+    <td>{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
+              <a class="navbar-brand melding"> U bent ingelogd als: Inkoper</a>
+    {% endif %}
+  </td>
 </div>
 
 <div class="container">

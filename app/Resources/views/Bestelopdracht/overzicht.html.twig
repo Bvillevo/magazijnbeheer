@@ -16,14 +16,16 @@
     <thead>
       <tr>
         <th>Bestelorder</th>
+        <th>Leverancier</th>
         <th>Bekijk</th>
       </tr>
     </thead>
     <tbody>
       {% for qs in query %}
-      
+
       <tr>
 				<td>{{ qs.bestelordernummer }}</td>
+        <td>{{ qs.leverancier }}</td>
 				<td><a href="{{ path('inkoperbestelorderwijzigen',{'bestellingid':qs.bestellingid}) }}" class="btn btn-primary btn-sm square" role="button">Beijk</a></td>
       </tr>
 {% endfor %}

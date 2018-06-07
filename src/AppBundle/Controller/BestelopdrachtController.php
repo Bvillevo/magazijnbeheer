@@ -75,7 +75,7 @@ class BestelopdrachtController extends Controller
 	 $em = $this->getDoctrine()->getManager();
 
 	 // Deze query selecteert de bestelordnummer bestellingsid van de tabel bestelopdracht en bestelregel.
-	 $RAW_QUERY = "SELECT bestelordernummer, bestellingid   FROM bestelopdracht, bestelregel WHERE bestelopdracht.bestelordernummer = bestelregel.bestellingid";
+	 $RAW_QUERY = "SELECT bestelordernummer, bestellingid, leverancier   FROM bestelopdracht, bestelregel WHERE bestelopdracht.bestelordernummer = bestelregel.bestellingid";
 
 	 // Dit voert de query uit.
 	 $statement = $em->getConnection()->prepare($RAW_QUERY);
@@ -97,7 +97,7 @@ class BestelopdrachtController extends Controller
               $em = $this->getDoctrine()->getManager();
 
               // Deze query selecteert de data die nodig is voor het tonen op het scherm
-              $RAW_QUERY = "SELECT  bestelregel.hoeveelheid, bestelregel.bestellingid, bestelregel.artikelnr, bestelregel.hoeveelheid, artikel.omschrijving
+              $RAW_QUERY = "SELECT  bestelregel.hoeveelheid, bestelregel.bestellingid, bestelregel.artikelnr, bestelregel.hoeveelheid, artikel.omschrijving,
 							FROM bestelregel, artikel
 							WHERE bestelregel.artikelnr = artikel.artikelnr  AND bestelregel.bestellingid =$bestellingid";
 
