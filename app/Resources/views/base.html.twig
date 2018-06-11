@@ -13,7 +13,10 @@
       background-color: #CC0529 !important;
   }
     ul.nav.navbar-nav li a {
-      color: #fff !important;
+      color: #fff;
+  }
+    ul.nav.navbar-nav li a:hover {
+      background-color: #e41500;
   }
     a.navbar-brand {
       color: #fff !important;
@@ -45,7 +48,7 @@
             <li><a href ="{{ path ('homepageVerkoper')}}">Home</a></li>
       {% endif %}
 
-      <li><a href="/magazijnbeheer1/web/app_dev.php/login">Logout</a></li>
+      <li><a href="/magazijnbeheer/web/app_dev.php/login">Logout</a></li>
       <li>{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
                 <a class="navbar-brand" >Inkoper</a>
 
