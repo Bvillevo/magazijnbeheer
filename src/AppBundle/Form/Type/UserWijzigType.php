@@ -11,34 +11,33 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class UserType extends AbstractType
+class UserWijzigType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('voornaam', TextType::class,array ('required' => false))
-            ->add('achternaam', TextType::class,array ('required' => false))
-            ->add('functie', TextType::class,array ('required' => false))
-            ->add('username', TextType::class)
+            // ->add('voornaam', TextType::class,array ('required' => false))
+            // ->add('achternaam', TextType::class,array ('required' => false))
+            // ->add('username', TextType::class)
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password')
             ))
-            ->add('roles', ChoiceType::class, [
-                'multiple' => true,
-                'expanded' => true, // render check-boxes
-                'choices' => [
-                     'Admin' => 'ROLE_ADMIN',
-                     'Inkoper' => 'ROLE_INKOPER',
-                     'Magazijnmeester' => 'ROLE_MAGAZIJNMEESTER',
-                     'Expeditie' => 'ROLE_EXPEDITIE',
-                     'Monteur' => 'ROLE_MONTEUR',
-                     'Financiën' => 'ROLE_FIANCIEN',
-                     'Verkoper' => 'ROLE_VERKOPER',
-                    ],
-                ])
-        ;
+        //     ->add('roles', ChoiceType::class, [
+        //         'multiple' => true,
+        //         'expanded' => true, // render check-boxes
+        //         'choices' => [
+        //              'Admin' => 'ROLE_ADMIN',
+        //              'Inkoper' => 'ROLE_INKOPER',
+        //              'Magazijnmeester' => 'ROLE_MAGAZIJNMEESTER',
+        //              'Expeditie' => 'ROLE_EXPEDITIE',
+        //              'Monteur' => 'ROLE_MONTEUR',
+        //              'Financiën' => 'ROLE_FIANCIEN',
+        //              'Verkoper' => 'ROLE_VERKOPER',
+        //             ],
+        //         ])
+         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

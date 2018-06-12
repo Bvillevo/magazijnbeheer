@@ -40,6 +40,10 @@ class User implements UserInterface, \Serializable
      */
     private $achternaam;
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $functie;
+    /**
      * @ORM\Column(type="string", length=50, unique=true)
      * @Assert\NotBlank()
      */
@@ -70,6 +74,15 @@ class User implements UserInterface, \Serializable
 
     // other properties and methods
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     public function getVoornaam()
     {
         return $this->voornaam;
@@ -88,6 +101,15 @@ class User implements UserInterface, \Serializable
     public function setAchternaam($achternaam)
     {
         $this->achternaam = $achternaam;
+    }
+    public function getFunctie()
+    {
+        return $this->functie;
+    }
+
+    public function setFunctie($functie)
+    {
+        $this->functie = $functie;
     }
 
     public function getUsername()

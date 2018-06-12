@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 06 jun 2018 om 11:20
+-- Gegenereerd op: 12 jun 2018 om 14:28
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -33,6 +33,7 @@ CREATE TABLE `app_users` (
   `username` varchar(25) DEFAULT NULL,
   `voornaam` varchar(255) DEFAULT NULL,
   `achternaam` varchar(255) DEFAULT NULL,
+  `functie` varchar(255) NOT NULL,
   `password` varchar(64) NOT NULL,
   `isActive` tinyint(1) NOT NULL,
   `roles` varchar(255) NOT NULL
@@ -42,11 +43,12 @@ CREATE TABLE `app_users` (
 -- Gegevens worden geëxporteerd voor tabel `app_users`
 --
 
-INSERT INTO `app_users` (`id`, `username`, `voornaam`, `achternaam`, `password`, `isActive`, `roles`) VALUES
-(6, 'admin', NULL, NULL, '$2y$13$T7Xpikq.0/nsH7UII6UE1OAcLXj/CJjzJjP404tYrPq7dRVa4k2gm', 0, 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}'),
-(13, 'inkoper', NULL, NULL, '$2y$13$U7ZJfksSic4HYobdRZ9V.e5tDxUAkUB80Bqf7QTAVISWBI6xfv29e', 0, 'a:1:{i:0;s:12:\"ROLE_INKOPER\";}'),
-(14, 'verkoper', NULL, NULL, '$2y$13$M2ATluuV8GzErtgRXv.EIenhy10/H/hf20Qx8O7/lsCMCxhviHRNy', 0, 'a:1:{i:0;s:13:\"ROLE_VERKOPER\";}'),
-(24, 'Youssef', 'Youssef', 'Zekhnini', '$2y$13$ofL/I7F5yaRZVPul5G7RpO9SiEnQcB2dp6L1UrvmcqXXhnHFZ.LsS', 0, 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}');
+INSERT INTO `app_users` (`id`, `username`, `voornaam`, `achternaam`, `functie`, `password`, `isActive`, `roles`) VALUES
+(6, 'admin', NULL, NULL, '', '$2y$13$T7Xpikq.0/nsH7UII6UE1OAcLXj/CJjzJjP404tYrPq7dRVa4k2gm', 0, 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}'),
+(13, 'inkoper', NULL, NULL, '', '$2y$13$wT5MFhpuPBc4prb3Ab/lvuL0x7G9Gflp7rmZmmI7HRZfFb6CLIDKu', 0, 'a:2:{i:0;s:12:\"ROLE_INKOPER\";i:1;s:20:\"ROLE_MAGAZIJNMEESTER\";}'),
+(14, 'verkoper', NULL, NULL, '', '$2y$13$M2ATluuV8GzErtgRXv.EIenhy10/H/hf20Qx8O7/lsCMCxhviHRNy', 0, 'a:1:{i:0;s:13:\"ROLE_VERKOPER\";}'),
+(28, 'magazijnmeester', NULL, NULL, '', '$2y$13$djJZT2ueCCKGLkk1wAdX6.1WLPBf6z.PdJfCY6N0uhwvw27ADvymO', 0, 'a:1:{i:0;s:20:\"ROLE_MAGAZIJNMEESTER\";}'),
+(29, 'Youssef', 'Youssef', 'Zekhnini', 'Admin', '$2y$13$usrpVGBamD4nAra/7sPfRu0pqUHNe9tS3KZpu9wnzlf25zqWBsSqS', 0, 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}');
 
 -- --------------------------------------------------------
 
@@ -76,13 +78,13 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `magazijnlocatie`, `inkoopprijs`, `minimumVoorraad`, `voorraadInAantal`, `verkopen`, `gereserveerdeVoorraad`, `vrijeVoorraad`, `bestelserie`, `bestelregels`, `CVA`, `status`) VALUES
-(1000000017, 'Samsung galaxy s7', '128gb', '04/A06', '450.00', 15, 20, NULL, NULL, NULL, 0, 895686, NULL, 0),
+(1000000017, 'Samsung galaxy s7', '128gb', '04/A06', '450.00', 15, 300, 7, 200, NULL, 0, 895686, NULL, 1),
 (1000000018, 'Samsung Galaxy S8', '32gb', '02/A01', '800.00', 150, 100, NULL, NULL, NULL, 50, 89273, 1000000017, 0),
 (1000000546, 'Iphone X', '32gb', '02/C03', '1150.00', 10, 0, NULL, NULL, NULL, 10, 89273, 1000000017, 1),
-(1000000875, 'Bosch WAB7I089', 'A+++ Energie', '04/D06', '333.00', 25, 20, NULL, NULL, NULL, 5, 895686, 1000000017, 1),
+(1000000875, 'Bosch WAB7I089', 'A+++ Energie', '04/D06', '333.00', 25, 20, 1000, NULL, NULL, 5, 895686, 1000000017, 1),
 (1000020017, 'Usb Handverwarmer', 'USB 3.0', '03/G02', '20.00', 15, 23, NULL, NULL, NULL, 0, 895686, NULL, 1),
 (1000300018, 'Dell D40', '1080p, 4gb Ram', '02/B01', '600.00', 5, 8, NULL, NULL, NULL, 0, 89273, NULL, 1),
-(1000350018, 'hp-hd1092d', '1080p', '06/H05', '790.00', 5, 6, NULL, NULL, NULL, 0, 89273, NULL, 1),
+(1000350018, 'hp-hd1092d', '1080p', '06/H05', '790.00', 5, 6, 4, NULL, NULL, 0, 89273, NULL, 1),
 (1010110110, 'Laptop oplader', '1000 Watt', '03/G06', '10.10', 50, 20, NULL, NULL, NULL, 30, NULL, 1181028374, 1),
 (1010293847, 'hy782 samsung', '1080p', '07/F09', '726.00', 13, 18, NULL, NULL, NULL, 0, 76432, NULL, 1),
 (1020020017, 'Apple iMac 2015', '1080p', '03/J03', '1300.00', 15, 25, NULL, NULL, NULL, 0, 895686, NULL, 1),
@@ -104,7 +106,7 @@ INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `
 (1738945629, 'macbook 2018', '2300p', '04/C01', '3400.00', 13, 7, NULL, NULL, NULL, 5, 76432, NULL, 1),
 (1782736183, 'philpis Blacklight ', 'Blacklight 30x5', '01/A01', '67.00', 15, 5, NULL, NULL, NULL, 10, 895686, NULL, 1),
 (1782937462, 'mp4 spler hp 32 gb', '1080p', '02/A01', '34.00', 13, 7, NULL, NULL, NULL, 5, 76432, NULL, 1),
-(1792015792, 'HP 1100', 'GTX 750M', '06/B03', '300.00', 200, 19, NULL, NULL, NULL, 181, NULL, 1000000017, 1),
+(1792015792, 'HP 1100', 'GTX 750M', '06/B03', '300.00', 200, 19, NULL, 10, NULL, 181, NULL, 1000000017, 1),
 (1792015793, 'Sony 1200', '4K Ultra HD', '07/R04', '1000.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1247492649, 1),
 (1792015794, 'Intel i5 - 4e generatie', '2.4GHZ', '07/R02', '200.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1000300018, 1),
 (1792015795, 'Intel i5 - 8e generatie', '3.2GHZ', '07/R03', '250.00', 30, 15, NULL, NULL, NULL, 15, NULL, 1000300018, 1),
@@ -151,23 +153,9 @@ CREATE TABLE `bestelregel` (
   `id` int(11) NOT NULL,
   `bestellingid` int(11) DEFAULT NULL,
   `artikelnr` int(11) NOT NULL,
-  `hoeveelheid` int(11) NOT NULL
+  `hoeveelheid` int(11) NOT NULL,
+  `ontvangstdatum` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `bestelregel`
---
-
-INSERT INTO `bestelregel` (`id`, `bestellingid`, `artikelnr`, `hoeveelheid`) VALUES
-(42, 110, 1309876543, 10),
-(43, 120, 1000000017, 33),
-(44, 121, 1000000546, 3),
-(45, 121, 1000000546, 10),
-(46, 110, 1000300018, 5),
-(47, 110, 1000300018, 5),
-(48, 121, 1000000875, 8),
-(49, 121, 1000000017, 12),
-(50, 110, 1000000017, 788287);
 
 -- --------------------------------------------------------
 
@@ -1568,7 +1556,7 @@ ALTER TABLE `productsoort`
 -- AUTO_INCREMENT voor een tabel `app_users`
 --
 ALTER TABLE `app_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT voor een tabel `bestelopdracht`
 --
@@ -1578,7 +1566,7 @@ ALTER TABLE `bestelopdracht`
 -- AUTO_INCREMENT voor een tabel `bestelregel`
 --
 ALTER TABLE `bestelregel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `klant`
 --
