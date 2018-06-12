@@ -43,7 +43,7 @@ class RegistratieType extends AbstractType
             'Expeditie' => 'ROLE_EXPEDITIE',
             'Monteur' => 'ROLE_MONTEUR',
             'Financiën' => 'ROLE_FINANCIEN',
-            'Beheerder' => 'ROLE_ADMIN',
+
         ),
 
     ),

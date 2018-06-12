@@ -11,6 +11,7 @@ use AppBundle\Form\Type\ArtikelInkoperType;
 use AppBundle\Form\Type\ArtikelMagazijnmeesterType;
 use AppBundle\Form\Type\ArtikelType;
 use AppBundle\Form\Type\BestelArtikelType;
+use AppBundle\Form\Type\ArtikelVerkopenType;
 
 class ArtikelController extends Controller
 {
@@ -116,7 +117,7 @@ class ArtikelController extends Controller
 		*/
 		// functie om overzicht van alle artikelen te laten zien aan de magazijnmeester
 		public function alleArtikelenMagazijnmeester (Request $request){
-		
+
 		$artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
 
 
@@ -132,7 +133,7 @@ class ArtikelController extends Controller
 
 			return new Response($this->renderView ('Artikelen/artikelenMagazijnmeester.html.twig', array ('artikelen'=>$artikelen)));
 		}
-		 	
+
 		 	/**
 			* @Route("magazijnmeester/artikel/locatiewijzigen", name="artikelMagazijnmeesterLocatie")
 			*/
@@ -238,6 +239,7 @@ class ArtikelController extends Controller
             } else{
                 $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
                 $artikel->setVrijevoorraad($artikel->getVoorraadInaantal() - $artikel->getGereserveerdevoorraad());
+								$artikel->setVoorraadInAantal($artikel->getVoorraadInaantal() - $artikel->getGereserveerdevoorraad());
             }
         }
 
@@ -264,26 +266,26 @@ class ArtikelController extends Controller
 						return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 				}
 
-		/**
-		* @Route("verkoper/verkopen", name="voorraadVerkoper")
-		*/
-		// functie om overzicht van alle artikelen te laten zien aan de magazijnmeester
-		public function voorraadVerkoper (Request $request){
-		
-		$artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+				/**
+					* @Route("/verkoper/verkopen/{artikelnr}", name="artikelVerkopen")
+					*/
+					// functie wijzigen van een inkoper artikel
+					public function voorraadVerkoper (Request $request, $artikelnr){
+						$verkopen = $this->getDoctrine()->GetRepository("AppBundle:Artikel")->find($artikelnr);
+						$form = $this->createForm(ArtikelVerkopenType::class, $verkopen);
+
+						$form->handleRequest($request);
+						if ($form->isSubmitted() && $form->isValid()) {
+							$em = $this->getDoctrine()->getManager();
+							$em->persist($verkopen);
+							$em->flush();
+							//Na het wijzigen als inkoper van een artikel wordt er weer verwezen naar alleartikelen. De inkoper heeft namelijk geen speciale rechten.
+							return $this->redirect($this->generateurl("alleactieveartikelen"));
+					 }
+					 return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
+				 }
 
 
-        foreach($artikelen as $artikel){
-            if ($artikel->getVerkopen() == null){
-                $artikel->setGereserveerdevoorraad(0);
-                $artikel->setVrijevoorraad($artikel->getVoorraadInAantal());
-            } else{
-                $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
-                $artikel->setVrijevoorraad($artikel->getVoorraadInAantal() - $artikel->getGereserveerdevoorraad());
-            }
-        }
-
-	}
 
 
 }
