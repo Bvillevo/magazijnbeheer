@@ -18,8 +18,9 @@
     ul.nav.navbar-nav li a:hover {
       background-color: #e41500;
   }
-    a.navbar-brand {
-      color: #fff !important;
+    ul.nav.navbar-nav.navbar-right li a {
+      color: black;
+      float: right;
   }
   </style>
 </head>
@@ -48,23 +49,24 @@
             <li><a href ="{{ path ('homepageVerkoper')}}">Home</a></li>
       {% endif %}
 
-      <li><a href="/magazijnbeheer1/web/app_dev.php/login">Logout</a></li>
+      <li><a href="/magazijnbeheer/web/app_dev.php/login">Logout</a></li>
+
+      <ul class="nav navbar-nav navbar-right">
       <li>{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
-                <a class="navbar-brand" >Inkoper</a>
+                <a><span class="glyphicon glyphicon-user"></span> Inkoper</a></li>
 
-        {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
-                <a class="navbar-brand" >Magazijnmeester</a>
+      <li>{% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
+                <a><span class="glyphicon glyphicon-user"></span> Magazijnmeester</a></li>
 
-        {% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
-                <a class="navbar-brand" >Admin</a>
+      <li>{% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
+                <a><span class="glyphicon glyphicon-user"></span> Admin</a></li>
 
+      <li>{% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
+                <a><span class="glyphicon glyphicon-user"></span> Verkoper</a></li>
+      </ul>
 
-        {% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
-                <a class="navbar-brand" >Verkoper</a>
-
-
-        {% endif %}
-        </li>
+          {% endif %}
+      </li>
     </ul>
   </div>
 </nav>

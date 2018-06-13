@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Homepage Admin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,6 +9,26 @@
 </head>
 <body>
   <style>
+  img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 30%;
+  }
+  .melding {
+      color: black;
+      text-align: center;
+      position: absolute;
+      left: 0px;
+  }
+  .logout {
+      color: white;
+      background-color: #CC0529;
+      text-align: center;
+      border-radius: 8px;
+      position: absolute;
+      right: 20px;
+  }
   .button {
       background-color: #CC0529;
       color: white;
@@ -40,16 +60,27 @@
   </style>
 <div class="jumbotron text-center">
     <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg">
+    <td>{% if is_granted(expression('"ROLE_ADMIN" in roles')) %}
+              <a class="navbar-brand melding">U bent ingelogd als: {{ app.user.username }}</a>
+
+    <a href="{{ path('login')}}" class= "navbar-brand logout">Logout</a>
+    {% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
+
+    {% endif %}
+
+    </td>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
+      <h3>Registreren</h3>
         <td><a href="{{ path('user_registration')}}" class="button button1" role="button">Nieuwe gebruiker registreren</a></td>
     </div>
 
     <div class="col-sm-4">
-        <td><a href="{{ path('allegebruikers')}}" class="button button1" role="button">Alle gebruikers tonen</a></td>
+      <h3>Gebruikers</h3>
+        <td><a href="{{ path('allegebruikers')}}" class="button button1" role="button">Overzicht gebruikers</a></td>
     </div>
 </div>
 

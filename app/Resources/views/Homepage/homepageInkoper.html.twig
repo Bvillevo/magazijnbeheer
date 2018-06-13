@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Homepage Inkoper</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,12 +9,25 @@
 </head>
 <body>
 <style>
-.melding{
-  color: black;
-  text-align: center;
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+.melding {
+    color: black;
+    text-align: center;
+    position: absolute;
+    left: 0px;
 }
 .logout {
-
+    color: white;
+    background-color: #CC0529;
+    text-align: center;
+    border-radius: 8px;
+    position: absolute;
+    right: 20px;
 }
 .button {
     background-color: #CC0529;
@@ -48,15 +61,14 @@
 <div class="jumbotron text-center">
     <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg">
     <td>{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
-              <a class="navbar-brand melding"> U bent ingelogd als: Inkoper</a>
+              <a class="navbar-brand melding">U bent ingelogd als: {{ app.user.username }}</a>
 
-    <td><a href="/magazijnbeheer1/web/app_dev.php/login">Logout</a></td>
-    <td>{% elseif is_granted(expression('"ROLE_INKOPER" in roles')) %}
-              <a class="navbar-brand logout" >Inkoper</a>
-    </td>
+    <a href="{{ path('login')}}" class= "navbar-brand logout">Logout</a>
+    {% elseif is_granted(expression('"ROLE_INKOPER" in roles')) %}
+
     {% endif %}
 
-  </td>
+    </td>
 </div>
 
 <div class="container">
@@ -66,12 +78,11 @@
         <td><a href="{{ path('alleactieveartikelen')}}" class="button button1" role="button">Alle artikelen tonen</a></td>
         <td><a href="{{ path('alledeactieveartikelen')}}" class="button button1" role="button">Alle gedeactiveerde artikelen tonen</a></td>
         <td><a href="{{ path('artikelNieuw')}}" class="button button1" role="button">Nieuw artikel toevoegen</a></td>
-        <td><a href="{{ path('bestelserieArtikelenInkoper')}}" class="button button1" role="button">Overzicht bestelserie</a></td>
       </div>
       <div class="col-sm-4">
         <h3>Bestellen</h3>
         <td><a href="{{ path('nieuwebestelorder')}}" class="button button1" role="button">Nieuwe leverancier toevoegen</a></td>
-        <td><a href="/magazijnbeheer1/web/app_dev.php/inkoper/bestelartikel/nieuw/1" class="button button1" role="button">Inkopen</a></td>
+        <td><a href="/magazijnbeheer/web/app_dev.php/inkoper/bestelartikel/nieuw/1" class="button button1" role="button">Inkopen</a></td>
         <td><a href="{{ path('allebestelopdrachten')}}" class="button button1" role="button">Overzicht inkopen</a></td>
     </div>
     <div class="col-sm-4">
