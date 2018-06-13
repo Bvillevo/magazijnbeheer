@@ -4,27 +4,27 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-      # in_memory:
-      #       memory:
-      #           users:
-      #                 marice:
-      #                     password: user
-      #                     roles: 'ROLE_USER'
-      #                 admin:
-      #                     password: admin
-      #                     roles: 'ROLE_ADMIN'
-      #                 inkoper:
-      #                     password: inkoper
-      #                     roles: 'ROLE_INKOPER'
-      #                 verkoper:
-      #                     password: verkoper
-      #                     roles: 'ROLE_VERKOPER'
-      #                 magazijnmeester:
-      #                     password: magazijnmeester
-      #                     roles: 'ROLE_MAGAZIJNMEESTER'
-      #                 youssef:
-      #                         password: Welkom01!
-      #                         roles: 'ROLE_ADMIN'
+      in_memory:
+            memory:
+                users:
+      #                marice:
+      #                    password: user
+      #                    roles: 'ROLE_USER'
+                      admin:
+                          password: admin
+                          roles: 'ROLE_ADMIN'
+                      inkoper:
+                          password: inkoper
+                          roles: 'ROLE_INKOPER'
+                      verkoper:
+                          password: verkoper
+                          roles: 'ROLE_VERKOPER'
+                      magazijnmeester:
+                          password: magazijnmeester
+                          roles: 'ROLE_MAGAZIJNMEESTER'
+                      youssef:
+                              password: Welkom01!
+                              roles: 'ROLE_ADMIN'
       our_db_provider:
           entity:
                 class: AppBundle:User
@@ -51,7 +51,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-
+                
 
     access_control:
         # require ROLE_ADMIN for /admin*

@@ -1,22 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<div class= "container">
     <h1>Artikelen overzicht</h1>
     <form method="post" action="{{ path('omschrijvingArtikelenVerkoper') }}">
       <input type="text" placeholder="artikelnr of omschrijving" name="zoekwaarde" />
       <input type="submit" name="verzendknop" />
     </form>
     <br />
-    <table class = "table">
+    <table border="1" style="width: 100%;">
         <thead>
             <tr>
                 <td>Artikel nummer</td>
@@ -25,11 +15,10 @@
                 <td>Magazijnlocatie</td>
                 <td>Inkoopprijs</td>
                 <td>CVA</td>
-
-                <td>Technische voorraad</td>
-								<td>Economische voorraad</td>
-                <td>bestelserie</td>
-
+                <td>Minimum voorraad</td>
+                <td>Voorraad in aantal</td>
+								<td>Bestelserie</td>
+                <td>Wijzigen</td>
             </tr>
         </thead>
         <tbody>
@@ -41,13 +30,12 @@
                     <td>{{ artikel.magazijnlocatie }}</td>
                     <td>{{ artikel.inkoopprijs }}</td>
                     <td>{{ artikel.CVA }}</td>
-
+                    <td>{{ artikel.minimumVoorraad }}</td>
                     <td>{{ artikel.voorraadInAantal }}</td>
-										<td>{{ artikel.vrijeVoorraad - artikel.gereserveerdeVoorraad }}</td>
-                    <td>{{ artikel.bestelserie }}</td>
-               </tr>
+										<td>{{ artikel.bestelserie }}</td>
+                    <td><a href="{{ path('artikelMagazijnmeesterLocatie',{'artikelnr':artikel.artikelnr}) }}">wijzig</a></td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
 {% endblock %}

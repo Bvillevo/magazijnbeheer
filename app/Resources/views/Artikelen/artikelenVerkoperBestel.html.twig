@@ -11,7 +11,7 @@
 </head>
 <div class= "container">
     <h1>Artikelen overzicht</h1>
-    <form method="post" action="{{ path('omschrijvingArtikelenVerkoper') }}">
+    <form method="post" action="{{ path('bestelserieArtikelenInkoper') }}">
       <input type="text" placeholder="artikelnr of omschrijving" name="zoekwaarde" />
       <input type="submit" name="verzendknop" />
     </form>
@@ -21,14 +21,9 @@
             <tr>
                 <td>Artikel nummer</td>
                 <td>Omschrijving</td>
-                <td>technische Specificaties</td>
-                <td>Magazijnlocatie</td>
-                <td>Inkoopprijs</td>
-                <td>CVA</td>
-
-                <td>Technische voorraad</td>
-								<td>Economische voorraad</td>
+                <td>tecnnische voorraad</td>
                 <td>bestelserie</td>
+
 
             </tr>
         </thead>
@@ -37,14 +32,9 @@
                 <tr>
                     <td>{{ artikel.artikelnr }}</td>
                     <td>{{ artikel.omschrijving }}</td>
-                    <td>{{ artikel.technischeSpecificaties }}</td>
-                    <td>{{ artikel.magazijnlocatie }}</td>
-                    <td>{{ artikel.inkoopprijs }}</td>
-                    <td>{{ artikel.CVA }}</td>
-
                     <td>{{ artikel.voorraadInAantal }}</td>
-										<td>{{ artikel.vrijeVoorraad - artikel.gereserveerdeVoorraad }}</td>
                     <td>{{ artikel.bestelserie }}</td>
+
                </tr>
             {% endfor %}
         </tbody>

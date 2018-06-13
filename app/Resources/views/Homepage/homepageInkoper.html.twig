@@ -13,11 +13,8 @@
   color: black;
   text-align: center;
 }
-.logout {
-  
-}
 .button {
-    background-color: #CC0529;
+    background-color: #4CAF50;
     color: white;
     padding: 10px 10px;
     text-align: center;
@@ -26,36 +23,21 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: 8px;
+
 }
 
 .button1 {
-    background-color: white;
-    color: black;
+    background-color: #CC0529;
+    color: white;
     border: 5px solid #CC0529;
     min-width: 300px !important;
-    border-radius: 8px;
-    -webkit-transition-duration: 0.4s; /* Red */
-    transition-duration: 0.4s;
 }
-
-.button1:hover {
-    background-color: #CC0529; /* Red */
-    color: white;
-}
-
 </style>
 <div class="jumbotron text-center">
     <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg">
     <td>{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
               <a class="navbar-brand melding"> U bent ingelogd als: Inkoper</a>
-
-    <td><a href="/magazijnbeheer/web/app_dev.php/login">Logout</a></td>
-    <td>{% elseif is_granted(expression('"ROLE_INKOPER" in roles')) %}
-              <a class="navbar-brand logout" >Inkoper</a>
-    </td>
     {% endif %}
-
   </td>
 </div>
 
@@ -70,7 +52,7 @@
       <div class="col-sm-4">
         <h3>Bestellen</h3>
         <td><a href="{{ path('nieuwebestelorder')}}" class="button button1" role="button">Nieuwe leverancier toevoegen</a></td>
-        <td><a href="/magazijnbeheer/web/app_dev.php/inkoper/bestelartikel/nieuw/1" class="button button1" role="button">Inkopen</a></td>
+        <td><a href="/magazijnbeheer1/web/app_dev.php/inkoper/bestelartikel/nieuw/1" class="button button1" role="button">Inkopen</a></td>
         <td><a href="{{ path('allebestelopdrachten')}}" class="button button1" role="button">Overzicht inkopen</a></td>
     </div>
     <div class="col-sm-4">

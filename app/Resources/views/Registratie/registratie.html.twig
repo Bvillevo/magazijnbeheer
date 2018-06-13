@@ -18,8 +18,8 @@
         <th>Gebruikersnaam</th>
         <th>Voornaam</th>
         <th>Achternaam</th>
-        <th>Functie</th>
-        <th>Wachtwoord wijzigen</th>
+        <th>Wachtwoord</th>
+        <th>Rol</th>
       </tr>
     </thead>
     <tbody>
@@ -29,10 +29,8 @@
         <td>{{ user.username }}</td>
         <td>{{ user.voornaam }}</td>
         <td>{{ user.achternaam }}</td>
-        <td>{{ user.functie }}</td>
-        <td><a href="{{ path('wachtwoordwijzig',{'id':user.id}) }}" class="btn btn-primary btn-sm square" role="button">Wijzig</a></td>
-
-
+        <td>{{ user.password }}</td>
+      
 
 
       </tr>
