@@ -360,7 +360,7 @@ class ArtikelController extends Controller
 							$em->persist($verkopen);
 							$em->flush();
 							//Na het wijzigen als inkoper van een artikel wordt er weer verwezen naar alleartikelen. De inkoper heeft namelijk geen speciale rechten.
-							return $this->redirect($this->generateurl("alleactieveartikelen"));
+							return $this->redirect($this->generateurl("omschrijvingArtikelenVerkoper"));
 					 }
 					 return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 				 }

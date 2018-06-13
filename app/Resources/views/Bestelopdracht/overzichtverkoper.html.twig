@@ -11,38 +11,24 @@
 <body>
 
 <div class="container">
-  <h2>Besteloverzicht: {{id}}</h2>
-  {% for qr in query %}
-  Leverancier: {{ qr.leverancier }}<br>
-  {% endfor %}
-
-  {% for bs in bestel %}
-  Bestelordernummer: {{id}}<br>
-  {% endfor %}
-
+  <h2><br>Artikelen overzicht</br></h2>
   <table class="table">
     <thead>
       <tr>
-        <th>Artikelnummer</th>
-        <th>Beschrijving</th>
-        <th>Aantal</th>
-        <th>Ontvangstdatum</th>
-        <th>Keuringseis</th>
+        <th>Bestelorder</th>
+        <th>Leverancier</th>
+        <th>Bekijk</th>
       </tr>
     </thead>
     <tbody>
+      {% for qs in query %}
 
-      {% for vr in artikel %}
       <tr>
-        <td>{{ vr.artikelnr }}</td>
-        <td>{{ vr.omschrijving }}</td>
-        <td>{{ vr.hoeveelheid }}</td>
-        <td>{{ vr.ontvangstdatum }}</td>
-        <td>{{ vr.keuringseis }}</td>
+				<td>{{ qs.bestelordernummer }}</td>
+        <td>{{ qs.leverancier }}</td>
+				<td><a href="{{ path('verkoperbestelorderwijzigen',{'bestellingid':qs.bestellingid}) }}" class="btn btn-primary btn-sm square" role="button">Beijk</a></td>
       </tr>
-      {% endfor %}
-
-
-    </tbody>
-  </table>
-  {% endblock %}
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

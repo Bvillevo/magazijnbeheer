@@ -33,6 +33,9 @@ class BestelArtikelType extends AbstractType
          $builder
              ->add('hoeveelheid', IntegerType::class)
              ;
+          $builder
+             ->add('keuringseis', IntegerType::class)
+             ;
 
 
     }

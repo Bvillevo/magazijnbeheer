@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bestelregel
@@ -55,6 +56,21 @@ class Bestelregel
      * @ORM\Column(name="ontvangstdatum", type="date", nullable=true)
      */
     private $ontvangstdatum;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="keuringseis", type="integer")
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 4,
+     *      minMessage = "keuringseis moet 4 cijfers hebben",
+     *      maxMessage = "keuringseis moet 4 cijfers hebben"
+     *)
+     */
+    public $keuringseis;
+
+
 
 
     /**
@@ -172,6 +188,30 @@ class Bestelregel
     public function getOntvangstdatum()
     {
         return $this->ontvangstdatum;
+    }
+
+    /**
+     * Set keuringseis
+     *
+     * @param integer $keuringseis
+     *
+     * @return Bestelregel
+     */
+    public function setKeuringsEis($keuringseis)
+    {
+        $this->keuringseis = $keuringseis;
+
+        return $this;
+    }
+
+    /**
+     * Get keuringseis
+     *
+     * @return int
+     */
+    public function getKeuringsEis()
+    {
+        return $this->keuringseis;
     }
 
 }

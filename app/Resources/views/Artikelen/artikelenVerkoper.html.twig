@@ -28,6 +28,7 @@
                 <td>Minimum voorraad</td>
                 <td>Voorraad in aantal</td>
 								<td>Bestelserie</td>
+                <td>Wijzig</td>
 
             </tr>
         </thead>
@@ -43,6 +44,7 @@
                     <td>{{ artikel.minimumVoorraad }}</td>
                     <td>{{ artikel.voorraadInAantal }}</td>
 										<td>{{ artikel.bestelserie }}</td>
+                    <td><a href="{{ path('artikelVerkopen',{'artikelnr':artikel.artikelnr}) }}" class="btn btn-primary btn-sm square" role="button">Verkopen</a></td>
                </tr>
             {% endfor %}
         </tbody>
