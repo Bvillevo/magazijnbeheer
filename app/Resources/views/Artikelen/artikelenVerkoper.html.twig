@@ -25,10 +25,9 @@
                 <td>Magazijnlocatie</td>
                 <td>Inkoopprijs</td>
                 <td>CVA</td>
-
-                <td>Technische voorraad</td>
-								<td>Economische voorraad</td>
-                <td>bestelserie</td>
+                <td>Minimum voorraad</td>
+                <td>Voorraad in aantal</td>
+								<td>Bestelserie</td>
 
             </tr>
         </thead>
@@ -41,10 +40,9 @@
                     <td>{{ artikel.magazijnlocatie }}</td>
                     <td>{{ artikel.inkoopprijs }}</td>
                     <td>{{ artikel.CVA }}</td>
-
+                    <td>{{ artikel.minimumVoorraad }}</td>
                     <td>{{ artikel.voorraadInAantal }}</td>
-										<td>{{ artikel.vrijeVoorraad - artikel.gereserveerdeVoorraad }}</td>
-                    <td>{{ artikel.bestelserie }}</td>
+										<td>{{ artikel.bestelserie }}</td>
                </tr>
             {% endfor %}
         </tbody>

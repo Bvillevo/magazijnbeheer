@@ -25,7 +25,8 @@
       <tr>
         <th>Artikelnummer</th>
         <th>Beschrijving</th>
-        <th>aantal</th>
+        <th>Aantal</th>
+        <th>Ontvangstdatum</th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
         <td>{{ vr.artikelnr }}</td>
         <td>{{ vr.omschrijving }}</td>
         <td>{{ vr.hoeveelheid }}</td>
+        <td>{{ vr.ontvangstdatum }}</td>
       </tr>
       {% endfor %}
 

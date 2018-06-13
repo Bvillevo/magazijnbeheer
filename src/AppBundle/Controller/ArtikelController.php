@@ -87,6 +87,50 @@ class ArtikelController extends Controller
 				}
 		 		return new Response($this->renderView ('form.html.twig', array('form' => $form->createView())));
 		  }
+			/**
+        * @Route("inkoper/artikelbestelserie", name="bestelserieArtikelenInkoper")
+        */
+        // functie om in een overzicht artikelen te vinden op omschrijving of artikelnummer
+        public function bestelserieArtikelenInkoper (Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $zoekwaarde = $request->request->get('zoekwaarde');
+        $repository = $this->getDoctrine()->getRepository(Artikel::class);
+
+        $query1 = $em->createQuery(         // <== deze function is voor het zoeken van de omschrijving van het artikel.
+        "SELECT o
+        FROM AppBundle:Artikel o
+        WHERE o.omschrijving LIKE :omschrijving AND o.voorraadInAantal >= 1 AND o.status = 1
+        ORDER BY o.artikelnr ASC")->setParameter('omschrijving', '%' . $zoekwaarde . '%');
+
+        $query2 = $em->createQuery(         // <== deze query is voor het zoeken naar het artikelnummer van het artikeln.
+        "SELECT p
+        FROM AppBundle:Artikel p
+        WHERE p.artikelnr = :artikelnr AND p.voorraadInAantal >= 1 AND p.status = 1
+        ORDER BY p.artikelnr ASC")->setParameter('artikelnr', $zoekwaarde);
+
+        $code1 = $query1->getResult(); // Code1 en code 2 is voor het ophalen van de resultaten
+        $code2 = $query2->getResult();
+
+				$products = $repository->findBy( // zorgen dat alles goed georderd is.
+					['voorraadInAantal' => '1'],
+					['artikelnr' => 'ASC']
+				);
+
+
+        $artikelen = $code1 + $code2 + $products; // hier voegen wij de code's samen.
+
+        foreach($artikelen as $artikel){
+            if ($artikel->getVerkopen() == null){
+                    $artikel->setGereserveerdevoorraad(0);
+                    $artikel->setVrijevoorraad($artikel->getVoorraadInaantal());
+            } else{
+                    $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
+                    $artikel->setVrijevoorraad($artikel->getVoorraadInaantal() - $artikel->getGereserveerdevoorraad());
+            }
+    }
+
+        return new Response($this->renderView ('Artikelen/artikelenVerkoperBestel.html.twig', array ('artikelen'=>$artikelen)));
+        }
 
 	/**
 		* @Route("/artikel/wijzigen/{artikelnr}", name="artikelwijzigen")
@@ -278,9 +322,9 @@ class ArtikelController extends Controller
 					return new Response($this->renderView ('Artikelen/artikelenVerkoper.html.twig', array ('artikelen'=>$artikelen)));
 					}
 
-				
 
-					
+
+
 				/**
 				 * @Route("inkoper/bestelartikel/nieuw/{var}", name="bestelartikel")
 				 */

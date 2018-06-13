@@ -11,6 +11,10 @@
 <body>
 
 <div class="container">
+  <form method="post" action="{{ path('alleArtikelenMagazijnmeester') }}">
+      <input type="text" placeholder="artikelnr of omschrijving" name="zoekwaarde" />
+      <input type="submit" name="verzendknop" />
+    </form>
   <h2>Artikelen overzicht</h2>
   <table class="table">
     <thead>

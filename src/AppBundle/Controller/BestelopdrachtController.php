@@ -97,7 +97,7 @@ class BestelopdrachtController extends Controller
               $em = $this->getDoctrine()->getManager();
 
               // Deze query selecteert de data die nodig is voor het tonen op het scherm
-              $RAW_QUERY = "SELECT  bestelregel.hoeveelheid, bestelregel.bestellingid, bestelregel.artikelnr, bestelregel.hoeveelheid, artikel.omschrijving,
+              $RAW_QUERY = "SELECT  bestelregel.hoeveelheid, bestelregel.bestellingid, bestelregel.artikelnr, bestelregel.hoeveelheid, artikel.omschrijving, bestelregel.ontvangstdatum
 							FROM bestelregel, artikel
 							WHERE bestelregel.artikelnr = artikel.artikelnr  AND bestelregel.bestellingid =$bestellingid";
 
