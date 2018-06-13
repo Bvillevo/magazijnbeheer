@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 12 jun 2018 om 14:28
+-- Gegenereerd op: 13 jun 2018 om 12:58
 -- Serverversie: 10.1.26-MariaDB
 -- PHP-versie: 7.1.8
 
@@ -45,10 +45,10 @@ CREATE TABLE `app_users` (
 
 INSERT INTO `app_users` (`id`, `username`, `voornaam`, `achternaam`, `functie`, `password`, `isActive`, `roles`) VALUES
 (6, 'admin', NULL, NULL, '', '$2y$13$T7Xpikq.0/nsH7UII6UE1OAcLXj/CJjzJjP404tYrPq7dRVa4k2gm', 0, 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}'),
-(13, 'inkoper', NULL, NULL, '', '$2y$13$wT5MFhpuPBc4prb3Ab/lvuL0x7G9Gflp7rmZmmI7HRZfFb6CLIDKu', 0, 'a:2:{i:0;s:12:\"ROLE_INKOPER\";i:1;s:20:\"ROLE_MAGAZIJNMEESTER\";}'),
 (14, 'verkoper', NULL, NULL, '', '$2y$13$M2ATluuV8GzErtgRXv.EIenhy10/H/hf20Qx8O7/lsCMCxhviHRNy', 0, 'a:1:{i:0;s:13:\"ROLE_VERKOPER\";}'),
 (28, 'magazijnmeester', NULL, NULL, '', '$2y$13$djJZT2ueCCKGLkk1wAdX6.1WLPBf6z.PdJfCY6N0uhwvw27ADvymO', 0, 'a:1:{i:0;s:20:\"ROLE_MAGAZIJNMEESTER\";}'),
-(29, 'Youssef', 'Youssef', 'Zekhnini', 'Admin', '$2y$13$usrpVGBamD4nAra/7sPfRu0pqUHNe9tS3KZpu9wnzlf25zqWBsSqS', 0, 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}');
+(29, 'Youssef', 'Youssef', 'Zekhnini', 'Admin', '$2y$13$usrpVGBamD4nAra/7sPfRu0pqUHNe9tS3KZpu9wnzlf25zqWBsSqS', 0, 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}'),
+(30, 'halit', 'Halit', 'Ozdogru', 'Inkoper', '$2y$13$2mjyEEZ.3JdRgJX2DsxmeeyxaU1oivgHr/cEUTXU0rxzGPs/5TtJ2', 0, 'a:1:{i:0;s:12:\"ROLE_INKOPER\";}');
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,6 @@ INSERT INTO `artikel` (`artikelnr`, `omschrijving`, `technischeSpecificaties`, `
 (1029384765, 'AA battereijen', '', '09/N02', '5.00', 13, 17, NULL, NULL, NULL, 0, 76432, NULL, 1),
 (1050020017, 'goed voor in de woonkamer', '1080p', '02/R04', '67.00', 15, 17, NULL, NULL, NULL, 0, 895686, NULL, 1),
 (1181028374, 'AAA batterijen', '', '05/H01', '5.00', 15, 19, NULL, NULL, NULL, 0, 895686, 1029384765, 1),
-(1231231231, 'Iphone 8', 'asdsd', '01/A01', '1.00', 1, 1, NULL, NULL, NULL, 0, NULL, 1000000017, 0),
 (1234567890, 'MSI GL62 6QF', 'GTX 960M', '02/D01', '700.00', 20, 10, NULL, NULL, NULL, 10, NULL, 1020020017, 1),
 (1239478263, 'mp4 speler hp 4gb', '1080p', '08/S02', '34.00', 13, 16, NULL, NULL, NULL, 0, 76432, NULL, 1),
 (1246426482, 'JBL GO 2', 'waterdicht', '04/B03', '98.00', 4, 8, NULL, NULL, NULL, 0, 65765, NULL, 1),
@@ -141,7 +140,9 @@ INSERT INTO `bestelopdracht` (`leverancier`, `bestelordernummer`) VALUES
 ('HP', 122),
 ('Philips', 130),
 ('JBL', 140),
-('Intel', 160);
+('Intel', 160),
+('Makro', 161),
+('Test', 162);
 
 -- --------------------------------------------------------
 
@@ -156,6 +157,16 @@ CREATE TABLE `bestelregel` (
   `hoeveelheid` int(11) NOT NULL,
   `ontvangstdatum` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `bestelregel`
+--
+
+INSERT INTO `bestelregel` (`id`, `bestellingid`, `artikelnr`, `hoeveelheid`, `ontvangstdatum`) VALUES
+(1, 162, 1000000017, 78, '2013-01-01'),
+(2, 162, 1181028374, 56, '2018-01-01'),
+(3, 121, 1000000546, 4458, '2018-01-01'),
+(4, 121, 1000000875, 4, '2013-01-01');
 
 -- --------------------------------------------------------
 
@@ -1556,17 +1567,17 @@ ALTER TABLE `productsoort`
 -- AUTO_INCREMENT voor een tabel `app_users`
 --
 ALTER TABLE `app_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT voor een tabel `bestelopdracht`
 --
 ALTER TABLE `bestelopdracht`
-  MODIFY `bestelordernummer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `bestelordernummer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 --
 -- AUTO_INCREMENT voor een tabel `bestelregel`
 --
 ALTER TABLE `bestelregel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT voor een tabel `klant`
 --
