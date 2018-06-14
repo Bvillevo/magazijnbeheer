@@ -58,7 +58,7 @@ class BestelopdrachtController extends Controller
             $tekst = $laat->getBestelordernummer();
           }
           }
-         return $this->redirect("/magazijnbeheer1/web/inkoper/home");
+         return $this->redirect("/magazijnbeheer1/web/app_dev.php/inkoper/home");
         }
 				// Rendert de functie in een .twig.
 	return new Response($this->renderView('Bestelopdracht/index.html.twig', array('form' => $form->createView())));
