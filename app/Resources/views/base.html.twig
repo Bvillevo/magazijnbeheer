@@ -51,17 +51,17 @@
       <li><a href="/magazijnbeheer1/web/app_dev.php/login">Logout</a></li>
 
       <ul class="nav navbar-nav navbar-right">
-      <li>{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
-                <a><span class="glyphicon glyphicon-user"></span> Inkoper</a></li>
+        <li>{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
+                  <a><span class="glyphicon glyphicon-user"></span> {{app.user.username}} </a></li>
 
-      <li>{% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
-                <a><span class="glyphicon glyphicon-user"></span> Magazijnmeester</a></li>
+        <li>{% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
+                  <a><span class="glyphicon glyphicon-user"></span> {{app.user.username}} </a></li>
 
-      <li>{% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
-                <a><span class="glyphicon glyphicon-user"></span> Admin</a></li>
+        <li>{% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
+                  <a><span class="glyphicon glyphicon-user"></span> {{app.user.username}} </a></li>
 
-      <li>{% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
-                <a><span class="glyphicon glyphicon-user"></span> Verkoper</a></li>
+        <li>{% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
+                  <a><span class="glyphicon glyphicon-user"></span> {{app.user.username}} </a></li>
       </ul>
 
           {% endif %}
